@@ -1,5 +1,7 @@
 package Interfaces.GestionAsistencia;
 
+import java.awt.Color;
+
 public class panelMenuGestionAsistencia extends javax.swing.JPanel {
 
 public panelMenuGestionAsistencia() {
@@ -211,35 +213,35 @@ public panelMenuGestionAsistencia() {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnAgregarhoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarhoverEntrada
-    evt.getComponent().setBackground(new Color(102,153,255));
+		evt.getComponent().setBackground(new Color(102, 153, 255));
   }//GEN-LAST:event_btnAgregarhoverEntrada
 
   private void btnAgregarhoverSalida(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarhoverSalida
-    evt.getComponent().setBackground(new Color(51,102,255));
+		evt.getComponent().setBackground(new Color(51, 102, 255));
   }//GEN-LAST:event_btnAgregarhoverSalida
 
   private void btnEliminarhoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarhoverEntrada
-    // TODO add your handling code here:
+		evt.getComponent().setBackground(new Color(102, 153, 255));
   }//GEN-LAST:event_btnEliminarhoverEntrada
 
   private void btnEliminarhoverSalida(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarhoverSalida
-    // TODO add your handling code here:
+		evt.getComponent().setBackground(new Color(51, 102, 255));
   }//GEN-LAST:event_btnEliminarhoverSalida
 
   private void btnVisualizarhoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisualizarhoverEntrada
-    // TODO add your handling code here:
+		evt.getComponent().setBackground(new Color(102, 153, 255));
   }//GEN-LAST:event_btnVisualizarhoverEntrada
 
   private void btnVisualizarhoverSalida(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisualizarhoverSalida
-    // TODO add your handling code here:
+		evt.getComponent().setBackground(new Color(51, 102, 255));
   }//GEN-LAST:event_btnVisualizarhoverSalida
 
   private void btnModificarhoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarhoverEntrada
-    // TODO add your handling code here:
+		evt.getComponent().setBackground(new Color(102, 153, 255));
   }//GEN-LAST:event_btnModificarhoverEntrada
 
   private void btnModificarhoverSalida(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarhoverSalida
-    // TODO add your handling code here:
+		evt.getComponent().setBackground(new Color(51, 102, 255));
   }//GEN-LAST:event_btnModificarhoverSalida
 
 
