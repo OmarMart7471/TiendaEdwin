@@ -9,21 +9,18 @@ import Interfaces.GestionEmpleados.contenedorEmpleado;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    /*Se declara al manejador principal que se encargará 
+/*Se declara al manejador principal que se encargará 
     de hacer la conexion con la base de datos y posteriormente
     a las interfaces correspondientes de los casos de uso
-    */
+ */
+contenedorEmpleado empleado = new contenedorEmpleado();
 
-    
-    contenedorEmpleado empleado = new contenedorEmpleado();
-    
 public VentanaPrincipal() {
 	initComponents();
-        contenedorPrincipal.add(empleado);
+	contenedorPrincipal.add(empleado);
 
 //Agrega la vista inicial del punto de venta
 	//contenedorPrincipal.add(contenedorVenta);
-
 //Maximiza la pantalla
 	setExtendedState(this.MAXIMIZED_BOTH);
 }
@@ -210,12 +207,10 @@ public VentanaPrincipal() {
     }// </editor-fold>//GEN-END:initComponents
 
   private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
-		
-      /*
-                limpiarContenido();
+		limpiarContenido();
 		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionAsistencia());
-		actualizarContenido();*/
+		contenedorPrincipal.add(new Interfaces.GestionAsistencia.panelMenuGestionAsistencia(contenedorPrincipal));
+		actualizarContenido();
                 
   }//GEN-LAST:event_btnAsistenciaActionPerformed
 
