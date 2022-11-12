@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Interfaces.GestionAsistencia;
 
 import Manejadores.GestionAsistencia.ManejadorGestionAsistencia;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 public class panelAgregarAsistencia extends javax.swing.JPanel {
 
@@ -61,7 +56,6 @@ public panelAgregarAsistencia() {
     lblNombre.setPreferredSize(new java.awt.Dimension(130, 30));
     contenedorNombreEmpleado.add(lblNombre);
 
-    boxEmpleados.setEditable(true);
     boxEmpleados.setModel(new javax.swing.DefaultComboBoxModel<>(insertarEmpleados()));
     boxEmpleados.setSelectedIndex(0);
     boxEmpleados.setPreferredSize(new java.awt.Dimension(300, 30));
@@ -233,7 +227,14 @@ public panelAgregarAsistencia() {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnGuardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistroMouseClicked
-
+		limpiarCamposDescuento();
+		if (!setRegistroAsistencia(generarRegistro())) {
+			JOptionPane.showMessageDialog(null, "No se ha podido registrar la asistencia, "
+							+ "puede que se deba a lo siguiente:" + "\n"
+							+ "• Se perdio conexion con la base de datos" + "\n"
+							+ "• Este empleado ya tiene asistencia" + "\n"
+							+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al registrar la asistencia", JOptionPane.ERROR_MESSAGE);
+		}
   }//GEN-LAST:event_btnGuardarRegistroMouseClicked
 
   private void btnGuardarRegistrohoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistrohoverEntrada
@@ -253,6 +254,18 @@ public panelAgregarAsistencia() {
 		}
   }//GEN-LAST:event_radioObservacionesActionPerformed
 
+private String[] generarRegistro() {
+	String[] registro = new String[6];
+	registro[0] = getIdEmpleado(boxEmpleados.getSelectedIndex()).toString();
+	registro[1] = txtFecha.getText();
+	registro[2] = txtHoraEntrada.getText();
+	registro[3] = null;
+	registro[4] = txtObservacion.getText();
+	registro[5] = txtMonto.getText();
+
+	return registro;
+}
+
 private String[] insertarEmpleados() {
 	Object[] listaTemp = getEmpleados();
 	String[] listaEmpleados = new String[listaTemp.length];
@@ -263,8 +276,16 @@ private String[] insertarEmpleados() {
 	return listaEmpleados;
 }
 
+private boolean setRegistroAsistencia(String[] registro) {
+	return manejador.insertarRegistro(registro);
+}
+
 private Object[] getEmpleados() {
 	return manejador.getListaEmpleados();
+}
+
+private Object getIdEmpleado(int indice) {
+	return manejador.getIdEmpleado(indice);
 }
 
 private void deshabilitarDescuento() {
@@ -292,7 +313,7 @@ private String getFecha() {
 }
 
 private String getHora() {
-	return new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+	return new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
 }
 
 

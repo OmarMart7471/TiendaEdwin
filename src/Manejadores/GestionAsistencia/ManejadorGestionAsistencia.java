@@ -29,7 +29,41 @@ public Object[] getListaEmpleados() {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-return empleados.toArray();
+	return empleados.toArray();
+}
+
+public Object getIdEmpleado(int indice) {
+	Object empleado = null;
+	int contador = 0;
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("SELECT * FROM Empleado");
+		ResultSet r = cts.executeQuery();
+		while (r.next()) {
+			if (contador == indice) {
+				empleado = r.getString(1);
+				return empleado;
+			}
+			contador++;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+}
+
+public boolean insertarRegistro(String[] registro) {
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("insert into Asistencia(idEmpleado,fecha,horaEntrada,horaSalida,observacion,monto) values(?,?,?,?,?,?)");
+
+		for (int contador = 0; contador < registro.length; contador++) {
+			cts.setString(contador + 1, registro[contador]);
+		}
+		System.out.println(cts.toString());
+		cts.executeUpdate();
+		return true;
+	} catch (Exception e) {
+		return false;
+	}
 }
 
 }
