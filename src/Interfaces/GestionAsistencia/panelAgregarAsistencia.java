@@ -67,7 +67,7 @@ public panelAgregarAsistencia() {
     gridBagConstraints.ipadx = 263;
     gridBagConstraints.ipady = 8;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(28, 38, 0, 112);
+    gridBagConstraints.insets = new java.awt.Insets(31, 38, 0, 0);
     add(contenedorNombreEmpleado, gridBagConstraints);
 
     contenedorFecha.setMinimumSize(new java.awt.Dimension(217, 32));
@@ -87,7 +87,7 @@ public panelAgregarAsistencia() {
     gridBagConstraints.ipadx = 263;
     gridBagConstraints.ipady = 8;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 112);
+    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
     add(contenedorFecha, gridBagConstraints);
 
     contenedorHoraEntrada.setPreferredSize(new java.awt.Dimension(480, 100));
@@ -106,7 +106,7 @@ public panelAgregarAsistencia() {
     gridBagConstraints.ipadx = 80;
     gridBagConstraints.ipady = 7;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 112);
+    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
     add(contenedorHoraEntrada, gridBagConstraints);
 
     contenedorHoraSalida.setPreferredSize(new java.awt.Dimension(480, 100));
@@ -129,7 +129,7 @@ public panelAgregarAsistencia() {
     gridBagConstraints.ipadx = 90;
     gridBagConstraints.ipady = 7;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 112);
+    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
     add(contenedorHoraSalida, gridBagConstraints);
 
     contenedorDescuentos.setMinimumSize(new java.awt.Dimension(400, 50));
@@ -173,7 +173,7 @@ public panelAgregarAsistencia() {
     gridBagConstraints.ipadx = 80;
     gridBagConstraints.ipady = 73;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 112);
+    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
     add(contenedorDescuentos, gridBagConstraints);
 
     btnGuardarRegistro.setBackground(new java.awt.Color(142, 141, 141));
@@ -222,19 +222,21 @@ public panelAgregarAsistencia() {
     gridBagConstraints.ipadx = 163;
     gridBagConstraints.ipady = 1;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 170, 26, 112);
+    gridBagConstraints.insets = new java.awt.Insets(12, 170, 0, 0);
     add(btnGuardarRegistro, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnGuardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistroMouseClicked
-		limpiarCamposDescuento();
 		if (!setRegistroAsistencia(generarRegistro())) {
 			JOptionPane.showMessageDialog(null, "No se ha podido registrar la asistencia, "
 							+ "puede que se deba a lo siguiente:" + "\n"
 							+ "• Se perdio conexion con la base de datos" + "\n"
 							+ "• Este empleado ya tiene asistencia" + "\n"
 							+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al registrar la asistencia", JOptionPane.ERROR_MESSAGE);
+		}else {
+			JOptionPane.showMessageDialog(null, "Registro agregado con exito", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 		}
+		limpiarCamposDescuento();
   }//GEN-LAST:event_btnGuardarRegistroMouseClicked
 
   private void btnGuardarRegistrohoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistrohoverEntrada
@@ -257,11 +259,28 @@ public panelAgregarAsistencia() {
 private String[] generarRegistro() {
 	String[] registro = new String[6];
 	registro[0] = getIdEmpleado(boxEmpleados.getSelectedIndex()).toString();
-	registro[1] = txtFecha.getText();
-	registro[2] = txtHoraEntrada.getText();
+
+	if (txtFecha.getText().equals("")) {
+		registro[1] = null;
+	} else {
+		registro[1] = txtFecha.getText();
+	}
+	if (txtHoraEntrada.getText().equals("")) {
+		registro[2] = null;
+	} else {
+		registro[2] = txtHoraEntrada.getText();
+	}
 	registro[3] = null;
-	registro[4] = txtObservacion.getText();
-	registro[5] = txtMonto.getText();
+	if (txtObservacion.getText().equals("")) {
+		registro[4] = null;
+	} else {
+		registro[4] = txtObservacion.getText();
+	}
+	if (txtMonto.getText().equals("")) {
+		registro[5] = null;
+	} else {
+		registro[5] = txtMonto.getText();
+	}
 
 	return registro;
 }
