@@ -52,9 +52,9 @@ public class RecuperarContraseña extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Recuperación de Contraseña");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\cesarEnrique\\Downloads\\recuperar contraseña.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\cesarEnrique\\Desktop\\Proyecto\\TiendaEdwin\\src\\img\\recuperar contraseña.png")); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\cesarEnrique\\Downloads\\candado.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\cesarEnrique\\Desktop\\Proyecto\\TiendaEdwin\\src\\img\\candado.png")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));

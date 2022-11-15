@@ -149,14 +149,14 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\cesarEnrique\Downloads\recuperar contrase&#xf1;a.png"/>
+              <Image iconType="2" name="C:\Users\cesarEnrique\Desktop\Proyecto\TiendaEdwin\src\img\recuperar contrase&#xf1;a.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\cesarEnrique\Downloads\candado.png"/>
+              <Image iconType="2" name="C:\Users\cesarEnrique\Desktop\Proyecto\TiendaEdwin\src\img\candado.png"/>
             </Property>
           </Properties>
         </Component>
