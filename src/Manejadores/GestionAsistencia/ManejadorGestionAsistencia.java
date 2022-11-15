@@ -76,6 +76,39 @@ public Object getIdEmpleado(int indice) {
 	return null;
 }
 
+public Object[][] getFilas(String idEmpleado) {
+	ArrayList<ArrayList> matriz = new ArrayList<>();
+	ArrayList<String> subMatriz = new ArrayList<>();
+	Object[][] matrizRetorno = null;
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("SELECT * FROM Asistencia where idEmpleado=?");
+		cts.setString(1, idEmpleado);
+		ResultSet r = cts.executeQuery();
+
+		while (r.next()) {
+			subMatriz = new ArrayList<>();
+			for (int columnaTemp = 0; columnaTemp < 5; columnaTemp++) {
+				subMatriz.add(r.getString(columnaTemp + 2));
+			}
+			matriz.add(subMatriz);
+		}
+		try {
+			matrizRetorno = new Object[matriz.size()][matriz.get(0).size()];
+
+			for (int fila = 0; fila < matriz.size(); fila++) {
+				for (int columna = 0; columna < matriz.get(0).size(); columna++) {
+					matrizRetorno[fila][columna] = matriz.get(fila).get(columna);
+				}
+			}
+		} catch (IndexOutOfBoundsException e) {
+			return new Object[0][0];
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return matrizRetorno;
+}
+
 public boolean insertarRegistro(String[] registro) {
 	try {
 		CallableStatement cts = dbConection.getConexion().prepareCall("insert into Asistencia(idEmpleado,fecha,horaEntrada,horaSalida,observacion,monto) values(?,?,?,?,?,?)");
@@ -83,7 +116,6 @@ public boolean insertarRegistro(String[] registro) {
 		for (int contador = 0; contador < registro.length; contador++) {
 			cts.setString(contador + 1, registro[contador]);
 		}
-		System.out.println(cts.toString());
 		cts.executeUpdate();
 		return true;
 	} catch (Exception e) {
@@ -98,7 +130,6 @@ public boolean actualizarRegistro(String[] registro) {
 		for (int contador = 0; contador < registro.length; contador++) {
 			cts.setString(contador + 1, registro[contador]);
 		}
-		System.out.println(cts.toString());
 		cts.executeUpdate();
 		return true;
 	} catch (Exception e) {

@@ -201,7 +201,7 @@ public panelModificarAsistencia() {
     );
     contenedorPrincipalLayout.setVerticalGroup(
       contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 451, Short.MAX_VALUE)
+      .addGap(0, 460, Short.MAX_VALUE)
       .addGroup(contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(contenedorPrincipalLayout.createSequentialGroup()
           .addContainerGap()
@@ -216,7 +216,7 @@ public panelModificarAsistencia() {
           .addComponent(contenedorDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGap(12, 12, 12)
           .addComponent(btnGuardarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addContainerGap(53, Short.MAX_VALUE)))
+          .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
     );
 
     add(contenedorPrincipal);
