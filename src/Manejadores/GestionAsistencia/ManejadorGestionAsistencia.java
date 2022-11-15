@@ -126,10 +126,21 @@ public boolean insertarRegistro(String[] registro) {
 public boolean actualizarRegistro(String[] registro) {
 	try {
 		CallableStatement cts = dbConection.getConexion().prepareCall("update Asistencia set horaEntrada= ?,horaSalida= ?,observacion = ?,monto= ? where idEmpleado= ? and fecha= ?");
-
 		for (int contador = 0; contador < registro.length; contador++) {
 			cts.setString(contador + 1, registro[contador]);
 		}
+		cts.executeUpdate();
+		return true;
+	} catch (Exception e) {
+		return false;
+	}
+}
+
+public boolean eliminarRegistro(String idEmpleado, String fecha) {
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("delete from Asistencia where idEmpleado=? and fecha=?");
+		cts.setString(1, idEmpleado);
+		cts.setString(2, fecha);
 		cts.executeUpdate();
 		return true;
 	} catch (Exception e) {
