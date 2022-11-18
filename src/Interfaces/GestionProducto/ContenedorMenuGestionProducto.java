@@ -27,24 +27,24 @@ public class ContenedorMenuGestionProducto extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelContenedorBotones = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAgregarNuevoProducto = new javax.swing.JButton();
+        btnModificarProductos = new javax.swing.JButton();
+        btnEliminarProductos = new javax.swing.JButton();
+        btnVisualizarProductos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jButton1.setText("AGREGAR NUEVO PRODUCTO");
+        btnAgregarNuevoProducto.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnAgregarNuevoProducto.setText("AGREGAR NUEVO PRODUCTO");
 
-        jButton2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jButton2.setText("MODIFICAR PRODUCTOS");
+        btnModificarProductos.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnModificarProductos.setText("MODIFICAR PRODUCTOS");
 
-        jButton3.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jButton3.setText("ELIMINAR PRODUCTOS");
+        btnEliminarProductos.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnEliminarProductos.setText("ELIMINAR PRODUCTOS");
 
-        jButton4.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jButton4.setText("VISUALIZAR PRODUCTOS");
+        btnVisualizarProductos.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnVisualizarProductos.setText("VISUALIZAR PRODUCTOS");
 
         javax.swing.GroupLayout PanelContenedorBotonesLayout = new javax.swing.GroupLayout(PanelContenedorBotones);
         PanelContenedorBotones.setLayout(PanelContenedorBotonesLayout);
@@ -53,24 +53,23 @@ public class ContenedorMenuGestionProducto extends javax.swing.JFrame {
             .addGroup(PanelContenedorBotonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelContenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
-                    .addGroup(PanelContenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)))
+                    .addComponent(btnVisualizarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                    .addComponent(btnEliminarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModificarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAgregarNuevoProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         PanelContenedorBotonesLayout.setVerticalGroup(
             PanelContenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelContenedorBotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregarNuevoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnModificarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVisualizarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -125,9 +124,9 @@ public class ContenedorMenuGestionProducto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelContenedorBotones;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnAgregarNuevoProducto;
+    private javax.swing.JButton btnEliminarProductos;
+    private javax.swing.JButton btnModificarProductos;
+    private javax.swing.JButton btnVisualizarProductos;
     // End of variables declaration//GEN-END:variables
 }
