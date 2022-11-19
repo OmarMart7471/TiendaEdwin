@@ -173,7 +173,7 @@ public class Generar extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Nombre del producto", "Stock"
+                "Id", "Nombre del producto", "Precio", "Stock"
             }
         ));
         scrollProEncon.setViewportView(ProEncontrados);
@@ -183,7 +183,7 @@ public class Generar extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Nombre del producto", "Stock"
+                "Id", "Nombre del producto", "Precio", "Stock"
             }
         ));
         jScrollPane1.setViewportView(ProPedidos);
@@ -201,19 +201,21 @@ public class Generar extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollProEncon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(lblProEn)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(lblProenPe)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(scrollProEncon, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
+                                .addGap(27, 27, 27)
+                                .addComponent(lblProEn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(lblProenPe)))
+                        .addGap(0, 323, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
