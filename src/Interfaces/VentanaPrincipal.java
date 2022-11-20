@@ -26,192 +26,213 @@ public VentanaPrincipal() {
 }
 
 @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
+    java.awt.GridBagConstraints gridBagConstraints;
 
-        contenedorRedimencionable = new javax.swing.JScrollPane();
-        panelPrincipal = new javax.swing.JPanel();
-        contenedorMenu = new javax.swing.JPanel();
-        icono = new javax.swing.JLabel();
-        btnAsistencia = new javax.swing.JButton();
-        btnVenta = new javax.swing.JButton();
-        btnProveedores = new javax.swing.JButton();
-        btnProductos = new javax.swing.JButton();
-        btnEmpleados = new javax.swing.JButton();
-        btnCorteCaja = new javax.swing.JButton();
-        panelDeContenido = new javax.swing.JPanel();
-        contenedorTitulo = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
-        contenedorPrincipal = new javax.swing.JPanel();
+    contenedorRedimencionable = new javax.swing.JScrollPane();
+    panelPrincipal = new javax.swing.JPanel();
+    contenedorMenu = new javax.swing.JPanel();
+    icono = new javax.swing.JLabel();
+    btnAsistencia = new javax.swing.JButton();
+    btnVenta = new javax.swing.JButton();
+    btnProveedores = new javax.swing.JButton();
+    btnProductos = new javax.swing.JButton();
+    btnEmpleados = new javax.swing.JButton();
+    btnCorteCaja = new javax.swing.JButton();
+    btnNomina = new javax.swing.JButton();
+    panelDeContenido = new javax.swing.JPanel();
+    contenedorTitulo = new javax.swing.JPanel();
+    lblTitulo = new javax.swing.JLabel();
+    contenedorPrincipal = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        contenedorRedimencionable.setBorder(null);
-        contenedorRedimencionable.setPreferredSize(new java.awt.Dimension(580, 780));
+    contenedorRedimencionable.setBorder(null);
+    contenedorRedimencionable.setPreferredSize(new java.awt.Dimension(580, 780));
 
-        panelPrincipal.setPreferredSize(new java.awt.Dimension(760, 560));
-        panelPrincipal.setLayout(new javax.swing.BoxLayout(panelPrincipal, javax.swing.BoxLayout.LINE_AXIS));
+    panelPrincipal.setPreferredSize(new java.awt.Dimension(760, 560));
+    panelPrincipal.setLayout(new javax.swing.BoxLayout(panelPrincipal, javax.swing.BoxLayout.LINE_AXIS));
 
-        contenedorMenu.setBackground(new java.awt.Color(153, 153, 153));
-        contenedorMenu.setToolTipText("");
-        contenedorMenu.setMaximumSize(new java.awt.Dimension(250, 2147483647));
-        contenedorMenu.setPreferredSize(new java.awt.Dimension(220, 650));
-        contenedorMenu.setLayout(new java.awt.GridBagLayout());
+    contenedorMenu.setBackground(new java.awt.Color(153, 153, 153));
+    contenedorMenu.setToolTipText("");
+    contenedorMenu.setMaximumSize(new java.awt.Dimension(250, 2147483647));
+    contenedorMenu.setPreferredSize(new java.awt.Dimension(220, 650));
+    contenedorMenu.setLayout(new java.awt.GridBagLayout());
 
-        icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo oficial.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 52;
-        gridBagConstraints.ipady = 26;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        contenedorMenu.add(icono, gridBagConstraints);
+    icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo oficial.png"))); // NOI18N
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.ipadx = -8;
+    gridBagConstraints.ipady = -18;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    contenedorMenu.add(icono, gridBagConstraints);
 
-        btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
-        btnAsistencia.setText("Asistencia");
-        btnAsistencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAsistenciaActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 105;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(41, 0, 0, 0);
-        contenedorMenu.add(btnAsistencia, gridBagConstraints);
+    btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
+    btnAsistencia.setText("Asistencia");
+    btnAsistencia.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAsistenciaActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.gridwidth = 3;
+    gridBagConstraints.ipadx = 45;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 54);
+    contenedorMenu.add(btnAsistencia, gridBagConstraints);
 
-        btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Nventa.png"))); // NOI18N
-        btnVenta.setText("Venta");
-        btnVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentaActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 106;
-        gridBagConstraints.ipady = -8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 0, 0, 0);
-        contenedorMenu.add(btnVenta, gridBagConstraints);
+    btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Nventa.png"))); // NOI18N
+    btnVenta.setText("Venta");
+    btnVenta.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnVentaActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.ipadx = 46;
+    gridBagConstraints.ipady = -8;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    gridBagConstraints.insets = new java.awt.Insets(39, 0, 0, 0);
+    contenedorMenu.add(btnVenta, gridBagConstraints);
 
-        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
-        btnProveedores.setText("Proveedores");
-        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProveedoresActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 91;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(46, 0, 0, 0);
-        contenedorMenu.add(btnProveedores, gridBagConstraints);
+    btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
+    btnProveedores.setText("Proveedores");
+    btnProveedores.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnProveedoresActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 4;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.ipadx = 31;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
+    contenedorMenu.add(btnProveedores, gridBagConstraints);
 
-        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
-        btnProductos.setText("Productos");
-        btnProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductosActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 102;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 0, 0, 0);
-        contenedorMenu.add(btnProductos, gridBagConstraints);
+    btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
+    btnProductos.setText("Productos");
+    btnProductos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnProductosActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 5;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.ipadx = 42;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    gridBagConstraints.insets = new java.awt.Insets(35, 0, 0, 0);
+    contenedorMenu.add(btnProductos, gridBagConstraints);
 
-        btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
-        btnEmpleados.setText("Empleados");
-        btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpleadosActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(36, 0, 0, 0);
-        contenedorMenu.add(btnEmpleados, gridBagConstraints);
+    btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
+    btnEmpleados.setText("Empleados");
+    btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEmpleadosActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    gridBagConstraints.insets = new java.awt.Insets(18, 23, 0, 0);
+    contenedorMenu.add(btnEmpleados, gridBagConstraints);
 
-        btnCorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
-        btnCorteCaja.setText("Corte de caja");
-        btnCorteCaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCorteCajaActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 93;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 92, 0);
-        contenedorMenu.add(btnCorteCaja, gridBagConstraints);
+    btnCorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
+    btnCorteCaja.setText("Corte de caja");
+    btnCorteCaja.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCorteCajaActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 7;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.ipadx = 33;
+    gridBagConstraints.ipady = 12;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    gridBagConstraints.insets = new java.awt.Insets(30, 0, 42, 0);
+    contenedorMenu.add(btnCorteCaja, gridBagConstraints);
 
-        panelPrincipal.add(contenedorMenu);
+    btnNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
+    btnNomina.setText("Nomina");
+    btnNomina.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNominaActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 6;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.ipadx = 55;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    gridBagConstraints.insets = new java.awt.Insets(36, 0, 0, 0);
+    contenedorMenu.add(btnNomina, gridBagConstraints);
 
-        panelDeContenido.setLayout(new javax.swing.BoxLayout(panelDeContenido, javax.swing.BoxLayout.PAGE_AXIS));
+    panelPrincipal.add(contenedorMenu);
 
-        contenedorTitulo.setMaximumSize(new java.awt.Dimension(32767, 100));
-        contenedorTitulo.setPreferredSize(new java.awt.Dimension(80, 110));
-        contenedorTitulo.setLayout(new java.awt.GridLayout(1, 0));
+    panelDeContenido.setLayout(new javax.swing.BoxLayout(panelDeContenido, javax.swing.BoxLayout.PAGE_AXIS));
 
-        lblTitulo.setBackground(java.awt.Color.red);
-        lblTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 204, 204));
-        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("ABARROTES EDWIN");
-        lblTitulo.setToolTipText("");
-        lblTitulo.setAutoscrolls(true);
-        lblTitulo.setMaximumSize(new java.awt.Dimension(800, 110));
-        lblTitulo.setMinimumSize(new java.awt.Dimension(80, 70));
-        lblTitulo.setPreferredSize(new java.awt.Dimension(80, 90));
-        contenedorTitulo.add(lblTitulo);
+    contenedorTitulo.setMaximumSize(new java.awt.Dimension(32767, 100));
+    contenedorTitulo.setPreferredSize(new java.awt.Dimension(80, 110));
+    contenedorTitulo.setLayout(new java.awt.GridLayout(1, 0));
 
-        panelDeContenido.add(contenedorTitulo);
+    lblTitulo.setBackground(java.awt.Color.red);
+    lblTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+    lblTitulo.setForeground(new java.awt.Color(0, 204, 204));
+    lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    lblTitulo.setText("ABARROTES EDWIN");
+    lblTitulo.setToolTipText("");
+    lblTitulo.setAutoscrolls(true);
+    lblTitulo.setMaximumSize(new java.awt.Dimension(800, 110));
+    lblTitulo.setMinimumSize(new java.awt.Dimension(80, 70));
+    lblTitulo.setPreferredSize(new java.awt.Dimension(80, 90));
+    contenedorTitulo.add(lblTitulo);
 
-        contenedorPrincipal.setPreferredSize(new java.awt.Dimension(580, 400));
-        contenedorPrincipal.setLayout(new javax.swing.BoxLayout(contenedorPrincipal, javax.swing.BoxLayout.LINE_AXIS));
-        panelDeContenido.add(contenedorPrincipal);
+    panelDeContenido.add(contenedorTitulo);
 
-        panelPrincipal.add(panelDeContenido);
+    contenedorPrincipal.setPreferredSize(new java.awt.Dimension(580, 400));
+    contenedorPrincipal.setLayout(new javax.swing.BoxLayout(contenedorPrincipal, javax.swing.BoxLayout.LINE_AXIS));
+    panelDeContenido.add(contenedorPrincipal);
 
-        contenedorRedimencionable.setViewportView(panelPrincipal);
+    panelPrincipal.add(panelDeContenido);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedorRedimencionable, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedorRedimencionable, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
-        );
+    contenedorRedimencionable.setViewportView(panelPrincipal);
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(contenedorRedimencionable, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(contenedorRedimencionable, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+    );
+
+    pack();
+  }// </editor-fold>//GEN-END:initComponents
 
   private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
 		limpiarContenido();
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(new Interfaces.GestionAsistencia.panelMenuGestionAsistencia(contenedorPrincipal));
 		actualizarContenido();
-                
+
   }//GEN-LAST:event_btnAsistenciaActionPerformed
 
   private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
@@ -248,6 +269,13 @@ public VentanaPrincipal() {
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionCorteCaja());
 		actualizarContenido();*/
   }//GEN-LAST:event_btnCorteCajaActionPerformed
+
+  private void btnNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNominaActionPerformed
+		limpiarContenido();
+		contenedorPrincipal.removeAll();
+		contenedorPrincipal.add(new Interfaces.GestionNomina.panelMenuGestionNomina(contenedorPrincipal));
+		actualizarContenido();
+  }//GEN-LAST:event_btnNominaActionPerformed
 
 public void limpiarContenido() {
 	Component componente = contenedorPrincipal.getComponent(0);
@@ -295,20 +323,21 @@ public static void main(String args[]) {
 	});
 }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAsistencia;
-    private javax.swing.JButton btnCorteCaja;
-    private javax.swing.JButton btnEmpleados;
-    private javax.swing.JButton btnProductos;
-    private javax.swing.JButton btnProveedores;
-    private javax.swing.JButton btnVenta;
-    private javax.swing.JPanel contenedorMenu;
-    private javax.swing.JPanel contenedorPrincipal;
-    private javax.swing.JScrollPane contenedorRedimencionable;
-    private javax.swing.JPanel contenedorTitulo;
-    private javax.swing.JLabel icono;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel panelDeContenido;
-    private javax.swing.JPanel panelPrincipal;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnAsistencia;
+  private javax.swing.JButton btnCorteCaja;
+  private javax.swing.JButton btnEmpleados;
+  private javax.swing.JButton btnNomina;
+  private javax.swing.JButton btnProductos;
+  private javax.swing.JButton btnProveedores;
+  private javax.swing.JButton btnVenta;
+  private javax.swing.JPanel contenedorMenu;
+  private javax.swing.JPanel contenedorPrincipal;
+  private javax.swing.JScrollPane contenedorRedimencionable;
+  private javax.swing.JPanel contenedorTitulo;
+  private javax.swing.JLabel icono;
+  private javax.swing.JLabel lblTitulo;
+  private javax.swing.JPanel panelDeContenido;
+  private javax.swing.JPanel panelPrincipal;
+  // End of variables declaration//GEN-END:variables
 }
