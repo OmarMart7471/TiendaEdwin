@@ -60,6 +60,7 @@ public class ManejadorGestionEmpleado {
     
     public List< Empleado > ObtenerTodosLosEmpleados(){
         
+          
         List< Empleado > resultados = null;
         ResultSet conjuntoResultados = null;
         
@@ -72,8 +73,9 @@ public class ManejadorGestionEmpleado {
                 conjuntoResultados.getString("id"),
                 conjuntoResultados.getString("nombre"),
                 conjuntoResultados.getString("numeroTelefono"),
+                conjuntoResultados.getString("direccionEmpleado"),
                 conjuntoResultados.getString("puesto"),
-                conjuntoResultados.getString("sexo").charAt(0),
+                conjuntoResultados.getString("sexo"),
                 conjuntoResultados.getFloat("pagoPorHora"))
                 );
             }
@@ -102,4 +104,7 @@ public class ManejadorGestionEmpleado {
        excepcionSql.printStackTrace();
        } // fin de catch
    } // fin del método close
+    
+    
+    
 }

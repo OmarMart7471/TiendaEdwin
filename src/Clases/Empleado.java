@@ -5,21 +5,31 @@ public class Empleado {
     
     private String idEmpleado;
     private String nombreEmpleado;
+    private String direccionEmpleado;
     private String numeroTelefono;
     private String puesto;
-    private char sexo;
+    private String sexo;
     private float pagoPorhora;
 
     public Empleado() {
     }
 
-    public Empleado(String idEmpleado, String nombreEmpleado, String numeroTelefono, String puesto, char sexo, float pagoPorhora) {
+    public Empleado(String idEmpleado, String nombreEmpleado,String direccionEmpleado, String numeroTelefono, String puesto, String sexo, float pagoPorhora) {
         this.idEmpleado = idEmpleado;
         this.nombreEmpleado = nombreEmpleado;
+        this.direccionEmpleado = direccionEmpleado;
         this.numeroTelefono = numeroTelefono;
         this.puesto = puesto;
         this.sexo = sexo;
         this.pagoPorhora = pagoPorhora;
+    }
+
+    public String getDireccionEmpleado() {
+        return direccionEmpleado;
+    }
+
+    public void setDireccionEmpleado(String direccionEmpleado) {
+        this.direccionEmpleado = direccionEmpleado;
     }
 
     
@@ -56,11 +66,11 @@ public class Empleado {
         this.puesto = puesto;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -71,6 +81,7 @@ public class Empleado {
     public void setPagoPorhora(float pagoPorhora) {
         this.pagoPorhora = pagoPorhora;
     }
+    
     
     
 }
