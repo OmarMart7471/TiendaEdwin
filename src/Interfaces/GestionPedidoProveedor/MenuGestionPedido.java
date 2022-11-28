@@ -79,7 +79,7 @@ public class MenuGestionPedido extends javax.swing.JPanel {
 
         background.add(panelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 70));
 
-        btnVisualizar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnVisualizar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnVisualizar.setText("Visualizar");
         background.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 220, 30));
 
@@ -109,21 +109,21 @@ public class MenuGestionPedido extends javax.swing.JPanel {
 
         background1.add(panelTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 70));
 
-        btnGenerar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnGenerar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnGenerar.setText("Generar");
         background1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 220, 30));
 
         background.add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        btnModificar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnModificar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnModificar.setText("Modificar");
         background.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 220, 30));
 
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
         background.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 220, 30));
 
-        btnVolverMenu.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
+        btnVolverMenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
         btnVolverMenu.setText("Volver al menú");
         background.add(btnVolverMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
