@@ -4,6 +4,12 @@
  */
 package Interfaces.GestionProducto;
 
+import Clases.ProductoJpaController;
+import Manejadores.GestionProducto.Producto;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author luis
@@ -13,8 +19,17 @@ public class agregarProducto extends javax.swing.JPanel {
     /**
      * Creates new form agregarProducto
      */
+   
+    
+    
+     private ProductoJpaController jpaProducto;
+private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaTienditaPU");
+private DefaultTableModel dtmUsuario;
     public agregarProducto() {
         initComponents();
+        
+        //Controlador de la base de datos
+    jpaProducto = new ProductoJpaController(emf);
     }
 
     /**
@@ -55,6 +70,11 @@ public class agregarProducto extends javax.swing.JPanel {
         jLabel5.setText("Precio del producto:");
 
         jButton1.setText("GUARDAR NUEVO PRODUCTO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("LIMPIAR ");
 
@@ -130,6 +150,11 @@ public class agregarProducto extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

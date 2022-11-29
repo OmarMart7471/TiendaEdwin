@@ -52,6 +52,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="AGREGAR NUEVO PROVEEDOR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarNuevoProveedorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnModificarProveedor">
       <Properties>
@@ -60,6 +63,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MODIFICAR PROVEEDOR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarProveedorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEliminarProveedor">
       <Properties>
@@ -68,6 +74,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="ELIMINAR PROVEEDOR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarProveedorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnVisualizarProveedor">
       <Properties>
@@ -76,6 +85,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="VISUALIZAR PROVEEDOR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarProveedorActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

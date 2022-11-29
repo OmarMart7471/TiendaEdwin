@@ -215,6 +215,12 @@ public VentanaPrincipal() {
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionProveedor());
 		actualizarContenido();*/
+                
+            
+                limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionProveedores.MenuGestionProveedores(contenedorPrincipal));
+        actualizarContenido();
   }//GEN-LAST:event_btnProveedoresActionPerformed
 
   private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed

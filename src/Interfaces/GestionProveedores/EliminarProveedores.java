@@ -2,37 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Interfaces.GestionProducto;
-
-import Clases.ProductoJpaController;
-import Manejadores.GestionProducto.Producto;
-import java.util.List;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.swing.table.DefaultTableModel;
+package Interfaces.GestionProveedores;
 
 /**
  *
  * @author luis
  */
-public class EliminarProductos extends javax.swing.JPanel {
+public class EliminarProveedores extends javax.swing.JPanel {
 
-    DefaultTableModel dtmProductos;
-    List<Producto> listaProductos;
-
-    private ProductoJpaController jpaProducto;
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaTienditaPU");
-    private DefaultTableModel dtmUsuario;
-
-    public EliminarProductos() {
+    /**
+     * Creates new form EliminarProveedores
+     */
+    public EliminarProveedores() {
         initComponents();
-
-        //Controlador de la base de datos
-        jpaProducto = new ProductoJpaController(emf);
-
-        dtmProductos = (DefaultTableModel) tablaProductos.getModel();
-
-        mostrarProductos();
     }
 
     /**
@@ -54,9 +36,8 @@ public class EliminarProductos extends javax.swing.JPanel {
         lblBuscar = new javax.swing.JLabel();
         lblEliminar = new javax.swing.JLabel();
         lblGuardarCambios = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
 
-        lblBuscarProducto.setText("CODIGO DEL PRODUCTO: ");
+        lblBuscarProducto.setText("ID DEL PROVEEDOR: ");
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
 
@@ -65,7 +46,7 @@ public class EliminarProductos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CODIGO", "PRODUCTO", "PROVEEDOR", "PRECIO"
+                "NOMBRE", "TELEFONO", "ID", "EMPRESA"
             }
         ));
         jScrollPane3.setViewportView(tablaProductos);
@@ -76,11 +57,9 @@ public class EliminarProductos extends javax.swing.JPanel {
 
         lblBuscar.setText("BUSCAR:");
 
-        lblEliminar.setText("ELIMINAR PRODUCTO:");
+        lblEliminar.setText("ELIMINAR PROVEEDOR:");
 
         lblGuardarCambios.setText("GUARDAR CAMBIOS:");
-
-        btnSalir.setText("SALIR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -90,18 +69,18 @@ public class EliminarProductos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblEliminar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnEliminarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblGuardarCambios))
-                        .addGap(27, 27, 27))
-                    .addComponent(lblEliminar))
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                        .addGap(756, 756, 756))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSalir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblBuscarProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -109,8 +88,7 @@ public class EliminarProductos extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
-                        .addGap(231, 231, 231)))
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -135,11 +113,9 @@ public class EliminarProductos extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btnSalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -148,7 +124,6 @@ public class EliminarProductos extends javax.swing.JPanel {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnGuardarCambios;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblBuscarProducto;
@@ -157,16 +132,4 @@ public class EliminarProductos extends javax.swing.JPanel {
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTextField txtBuscarProductos;
     // End of variables declaration//GEN-END:variables
-
-    private void mostrarProductos() {
-       listaProductos = jpaProducto.findProductoEntities();
-
-       for (Producto productos : listaProductos)
-       {
-           
-           Object Registro [] = {productos.getId(), productos.getDescripcion(), productos.getIdProveedor(), productos.getPrecio()};
-           
-           dtmProductos.addRow(Registro);
-       }
-    }
 }

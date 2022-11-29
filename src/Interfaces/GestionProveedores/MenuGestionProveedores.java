@@ -4,6 +4,8 @@
  */
 package Interfaces.GestionProveedores;
 
+import java.awt.Component;
+import javax.swing.JPanel;
 /**
  *
  * @author luis
@@ -13,6 +15,12 @@ public class MenuGestionProveedores extends javax.swing.JPanel {
     /**
      * Creates new form MenuGestionProveedores
      */
+    JPanel contenedorPrincipal = null;
+    public MenuGestionProveedores(JPanel contenedorPrincipal) {
+        initComponents();
+        this.contenedorPrincipal=contenedorPrincipal;
+    }
+   
     public MenuGestionProveedores() {
         initComponents();
     }
@@ -33,15 +41,35 @@ public class MenuGestionProveedores extends javax.swing.JPanel {
 
         btnAgregarNuevoProveedor.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnAgregarNuevoProveedor.setText("AGREGAR NUEVO PROVEEDOR");
+        btnAgregarNuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarNuevoProveedorActionPerformed(evt);
+            }
+        });
 
         btnModificarProveedor.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnModificarProveedor.setText("MODIFICAR PROVEEDOR");
+        btnModificarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarProveedorActionPerformed(evt);
+            }
+        });
 
         btnEliminarProveedor.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnEliminarProveedor.setText("ELIMINAR PROVEEDOR");
+        btnEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProveedorActionPerformed(evt);
+            }
+        });
 
         btnVisualizarProveedor.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnVisualizarProveedor.setText("VISUALIZAR PROVEEDOR");
+        btnVisualizarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarProveedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,7 +99,49 @@ public class MenuGestionProveedores extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNuevoProveedorActionPerformed
+        // TODO add your handling code here:
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionProveedores.AgregarProveedor());
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnAgregarNuevoProveedorActionPerformed
 
+    private void btnVisualizarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarProveedorActionPerformed
+        // TODO add your handling code here:
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionProveedores.VisualizarProveedores());
+        actualizarContenido();
+    }//GEN-LAST:event_btnVisualizarProveedorActionPerformed
+
+    private void btnModificarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProveedorActionPerformed
+        // TODO add your handling code here:
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionProveedores.ModificarProveedores());
+        actualizarContenido();
+    }//GEN-LAST:event_btnModificarProveedorActionPerformed
+
+    private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
+        // TODO add your handling code here:
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionProveedores.EliminarProveedores());
+        actualizarContenido();
+    }//GEN-LAST:event_btnEliminarProveedorActionPerformed
+
+ public void limpiarContenido() {
+	Component componente = contenedorPrincipal.getComponent(0);
+	contenedorPrincipal.remove(componente);
+	actualizarContenido();
+}
+ 
+ public void actualizarContenido() {
+	contenedorPrincipal.revalidate();
+	contenedorPrincipal.repaint();
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarNuevoProveedor;
     private javax.swing.JButton btnEliminarProveedor;
