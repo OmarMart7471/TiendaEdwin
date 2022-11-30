@@ -31,6 +31,7 @@ public VentanaPrincipal() {
 @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         contenedorRedimencionable = new javax.swing.JScrollPane();
         panelPrincipal = new javax.swing.JPanel();
@@ -41,7 +42,7 @@ public VentanaPrincipal() {
         btnProveedores = new javax.swing.JButton();
         btnProductos = new javax.swing.JButton();
         btnEmpleados = new javax.swing.JButton();
-        btnCorteCaja1 = new javax.swing.JButton();
+        btnCorteCaja = new javax.swing.JButton();
         panelDeContenido = new javax.swing.JPanel();
         contenedorTitulo = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -59,9 +60,18 @@ public VentanaPrincipal() {
         contenedorMenu.setToolTipText("");
         contenedorMenu.setMaximumSize(new java.awt.Dimension(250, 2147483647));
         contenedorMenu.setPreferredSize(new java.awt.Dimension(220, 650));
+        contenedorMenu.setLayout(new java.awt.GridBagLayout());
 
         icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo oficial.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 52;
+        gridBagConstraints.ipady = 26;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        contenedorMenu.add(icono, gridBagConstraints);
 
         btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
         btnAsistencia.setText("Asistencia");
@@ -70,6 +80,13 @@ public VentanaPrincipal() {
                 btnAsistenciaActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 105;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(41, 0, 0, 0);
+        contenedorMenu.add(btnAsistencia, gridBagConstraints);
 
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Nventa.png"))); // NOI18N
         btnVenta.setText("Venta");
@@ -78,6 +95,14 @@ public VentanaPrincipal() {
                 btnVentaActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 106;
+        gridBagConstraints.ipady = -8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(32, 0, 0, 0);
+        contenedorMenu.add(btnVenta, gridBagConstraints);
 
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
@@ -86,6 +111,13 @@ public VentanaPrincipal() {
                 btnProveedoresActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 91;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(46, 0, 0, 0);
+        contenedorMenu.add(btnProveedores, gridBagConstraints);
 
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
         btnProductos.setText("Productos");
@@ -94,6 +126,13 @@ public VentanaPrincipal() {
                 btnProductosActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 102;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(35, 0, 0, 0);
+        contenedorMenu.add(btnProductos, gridBagConstraints);
 
         btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
         btnEmpleados.setText("Empleados");
@@ -102,52 +141,29 @@ public VentanaPrincipal() {
                 btnEmpleadosActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(36, 0, 0, 0);
+        contenedorMenu.add(btnEmpleados, gridBagConstraints);
 
-        btnCorteCaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
-        btnCorteCaja1.setText("Corte de caja");
-        btnCorteCaja1.addActionListener(new java.awt.event.ActionListener() {
+        btnCorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
+        btnCorteCaja.setText("Corte de caja");
+        btnCorteCaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCorteCaja1ActionPerformed(evt);
+                btnCorteCajaActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout contenedorMenuLayout = new javax.swing.GroupLayout(contenedorMenu);
-        contenedorMenu.setLayout(contenedorMenuLayout);
-        contenedorMenuLayout.setHorizontalGroup(
-            contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedorMenuLayout.createSequentialGroup()
-                .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnCorteCaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(contenedorMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(122, 122, 122))
-        );
-        contenedorMenuLayout.setVerticalGroup(
-            contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedorMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnAsistencia)
-                .addGap(32, 32, 32)
-                .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(btnProveedores)
-                .addGap(35, 35, 35)
-                .addComponent(btnProductos)
-                .addGap(36, 36, 36)
-                .addComponent(btnEmpleados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(btnCorteCaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 93;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 92, 0);
+        contenedorMenu.add(btnCorteCaja, gridBagConstraints);
 
         panelPrincipal.add(contenedorMenu);
 
@@ -231,7 +247,7 @@ public VentanaPrincipal() {
                 
                 limpiarContenido();
         contenedorPrincipal.removeAll();
-        contenedorPrincipal.add(new Interfaces.GestionProducto.panelMenuProductos(contenedorPrincipal));
+        contenedorPrincipal.add(new Interfaces.GestionProducto.ContenedorMenuGestionProducto());
         actualizarContenido();
         
   }//GEN-LAST:event_btnProductosActionPerformed
@@ -243,9 +259,12 @@ public VentanaPrincipal() {
 		actualizarContenido();
   }//GEN-LAST:event_btnEmpleadosActionPerformed
 
-    private void btnCorteCaja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorteCaja1ActionPerformed
-
-    }//GEN-LAST:event_btnCorteCaja1ActionPerformed
+  private void btnCorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorteCajaActionPerformed
+		/*limpiarContenido();
+		contenedorPrincipal.removeAll();
+		contenedorPrincipal.add(ManejadorPrincipal.getGestionCorteCaja());
+		actualizarContenido();*/
+  }//GEN-LAST:event_btnCorteCajaActionPerformed
 
 public void limpiarContenido() {
 	Component componente = contenedorPrincipal.getComponent(0);
@@ -295,7 +314,7 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsistencia;
-    private javax.swing.JButton btnCorteCaja1;
+    private javax.swing.JButton btnCorteCaja;
     private javax.swing.JButton btnEmpleados;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;

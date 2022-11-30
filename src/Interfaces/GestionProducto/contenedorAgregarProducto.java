@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interfaces.GestionProducto;
 
@@ -14,11 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author luis
  */
-public class agregarProducto extends javax.swing.JPanel {
+public class contenedorAgregarProducto extends javax.swing.JFrame {
 
     /**
-     * Creates new form agregarProducto
+     * Creates new form contenedorAgregarProducto
      */
+<<<<<<< HEAD:src/Interfaces/GestionProducto/agregarProducto.java
    
     
     
@@ -26,6 +27,9 @@ public class agregarProducto extends javax.swing.JPanel {
 private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaTienditaPU");
 private DefaultTableModel dtmUsuario;
     public agregarProducto() {
+=======
+    public contenedorAgregarProducto() {
+>>>>>>> parent of 48b8734 (cambie mis interfaces a Paneles):src/Interfaces/GestionProducto/contenedorAgregarProducto.java
         initComponents();
         
         //Controlador de la base de datos
@@ -41,6 +45,7 @@ private DefaultTableModel dtmUsuario;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -53,6 +58,10 @@ private DefaultTableModel dtmUsuario;
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+
+        jPasswordField1.setText("jPasswordField1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jLabel1.setText("AGREGAR NUEVO PRODUCTO");
@@ -80,8 +89,8 @@ private DefaultTableModel dtmUsuario;
 
         btnSalir.setText("SALIR");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -114,7 +123,7 @@ private DefaultTableModel dtmUsuario;
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(55, 55, 55)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 183, Short.MAX_VALUE))
+                        .addGap(0, 144, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSalir)))
@@ -145,17 +154,56 @@ private DefaultTableModel dtmUsuario;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addContainerGap())
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD:src/Interfaces/GestionProducto/agregarProducto.java
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+=======
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(contenedorAgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(contenedorAgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(contenedorAgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(contenedorAgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new contenedorAgregarProducto().setVisible(true);
+            }
+        });
+    }
+>>>>>>> parent of 48b8734 (cambie mis interfaces a Paneles):src/Interfaces/GestionProducto/contenedorAgregarProducto.java
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
@@ -166,6 +214,7 @@ private DefaultTableModel dtmUsuario;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
