@@ -4,11 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Interfaces/GestionAsistencia/panelModificarAsistencia.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Interfaces/GestionAsistencia/panelVisualizarAsistencia.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Interfaces/GestionNomina/panelGenerarNomina.java</file>
             <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Manejadores/GestionAsistencia/ManejadorGestionAsistencia.java</file>
             <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Interfaces/GestionAsistencia/panelAgregarAsistencia.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Interfaces/GestionAsistencia/panelMenuGestionAsistencia.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Interfaces/GestionAsistencia/panelEliminarAsistencia.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/5toSemestre/fundamentosIngenieriaSoftware/TiendaEdwin/src/Manejadores/GestionNomina/ManejadorGestionNomina.java</file>
         </group>
     </open-files>
 </project-private>

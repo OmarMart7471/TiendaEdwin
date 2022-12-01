@@ -413,6 +413,8 @@ private void limpiarCamposDescuento() {
 	txtObservacion.setText("");
 }
 
+
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JComboBox<String> boxEmpleados;
   private javax.swing.JPanel btnGuardarRegistro;

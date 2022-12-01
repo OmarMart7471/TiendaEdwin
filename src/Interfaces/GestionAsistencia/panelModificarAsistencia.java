@@ -301,7 +301,9 @@ private void rellenarCamposFaltantes(String idEmpleado, String fecha) {
 	txtHoraEntrada.setText(fila[0].toString());
 	if (fila[1] != null) {
 		txtHoraSalida.setText(fila[1].toString());
-	}
+	}else{
+	txtHoraSalida.setText(getHora());
+}
 	if (fila[2] != null) {
 		habilitarDescuento();
 		txtObservacion.setText(fila[2].toString());
@@ -410,6 +412,10 @@ private void limpiarTabla() {
 private void limpiarCamposDescuento() {
 	txtMonto.setText("");
 	txtObservacion.setText("");
+}
+
+private String getHora() {
+	return new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
 }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
