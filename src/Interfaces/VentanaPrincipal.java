@@ -239,16 +239,13 @@ public VentanaPrincipal() {
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionProductos());
 		actualizarContenido();*/
-<<<<<<< HEAD
 
-=======
                 
                 limpiarContenido();
         contenedorPrincipal.removeAll();
         contenedorPrincipal.add(new Interfaces.GestionProducto.ContenedorMenuGestionProducto());
         actualizarContenido();
-        
->>>>>>> parent of 48b8734 (cambie mis interfaces a Paneles)
+
   }//GEN-LAST:event_btnProductosActionPerformed
 
   private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
