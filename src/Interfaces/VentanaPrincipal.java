@@ -243,7 +243,7 @@ public VentanaPrincipal() {
   private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
 		limpiarContenido();
 		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(empleado);
+		contenedorPrincipal.add(new Interfaces.GestionEmpleados.MenuGestionEmpleados(contenedorPrincipal));
 		actualizarContenido();
   }//GEN-LAST:event_btnEmpleadosActionPerformed
 
