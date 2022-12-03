@@ -1,19 +1,17 @@
 package Interfaces.GestionNomina;
 
-import Manejadores.GestionAsistencia.ManejadorGestionAsistencia;
 import Manejadores.GestionNomina.ManejadorGestionNomina;
-import com.sun.tools.javac.*;
 import java.awt.Color;
 import static java.awt.image.ImageObserver.ERROR;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.JOptionPane;
-
+import java.awt.Desktop;
+import java.net.URI;
 import java.io.File;
-import java.util.Arrays;
-import javax.swing.JFileChooser;
-import javax.swing.JFormattedTextField;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -32,8 +30,7 @@ public panelGenerarNomina() {
 	initComponents();
 
 	insertarEmpleados();
-	insertarHoraYFecha();
-	deshabilitarDescuento();
+	insertarFecha();
 }
 
 @SuppressWarnings("unchecked")
@@ -47,20 +44,12 @@ public panelGenerarNomina() {
     contenedorFecha = new javax.swing.JPanel();
     lblFecha = new javax.swing.JLabel();
     txtFecha = new javax.swing.JTextField();
-    contenedorHoraEntrada = new javax.swing.JPanel();
-    lblHoraEntrada = new javax.swing.JLabel();
-    txtHoraEntrada = new javax.swing.JTextField();
-    contenedorHoraSalida = new javax.swing.JPanel();
-    lblHoraSalida = new javax.swing.JLabel();
-    txtHoraSalida = new javax.swing.JTextField();
-    contenedorDescuentos = new javax.swing.JPanel();
-    radioObservaciones = new javax.swing.JRadioButton();
-    contenedorMonto = new javax.swing.JPanel();
-    lblMonto = new javax.swing.JLabel();
-    txtMonto = new javax.swing.JTextField();
-    contenedorObservacion = new javax.swing.JPanel();
-    lblObservacion = new javax.swing.JLabel();
-    txtObservacion = new javax.swing.JTextField();
+    contenedorHorasTrabajadas = new javax.swing.JPanel();
+    lblHorasTrabajadas = new javax.swing.JLabel();
+    txtHorasTrabajadas = new javax.swing.JTextField();
+    contenedorPagoPorHora = new javax.swing.JPanel();
+    lblPagoPorHora = new javax.swing.JLabel();
+    txtPagoPorHora = new javax.swing.JTextField();
     btnGuardarRegistro = new javax.swing.JPanel();
     lblGuardar = new javax.swing.JLabel();
 
@@ -76,6 +65,11 @@ public panelGenerarNomina() {
     boxEmpleados.setModel(new javax.swing.DefaultComboBoxModel<>(insertarEmpleados()));
     boxEmpleados.setSelectedIndex(0);
     boxEmpleados.setPreferredSize(new java.awt.Dimension(300, 30));
+    boxEmpleados.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        boxEmpleadosItemStateChanged(evt);
+      }
+    });
     contenedorNombreEmpleado.add(boxEmpleados);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -84,7 +78,7 @@ public panelGenerarNomina() {
     gridBagConstraints.ipadx = 263;
     gridBagConstraints.ipady = 8;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(31, 38, 0, 0);
+    gridBagConstraints.insets = new java.awt.Insets(31, 87, 0, 0);
     add(contenedorNombreEmpleado, gridBagConstraints);
 
     contenedorFecha.setMinimumSize(new java.awt.Dimension(217, 32));
@@ -104,94 +98,55 @@ public panelGenerarNomina() {
     gridBagConstraints.ipadx = 263;
     gridBagConstraints.ipady = 8;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
+    gridBagConstraints.insets = new java.awt.Insets(12, 87, 0, 0);
     add(contenedorFecha, gridBagConstraints);
 
-    contenedorHoraEntrada.setPreferredSize(new java.awt.Dimension(480, 100));
+    contenedorHorasTrabajadas.setPreferredSize(new java.awt.Dimension(480, 100));
 
-    lblHoraEntrada.setText("Hora de entrada");
-    lblHoraEntrada.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorHoraEntrada.add(lblHoraEntrada);
+    lblHorasTrabajadas.setText("Horas trabajadas");
+    lblHorasTrabajadas.setPreferredSize(new java.awt.Dimension(130, 30));
+    contenedorHorasTrabajadas.add(lblHorasTrabajadas);
 
-    txtHoraEntrada.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtHoraEntrada.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorHoraEntrada.add(txtHoraEntrada);
+    txtHorasTrabajadas.setEditable(false);
+    txtHorasTrabajadas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtHorasTrabajadas.setToolTipText("Inserta la hora de salida en la ventana de Modificar Asistencia");
+    txtHorasTrabajadas.setMargin(new java.awt.Insets(4, 6, 4, 6));
+    txtHorasTrabajadas.setMinimumSize(new java.awt.Dimension(300, 30));
+    txtHorasTrabajadas.setPreferredSize(new java.awt.Dimension(300, 30));
+    contenedorHorasTrabajadas.add(txtHorasTrabajadas);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 2;
-    gridBagConstraints.ipadx = 80;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.ipadx = 90;
     gridBagConstraints.ipady = 7;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
-    add(contenedorHoraEntrada, gridBagConstraints);
+    gridBagConstraints.insets = new java.awt.Insets(12, 87, 0, 50);
+    add(contenedorHorasTrabajadas, gridBagConstraints);
 
-    contenedorHoraSalida.setPreferredSize(new java.awt.Dimension(480, 100));
+    contenedorPagoPorHora.setPreferredSize(new java.awt.Dimension(480, 100));
 
-    lblHoraSalida.setText("Hora de salida");
-    lblHoraSalida.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorHoraSalida.add(lblHoraSalida);
+    lblPagoPorHora.setText("Pago  por hora");
+    lblPagoPorHora.setPreferredSize(new java.awt.Dimension(130, 30));
+    contenedorPagoPorHora.add(lblPagoPorHora);
 
-    txtHoraSalida.setEditable(false);
-    txtHoraSalida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    txtHoraSalida.setToolTipText("Inserta la hora de salida en la ventana de Modificar Asistencia");
-    txtHoraSalida.setMargin(new java.awt.Insets(4, 6, 4, 6));
-    txtHoraSalida.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtHoraSalida.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorHoraSalida.add(txtHoraSalida);
+    txtPagoPorHora.setEditable(false);
+    txtPagoPorHora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtPagoPorHora.setToolTipText("Inserta la hora de salida en la ventana de Modificar Asistencia");
+    txtPagoPorHora.setMargin(new java.awt.Insets(4, 6, 4, 6));
+    txtPagoPorHora.setMinimumSize(new java.awt.Dimension(300, 30));
+    txtPagoPorHora.setPreferredSize(new java.awt.Dimension(300, 30));
+    contenedorPagoPorHora.add(txtPagoPorHora);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 3;
-    gridBagConstraints.ipadx = 90;
-    gridBagConstraints.ipady = 7;
+    gridBagConstraints.ipadx = 87;
+    gridBagConstraints.ipady = 12;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
-    add(contenedorHoraSalida, gridBagConstraints);
-
-    contenedorDescuentos.setMinimumSize(new java.awt.Dimension(400, 50));
-    contenedorDescuentos.setPreferredSize(new java.awt.Dimension(400, 100));
-
-    radioObservaciones.setText("Observaciones");
-    radioObservaciones.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        radioObservacionesActionPerformed(evt);
-      }
-    });
-    contenedorDescuentos.add(radioObservaciones);
-
-    contenedorMonto.setPreferredSize(new java.awt.Dimension(480, 40));
-
-    lblMonto.setText("Monto");
-    lblMonto.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorMonto.add(lblMonto);
-
-    txtMonto.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtMonto.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorMonto.add(txtMonto);
-
-    contenedorDescuentos.add(contenedorMonto);
-
-    contenedorObservacion.setPreferredSize(new java.awt.Dimension(480, 40));
-
-    lblObservacion.setText("Observacion");
-    lblObservacion.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorObservacion.add(lblObservacion);
-
-    txtObservacion.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtObservacion.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorObservacion.add(txtObservacion);
-
-    contenedorDescuentos.add(contenedorObservacion);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.ipadx = 80;
-    gridBagConstraints.ipady = 73;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 38, 0, 0);
-    add(contenedorDescuentos, gridBagConstraints);
+    gridBagConstraints.insets = new java.awt.Insets(12, 87, 0, 0);
+    add(contenedorPagoPorHora, gridBagConstraints);
 
     btnGuardarRegistro.setBackground(new java.awt.Color(142, 141, 141));
     btnGuardarRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -235,19 +190,40 @@ public panelGenerarNomina() {
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 5;
+    gridBagConstraints.gridy = 4;
     gridBagConstraints.ipadx = 163;
     gridBagConstraints.ipady = 1;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 170, 0, 0);
+    gridBagConstraints.insets = new java.awt.Insets(60, 219, 112, 0);
     add(btnGuardarRegistro, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnGuardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistroMouseClicked
-		File archivo = new File("src//Archivo.pdf");
+		File archivo = new File("src//" + "Empleado_" + getIdEmpleado(boxEmpleados.getSelectedIndex()) + "-Fecha_" + getFecha() + ".pdf");
 		generarPDF(archivo,
 						mostrarNominaTabla(manejador.getNomina(getIdEmpleado(boxEmpleados.getSelectedIndex()).toString())),
 						mostrarObservacionesTabla(manejador.getObservaciones(getIdEmpleado(boxEmpleados.getSelectedIndex()).toString())));
+
+		if (!setRegistroNomina(generarRegistro()) && txtHorasTrabajadas.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "No se ha podido registrar la Nomina, "
+							+ "puede que se deba a lo siguiente:" + "\n"
+							+ "• Se perdio conexion con la base de datos" + "\n"
+							+ "• Este empleado ya a recibido su pago" + "\n"
+							+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al registrar la nomina", JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "Registro agregado con exito", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+
+//Este if abre el PDF
+			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+				try {
+					Desktop.getDesktop().browse(new URI("file:/" + "/" + "/" + archivo.getAbsolutePath().replace("\\", "/")));
+				} catch (URISyntaxException ex) {
+					Logger.getLogger(panelGenerarNomina.class.getName()).log(Level.SEVERE, null, ex);
+				} catch (IOException ex) {
+					Logger.getLogger(panelGenerarNomina.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		}
   }//GEN-LAST:event_btnGuardarRegistroMouseClicked
 
   private void btnGuardarRegistrohoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistrohoverEntrada
@@ -258,41 +234,31 @@ public panelGenerarNomina() {
 		evt.getComponent().setBackground(new Color(142, 141, 141));
   }//GEN-LAST:event_btnGuardarRegistrohoverSalida
 
-  private void radioObservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioObservacionesActionPerformed
-		if (radioObservaciones.isSelected()) {
-			habilitarDescuento();
-		} else {
-			deshabilitarDescuento();
-			limpiarCamposDescuento();
+  private void boxEmpleadosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxEmpleadosItemStateChanged
+		if (evt.getStateChange() == 1) {
+			insertarDatos();
 		}
-  }//GEN-LAST:event_radioObservacionesActionPerformed
+  }//GEN-LAST:event_boxEmpleadosItemStateChanged
 
 private String[] generarRegistro() {
-	String[] registro = new String[6];
-	registro[0] = getIdEmpleado(boxEmpleados.getSelectedIndex()).toString();
+	String[] registro = new String[4];
 
-	if (txtFecha.getText().equals("")) {
+	if (txtPagoPorHora.getText().equals("")) {
+		registro[0] = null;
+	} else {
+		registro[0] = txtPagoPorHora.getText();
+	}
+	if (txtHorasTrabajadas.getText().equals("")) {
 		registro[1] = null;
 	} else {
-		registro[1] = txtFecha.getText();
+		registro[1] = txtHorasTrabajadas.getText();
 	}
-	if (txtHoraEntrada.getText().equals("")) {
-		registro[2] = null;
+	registro[2] = getIdEmpleado(boxEmpleados.getSelectedIndex()).toString();
+	if (txtFecha.getText().equals("")) {
+		registro[3] = null;
 	} else {
-		registro[2] = txtHoraEntrada.getText();
+		registro[3] = txtFecha.getText();
 	}
-	registro[3] = null;
-	if (txtObservacion.getText().equals("")) {
-		registro[4] = null;
-	} else {
-		registro[4] = txtObservacion.getText();
-	}
-	if (txtMonto.getText().equals("")) {
-		registro[5] = null;
-	} else {
-		registro[5] = txtMonto.getText();
-	}
-
 	return registro;
 }
 
@@ -306,9 +272,16 @@ private String[] insertarEmpleados() {
 	return listaEmpleados;
 }
 
-//private boolean setRegistroAsistencia(String[] registro) {
-//return manejador.insertarRegistro(registro);
-//}
+private void insertarDatos() {
+	txtHorasTrabajadas.setText(getHorasTrabajadas());
+	txtPagoPorHora.setText(getPagoPorHora());
+
+}
+
+private boolean setRegistroNomina(String[] registro) {
+	return manejador.insertarRegistroNomina(registro);
+}
+
 private Object[] getEmpleados() {
 	return manejador.getListaEmpleados();
 }
@@ -317,24 +290,8 @@ private Object getIdEmpleado(int indice) {
 	return manejador.getIdEmpleado(indice);
 }
 
-private void deshabilitarDescuento() {
-	txtMonto.setEditable(false);
-	txtObservacion.setEditable(false);
-}
-
-private void habilitarDescuento() {
-	txtMonto.setEditable(true);
-	txtObservacion.setEditable(true);
-}
-
-private void limpiarCamposDescuento() {
-	txtMonto.setText("");
-	txtObservacion.setText("");
-}
-
-private void insertarHoraYFecha() {
+private void insertarFecha() {
 	txtFecha.setText(getFecha());
-	txtHoraEntrada.setText(getHora());
 }
 
 private String getFecha() {
@@ -350,7 +307,7 @@ private String mostrarObservacionesTabla(Object[][] tabla) {
 	double total = 0;
 
 	if (tabla.length > 0) {
-		informacion += "|      Fecha    |  Observacion  |   Monto   |" + "\n";
+		informacion += "|      Fecha    |  Monto  |   Observacion   |" + "\n";
 		Object[] fila = new Object[tabla[0].length];
 		//Recorre las filas
 		for (int numFila = 0; numFila < tabla.length; numFila++) {
@@ -417,11 +374,7 @@ private String mostrarNominaTabla(Object[][] tabla) {
 		setTotalNomina(total);
 
 	} else {
-		JOptionPane.showMessageDialog(null, "No se han podido consultar las fechas de asistencia, "
-						+ "puede que se deba a lo siguiente:" + "\n"
-						+ "• Se perdio conexion con la base de datos" + "\n"
-						+ "• Este empleado no tiene asistencias" + "\n"
-						+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al consultar las asistencias", JOptionPane.ERROR_MESSAGE);
+//No muestra nada 
 	}
 
 	return informacion;
@@ -496,8 +449,8 @@ private void generarPDF(File archivo, String informacion, String observaciones) 
 			contenido.showText("                                                                          Total: $" + getTotalNomina());
 		}
 		contenido.newLine();
-contenido.newLine();
-contenido.showText("                                                     Total neto: $" + (getTotalNomina()+getTotalObservaciones()));
+		contenido.newLine();
+		contenido.showText("                                                     Total neto: $" + (getTotalNomina() + getTotalObservaciones()));
 		contenido.endText();
 		contenido.close();
 
@@ -506,6 +459,14 @@ contenido.showText("                                                     Total n
 	} catch (Exception error) {
 		JOptionPane.showMessageDialog(this, "Error al generar el PDF", "Error", ERROR);
 	}
+}
+
+public String getHorasTrabajadas() {
+	return manejador.getHorasTrabajadas(getIdEmpleado(boxEmpleados.getSelectedIndex()).toString());
+}
+
+public String getPagoPorHora() {
+	return manejador.getPagoPorHora(getIdEmpleado(boxEmpleados.getSelectedIndex()).toString());
 }
 
 public double getTotalObservaciones() {
@@ -528,25 +489,17 @@ public void setTotalNomina(double totalNomina) {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JComboBox<String> boxEmpleados;
   private javax.swing.JPanel btnGuardarRegistro;
-  private javax.swing.JPanel contenedorDescuentos;
   private javax.swing.JPanel contenedorFecha;
-  private javax.swing.JPanel contenedorHoraEntrada;
-  private javax.swing.JPanel contenedorHoraSalida;
-  private javax.swing.JPanel contenedorMonto;
+  private javax.swing.JPanel contenedorHorasTrabajadas;
   private javax.swing.JPanel contenedorNombreEmpleado;
-  private javax.swing.JPanel contenedorObservacion;
+  private javax.swing.JPanel contenedorPagoPorHora;
   private javax.swing.JLabel lblFecha;
   private javax.swing.JLabel lblGuardar;
-  private javax.swing.JLabel lblHoraEntrada;
-  private javax.swing.JLabel lblHoraSalida;
-  private javax.swing.JLabel lblMonto;
+  private javax.swing.JLabel lblHorasTrabajadas;
   private javax.swing.JLabel lblNombre;
-  private javax.swing.JLabel lblObservacion;
-  private javax.swing.JRadioButton radioObservaciones;
+  private javax.swing.JLabel lblPagoPorHora;
   private javax.swing.JTextField txtFecha;
-  private javax.swing.JTextField txtHoraEntrada;
-  private javax.swing.JTextField txtHoraSalida;
-  private javax.swing.JTextField txtMonto;
-  private javax.swing.JTextField txtObservacion;
+  private javax.swing.JTextField txtHorasTrabajadas;
+  private javax.swing.JTextField txtPagoPorHora;
   // End of variables declaration//GEN-END:variables
 }

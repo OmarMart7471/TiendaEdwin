@@ -1,6 +1,7 @@
 package Manejadores.GestionNomina;
 
 import Manejadores.Principal;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -36,6 +37,48 @@ public Object getIdEmpleado(int indice) {
 				return empleado;
 			}
 			contador++;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+}
+
+public String getHorasTrabajadas(String idEmpleado) {
+	Object consulta = null;
+	int contador = 0;
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("select time(sum(Asistencia.horaSalida-"
+						+ "Asistencia.horaEntrada)) as horasTotales from Asistencia where Asistencia.idEmpleado=? "
+						+ "and fecha between coalesce((select date(fechaPago+1) from Nomina where idEmpleado=? ORDER BY"
+						+ " fechaPago DESC LIMIT 1),(select fecha from Asistencia where idEmpleado=? limit 1)) and curdate();");
+
+		do {
+			cts.setString(contador + 1, idEmpleado);
+			contador++;
+		} while (contador < 3);
+
+		ResultSet r = cts.executeQuery();
+		while (r.next()) {
+			return r.getString(1);
+		}
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+}
+
+public String getPagoPorHora(String idEmpleado) {
+	Object pago = null;
+	int contador = 0;
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("Select pagoPorHora from Empleado where id = ?");
+		cts.setString(contador + 1, idEmpleado);
+		ResultSet r = cts.executeQuery();
+		while (r.next()) {
+
+			return r.getString(1);
 		}
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -129,29 +172,23 @@ public Object[][] getObservaciones(String idEmpleado) {
 	return matrizRetorno;
 }
 
-public Object[] getObservaciones() {
-	Object[] listaObservaciones = new Object[6];
-	int contador = 0;
-
+public boolean insertarRegistroNomina(String[] registro) {
 	try {
-		CallableStatement cts = dbConection.getConexion().prepareCall("select monto, observacion "
-						+ "from Asistencia where idEmpleado= ? "
-						+ "and monto != 0.00 and monto is not null "
-						+ "and fecha between ? and ?");
-		ResultSet r = cts.executeQuery();
-		while (r.next()) {
-
-			contador++;
+		CallableStatement cts = dbConection.getConexion().prepareCall("insert into Nomina(pagoPorHora,horasTrabajadas, "
+						+ "idEmpleado,fechaPago) values(?,?,?,?)");
+		for (int contador = 0; contador < registro.length; contador++) {
+			cts.setString(contador + 1, registro[contador]);
 		}
+		cts.executeUpdate();
+		return true;
 	} catch (Exception e) {
-		e.printStackTrace();
+		return false;
 	}
-	return null;
 }
 
 public boolean actualizarRegistro(String[] registro) {
 	try {
-		CallableStatement cts = dbConection.getConexion().prepareCall("update Asistencia set horaEntrada= ?,horaSalida= ?,observacion = ?,monto= ? where idEmpleado= ? and fecha= ?");
+		CallableStatement cts = dbConection.getConexion().prepareCall("update Nomina set pagoPorHora= ?,horasTrabajadas= ? where idEmpleado= ? and fecha= ?");
 		for (int contador = 0; contador < registro.length; contador++) {
 			cts.setString(contador + 1, registro[contador]);
 		}

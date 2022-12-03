@@ -28,7 +28,6 @@ public VentanaPrincipal() {
 @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
-    java.awt.GridBagConstraints gridBagConstraints;
 
     contenedorRedimencionable = new javax.swing.JScrollPane();
     panelPrincipal = new javax.swing.JPanel();
@@ -58,18 +57,9 @@ public VentanaPrincipal() {
     contenedorMenu.setToolTipText("");
     contenedorMenu.setMaximumSize(new java.awt.Dimension(250, 2147483647));
     contenedorMenu.setPreferredSize(new java.awt.Dimension(220, 650));
-    contenedorMenu.setLayout(new java.awt.GridBagLayout());
 
     icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo oficial.png"))); // NOI18N
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.ipadx = -8;
-    gridBagConstraints.ipady = -18;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    contenedorMenu.add(icono, gridBagConstraints);
 
     btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
     btnAsistencia.setText("Asistencia");
@@ -78,14 +68,6 @@ public VentanaPrincipal() {
         btnAsistenciaActionPerformed(evt);
       }
     });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.gridwidth = 3;
-    gridBagConstraints.ipadx = 45;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 54);
-    contenedorMenu.add(btnAsistencia, gridBagConstraints);
 
     btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Nventa.png"))); // NOI18N
     btnVenta.setText("Venta");
@@ -94,15 +76,6 @@ public VentanaPrincipal() {
         btnVentaActionPerformed(evt);
       }
     });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.ipadx = 46;
-    gridBagConstraints.ipady = -8;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(39, 0, 0, 0);
-    contenedorMenu.add(btnVenta, gridBagConstraints);
 
     btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
     btnProveedores.setText("Proveedores");
@@ -111,14 +84,6 @@ public VentanaPrincipal() {
         btnProveedoresActionPerformed(evt);
       }
     });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.ipadx = 31;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
-    contenedorMenu.add(btnProveedores, gridBagConstraints);
 
     btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
     btnProductos.setText("Productos");
@@ -127,14 +92,6 @@ public VentanaPrincipal() {
         btnProductosActionPerformed(evt);
       }
     });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.ipadx = 42;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(35, 0, 0, 0);
-    contenedorMenu.add(btnProductos, gridBagConstraints);
 
     btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
     btnEmpleados.setText("Empleados");
@@ -143,12 +100,6 @@ public VentanaPrincipal() {
         btnEmpleadosActionPerformed(evt);
       }
     });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(18, 23, 0, 0);
-    contenedorMenu.add(btnEmpleados, gridBagConstraints);
 
     btnCorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
     btnCorteCaja.setText("Corte de caja");
@@ -157,15 +108,6 @@ public VentanaPrincipal() {
         btnCorteCajaActionPerformed(evt);
       }
     });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 7;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.ipadx = 33;
-    gridBagConstraints.ipady = 12;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(30, 0, 42, 0);
-    contenedorMenu.add(btnCorteCaja, gridBagConstraints);
 
     btnNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
     btnNomina.setText("Nomina");
@@ -174,14 +116,48 @@ public VentanaPrincipal() {
         btnNominaActionPerformed(evt);
       }
     });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 6;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.ipadx = 55;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-    gridBagConstraints.insets = new java.awt.Insets(36, 0, 0, 0);
-    contenedorMenu.add(btnNomina, gridBagConstraints);
+
+    javax.swing.GroupLayout contenedorMenuLayout = new javax.swing.GroupLayout(contenedorMenu);
+    contenedorMenu.setLayout(contenedorMenuLayout);
+    contenedorMenuLayout.setHorizontalGroup(
+      contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(contenedorMenuLayout.createSequentialGroup()
+        .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+          .addGroup(contenedorMenuLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(btnEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(6, 6, 6))
+          .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(contenedorMenuLayout.createSequentialGroup()
+              .addGap(6, 6, 6)
+              .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnCorteCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(54, 54, 54))
+    );
+    contenedorMenuLayout.setVerticalGroup(
+      contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(contenedorMenuLayout.createSequentialGroup()
+        .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(btnAsistencia)
+        .addGap(12, 12, 12)
+        .addComponent(btnEmpleados)
+        .addGap(39, 39, 39)
+        .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(btnProveedores)
+        .addGap(35, 35, 35)
+        .addComponent(btnProductos)
+        .addGap(36, 36, 36)
+        .addComponent(btnNomina)
+        .addGap(30, 30, 30)
+        .addComponent(btnCorteCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
 
     panelPrincipal.add(contenedorMenu);
 
@@ -235,20 +211,6 @@ public VentanaPrincipal() {
 
   }//GEN-LAST:event_btnAsistenciaActionPerformed
 
-  private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-		/*limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionVenta());
-		actualizarContenido();*/
-  }//GEN-LAST:event_btnVentaActionPerformed
-
-  private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-		/*limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionProveedor());
-		actualizarContenido();*/
-  }//GEN-LAST:event_btnProveedoresActionPerformed
-
   private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
 		/*limpiarContenido();
 		contenedorPrincipal.removeAll();
@@ -276,6 +238,20 @@ public VentanaPrincipal() {
 		contenedorPrincipal.add(new Interfaces.GestionNomina.panelMenuGestionNomina(contenedorPrincipal));
 		actualizarContenido();
   }//GEN-LAST:event_btnNominaActionPerformed
+
+  private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
+    /*limpiarContenido();
+    contenedorPrincipal.removeAll();
+    contenedorPrincipal.add(ManejadorPrincipal.getGestionProveedor());
+    actualizarContenido();*/
+  }//GEN-LAST:event_btnProveedoresActionPerformed
+
+  private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
+    /*limpiarContenido();
+    contenedorPrincipal.removeAll();
+    contenedorPrincipal.add(ManejadorPrincipal.getGestionVenta());
+    actualizarContenido();*/
+  }//GEN-LAST:event_btnVentaActionPerformed
 
 public void limpiarContenido() {
 	Component componente = contenedorPrincipal.getComponent(0);
