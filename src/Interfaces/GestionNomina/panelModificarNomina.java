@@ -1,23 +1,20 @@
 package Interfaces.GestionNomina;
 
-import Interfaces.GestionAsistencia.*;
 import Manejadores.GestionAsistencia.ManejadorGestionAsistencia;
+import Manejadores.GestionNomina.ManejadorGestionNomina;
 import java.awt.Color;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class panelModificarNomina extends javax.swing.JPanel {
 
-Manejadores.GestionAsistencia.ManejadorGestionAsistencia manejador;
+Manejadores.GestionNomina.ManejadorGestionNomina manejador;
 private DefaultTableModel modeloTablaFechas;
 
 public panelModificarNomina() {
-	manejador = new ManejadorGestionAsistencia();
+	manejador = new ManejadorGestionNomina();
 	initComponents();
 	modeloTablaFechas = (DefaultTableModel) tablaFechas.getModel();
-	deshabilitarDescuento();
 }
 
 @SuppressWarnings("unchecked")
@@ -31,20 +28,12 @@ public panelModificarNomina() {
     contenedorFecha = new javax.swing.JPanel();
     lblFecha = new javax.swing.JLabel();
     txtFecha = new javax.swing.JTextField();
-    contenedorHoraEntrada = new javax.swing.JPanel();
-    lblHoraEntrada = new javax.swing.JLabel();
-    txtHoraEntrada = new javax.swing.JTextField();
-    contenedorHoraSalida = new javax.swing.JPanel();
-    lblHoraSalida = new javax.swing.JLabel();
-    txtHoraSalida = new javax.swing.JTextField();
-    contenedorDescuentos = new javax.swing.JPanel();
-    radioObservaciones = new javax.swing.JRadioButton();
-    contenedorMonto = new javax.swing.JPanel();
-    lblMonto = new javax.swing.JLabel();
-    txtMonto = new javax.swing.JTextField();
-    contenedorObservacion = new javax.swing.JPanel();
-    lblObservacion = new javax.swing.JLabel();
-    txtObservacion = new javax.swing.JTextField();
+    contenedorHorasTrabajadas = new javax.swing.JPanel();
+    lblHorasTrabajadas = new javax.swing.JLabel();
+    txtHorasTrabajadas = new javax.swing.JTextField();
+    contenedorHorasTrabajadas1 = new javax.swing.JPanel();
+    lblPagoPorHora = new javax.swing.JLabel();
+    txtPagoPorHora = new javax.swing.JTextField();
     btnGuardarRegistro = new javax.swing.JPanel();
     lblGuardar = new javax.swing.JLabel();
     contenedorTabla = new javax.swing.JPanel();
@@ -83,62 +72,29 @@ public panelModificarNomina() {
     txtFecha.setPreferredSize(new java.awt.Dimension(300, 30));
     contenedorFecha.add(txtFecha);
 
-    contenedorHoraEntrada.setPreferredSize(new java.awt.Dimension(480, 40));
+    contenedorHorasTrabajadas.setPreferredSize(new java.awt.Dimension(480, 100));
 
-    lblHoraEntrada.setText("Hora de entrada");
-    lblHoraEntrada.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorHoraEntrada.add(lblHoraEntrada);
+    lblHorasTrabajadas.setText("Horas trabajadas");
+    lblHorasTrabajadas.setPreferredSize(new java.awt.Dimension(130, 30));
+    contenedorHorasTrabajadas.add(lblHorasTrabajadas);
 
-    txtHoraEntrada.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtHoraEntrada.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorHoraEntrada.add(txtHoraEntrada);
+    txtHorasTrabajadas.setToolTipText("");
+    txtHorasTrabajadas.setMargin(new java.awt.Insets(4, 6, 4, 6));
+    txtHorasTrabajadas.setMinimumSize(new java.awt.Dimension(300, 30));
+    txtHorasTrabajadas.setPreferredSize(new java.awt.Dimension(300, 30));
+    contenedorHorasTrabajadas.add(txtHorasTrabajadas);
 
-    contenedorHoraSalida.setPreferredSize(new java.awt.Dimension(480, 100));
+    contenedorHorasTrabajadas1.setPreferredSize(new java.awt.Dimension(480, 100));
 
-    lblHoraSalida.setText("Hora de salida");
-    lblHoraSalida.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorHoraSalida.add(lblHoraSalida);
+    lblPagoPorHora.setText("Pago por hora");
+    lblPagoPorHora.setPreferredSize(new java.awt.Dimension(130, 30));
+    contenedorHorasTrabajadas1.add(lblPagoPorHora);
 
-    txtHoraSalida.setToolTipText("");
-    txtHoraSalida.setMargin(new java.awt.Insets(4, 6, 4, 6));
-    txtHoraSalida.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtHoraSalida.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorHoraSalida.add(txtHoraSalida);
-
-    contenedorDescuentos.setMinimumSize(new java.awt.Dimension(400, 50));
-    contenedorDescuentos.setPreferredSize(new java.awt.Dimension(400, 100));
-
-    radioObservaciones.setText("Observaciones");
-    radioObservaciones.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        radioObservacionesActionPerformed(evt);
-      }
-    });
-    contenedorDescuentos.add(radioObservaciones);
-
-    contenedorMonto.setPreferredSize(new java.awt.Dimension(480, 40));
-
-    lblMonto.setText("Monto");
-    lblMonto.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorMonto.add(lblMonto);
-
-    txtMonto.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtMonto.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorMonto.add(txtMonto);
-
-    contenedorDescuentos.add(contenedorMonto);
-
-    contenedorObservacion.setPreferredSize(new java.awt.Dimension(480, 40));
-
-    lblObservacion.setText("Observacion");
-    lblObservacion.setPreferredSize(new java.awt.Dimension(130, 30));
-    contenedorObservacion.add(lblObservacion);
-
-    txtObservacion.setMinimumSize(new java.awt.Dimension(300, 30));
-    txtObservacion.setPreferredSize(new java.awt.Dimension(300, 30));
-    contenedorObservacion.add(txtObservacion);
-
-    contenedorDescuentos.add(contenedorObservacion);
+    txtPagoPorHora.setToolTipText("");
+    txtPagoPorHora.setMargin(new java.awt.Insets(4, 6, 4, 6));
+    txtPagoPorHora.setMinimumSize(new java.awt.Dimension(300, 30));
+    txtPagoPorHora.setPreferredSize(new java.awt.Dimension(300, 30));
+    contenedorHorasTrabajadas1.add(txtPagoPorHora);
 
     btnGuardarRegistro.setBackground(new java.awt.Color(142, 141, 141));
     btnGuardarRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -184,15 +140,19 @@ public panelModificarNomina() {
     contenedorPrincipal.setLayout(contenedorPrincipalLayout);
     contenedorPrincipalLayout.setHorizontalGroup(
       contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 492, Short.MAX_VALUE)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorPrincipalLayout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(contenedorHorasTrabajadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap())
+      .addGroup(contenedorPrincipalLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(contenedorHorasTrabajadas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addGroup(contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(contenedorPrincipalLayout.createSequentialGroup()
           .addContainerGap()
           .addGroup(contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedorHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(contenedorDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(contenedorHoraEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(contenedorEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(contenedorFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(contenedorPrincipalLayout.createSequentialGroup()
@@ -202,20 +162,19 @@ public panelModificarNomina() {
     );
     contenedorPrincipalLayout.setVerticalGroup(
       contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 460, Short.MAX_VALUE)
+      .addGroup(contenedorPrincipalLayout.createSequentialGroup()
+        .addGap(122, 122, 122)
+        .addComponent(contenedorHorasTrabajadas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(34, 34, 34)
+        .addComponent(contenedorHorasTrabajadas1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(210, Short.MAX_VALUE))
       .addGroup(contenedorPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(contenedorPrincipalLayout.createSequentialGroup()
           .addContainerGap()
           .addComponent(contenedorEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
           .addComponent(contenedorFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-          .addComponent(contenedorHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-          .addComponent(contenedorHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addGap(12, 12, 12)
-          .addComponent(contenedorDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addGap(12, 12, 12)
+          .addGap(258, 258, 258)
           .addComponent(btnGuardarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
     );
@@ -252,26 +211,16 @@ public panelModificarNomina() {
     add(contenedorTabla);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void radioObservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioObservacionesActionPerformed
-		if (radioObservaciones.isSelected()) {
-			habilitarDescuento();
-		} else {
-			deshabilitarDescuento();
-			limpiarCamposDescuento();
-		}
-  }//GEN-LAST:event_radioObservacionesActionPerformed
-
   private void btnGuardarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistroMouseClicked
-		if (!setActualizarAsistencia(generarRegistro())) {
-			JOptionPane.showMessageDialog(null, "No se ha podido guardar la asistencia, "
-							+ "puede que se deba a lo siguiente:" + "\n"
-							+ "• Se perdio conexion con la base de datos" + "\n"
-							+ "• Este empleado ya tiene asistencia ese dia" + "\n"
-							+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al guardar la asistencia", JOptionPane.ERROR_MESSAGE);
+		if (!setActualizarNomina(generarRegistro())) {
+		JOptionPane.showMessageDialog(null, "No se han podido consultar las fechas de Nomina, "
+						+ "puede que se deba a lo siguiente:" + "\n"
+						+ "• Se perdio conexion con la base de datos" + "\n"
+						+ "• Este empleado no tiene pagos de Nomina" + "\n"
+						+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al consultar las nominas", JOptionPane.ERROR_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "Registro modificado con exito", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 		}
-		limpiarCamposDescuento();
   }//GEN-LAST:event_btnGuardarRegistroMouseClicked
 
   private void btnGuardarRegistrohoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarRegistrohoverEntrada
@@ -299,20 +248,13 @@ public panelModificarNomina() {
 
 private void rellenarCamposFaltantes(String idEmpleado, String fecha) {
 	Object[] fila = manejador.getCamposFaltantes(idEmpleado, fecha);
-	txtHoraEntrada.setText(fila[0].toString());
-	if (fila[1] != null) {
-		txtHoraSalida.setText(fila[1].toString());
-	}
-	if (fila[2] != null) {
-		habilitarDescuento();
-		txtObservacion.setText(fila[2].toString());
-		txtMonto.setText(fila[3].toString());
-	}
+	txtHorasTrabajadas.setText(fila[0].toString());
+	txtPagoPorHora.setText(fila[1].toString());
 }
 
 private void insertarFechasTabla(Object[] fechas) {
 	limpiarPanel();
-
+	
 	if (fechas.length > 0) {
 		for (int contador = 0; contador < fechas.length; contador++) {
 			Object[] fila = new Object[1];
@@ -320,18 +262,18 @@ private void insertarFechasTabla(Object[] fechas) {
 			modeloTablaFechas.addRow(fila);
 		}
 	} else {
-		JOptionPane.showMessageDialog(null, "No se han podido consultar las fechas de asistencia, "
+		JOptionPane.showMessageDialog(null, "No se han podido consultar las fechas de Nomina, "
 						+ "puede que se deba a lo siguiente:" + "\n"
 						+ "• Se perdio conexion con la base de datos" + "\n"
-						+ "• Este empleado no tiene asistencias" + "\n"
-						+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al consultar las asistencias", JOptionPane.ERROR_MESSAGE);
+						+ "• Este empleado no tiene pagos de Nomina" + "\n"
+						+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al consultar las nominas", JOptionPane.ERROR_MESSAGE);
 	}
 }
 
 private String[] insertarEmpleados() {
 	Object[] listaTemp = getEmpleados();
 	String[] listaEmpleados = new String[listaTemp.length];
-
+	
 	for (int iterador = 0; iterador < listaTemp.length; iterador++) {
 		listaEmpleados[iterador] = listaTemp[iterador].toString();
 	}
@@ -339,33 +281,28 @@ private String[] insertarEmpleados() {
 }
 
 private String[] generarRegistro() {
-	String[] registro = new String[6];
-	if (txtHoraEntrada.getText().equals("")) {
+	String[] registro = new String[4];
+
+	if (txtPagoPorHora.getText().equals("")) {
 		registro[0] = null;
 	} else {
-		registro[0] = txtHoraSalida.getText();
+		registro[0] = txtPagoPorHora.getText();
 	}
-	if (txtHoraSalida.getText().equals("")) {
+	if (txtHorasTrabajadas.getText().equals("")) {
 		registro[1] = null;
 	} else {
-		registro[1] = txtHoraSalida.getText();
+		registro[1] = txtHorasTrabajadas.getText();
 	}
-	if (txtObservacion.getText().equals("")) {
-		registro[2] = null;
-	} else {
-		registro[2] = txtObservacion.getText();
-	}
-	if (txtMonto.getText().equals("")) {
+	registro[2] = getIdEmpleado(boxEmpleados.getSelectedIndex()).toString();
+	if (txtFecha.getText().equals("")) {
 		registro[3] = null;
 	} else {
-		registro[3] = txtMonto.getText();
+		registro[3] = txtFecha.getText();
 	}
-	registro[4] = getIdEmpleado(boxEmpleados.getSelectedIndex()).toString();
-	registro[5] = txtFecha.getText();
 	return registro;
 }
 
-private boolean setActualizarAsistencia(String[] registro) {
+private boolean setActualizarNomina(String[] registro) {
 	return manejador.actualizarRegistro(registro);
 }
 
@@ -381,24 +318,12 @@ private Object getIdEmpleado(int indice) {
 	return manejador.getIdEmpleado(indice);
 }
 
-private void deshabilitarDescuento() {
-	txtMonto.setEditable(false);
-	txtObservacion.setEditable(false);
-}
-
-private void habilitarDescuento() {
-	txtMonto.setEditable(true);
-	txtObservacion.setEditable(true);
-}
-
 private void limpiarPanel() {
 	txtFecha.setText("");
-	txtHoraEntrada.setText("");
-	txtHoraSalida.setText("");
-
+	txtPagoPorHora.setText("");
+	txtHorasTrabajadas.setText("");
+	
 	limpiarTabla();
-	limpiarCamposDescuento();
-	deshabilitarDescuento();
 }
 
 private void limpiarTabla() {
@@ -408,39 +333,26 @@ private void limpiarTabla() {
 	modeloTablaFechas.setRowCount(0);
 }
 
-private void limpiarCamposDescuento() {
-	txtMonto.setText("");
-	txtObservacion.setText("");
-}
-
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JComboBox<String> boxEmpleados;
   private javax.swing.JPanel btnGuardarRegistro;
-  private javax.swing.JPanel contenedorDescuentos;
   private javax.swing.JPanel contenedorEmpleado;
   private javax.swing.JPanel contenedorFecha;
-  private javax.swing.JPanel contenedorHoraEntrada;
-  private javax.swing.JPanel contenedorHoraSalida;
-  private javax.swing.JPanel contenedorMonto;
-  private javax.swing.JPanel contenedorObservacion;
+  private javax.swing.JPanel contenedorHorasTrabajadas;
+  private javax.swing.JPanel contenedorHorasTrabajadas1;
   private javax.swing.JPanel contenedorPrincipal;
   private javax.swing.JPanel contenedorTabla;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JLabel lblFecha;
   private javax.swing.JLabel lblGuardar;
-  private javax.swing.JLabel lblHoraEntrada;
-  private javax.swing.JLabel lblHoraSalida;
-  private javax.swing.JLabel lblMonto;
+  private javax.swing.JLabel lblHorasTrabajadas;
   private javax.swing.JLabel lblNombre;
-  private javax.swing.JLabel lblObservacion;
-  private javax.swing.JRadioButton radioObservaciones;
+  private javax.swing.JLabel lblPagoPorHora;
   private javax.swing.JTable tablaFechas;
   private javax.swing.JTextField txtFecha;
-  private javax.swing.JTextField txtHoraEntrada;
-  private javax.swing.JTextField txtHoraSalida;
-  private javax.swing.JTextField txtMonto;
-  private javax.swing.JTextField txtObservacion;
+  private javax.swing.JTextField txtHorasTrabajadas;
+  private javax.swing.JTextField txtPagoPorHora;
   // End of variables declaration//GEN-END:variables
 }

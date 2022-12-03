@@ -130,6 +130,71 @@ public Object[][] getNomina(String idEmpleado) {
 	return matrizRetorno;
 }
 
+public Object[] getFechasEmpleado(Object idEmpleado) {
+	ArrayList fechas = new ArrayList<>();
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("select fechaPago from Nomina where idEmpleado=?");
+		cts.setString(1, idEmpleado.toString());
+		ResultSet r = cts.executeQuery();
+		while (r.next()) {
+			fechas.add(r.getString(1));
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return fechas.toArray();
+}
+
+public Object[] getCamposFaltantes(String idEmpleado, String fecha) {
+	ArrayList fila = new ArrayList<>();
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("select horasTrabajadas, pagoPorHora from Nomina where idEmpleado=? and fechaPago=?");
+		cts.setString(1, idEmpleado);
+		cts.setString(2, fecha);
+		ResultSet r = cts.executeQuery();
+		r.next();
+		fila.add(r.getString(1));
+		fila.add(r.getString(2));
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return fila.toArray();
+}
+
+public Object[][] getFilas(String idEmpleado) {
+	ArrayList<ArrayList> matriz = new ArrayList<>();
+	ArrayList<String> subMatriz = new ArrayList<>();
+	Object[][] matrizRetorno = null;
+	try {
+		CallableStatement cts = dbConection.getConexion().prepareCall("Select fechaPago, horasTrabajadas, pagoPorHora from Nomina where idEmpleado = ?");
+		cts.setString(1, idEmpleado);
+
+		ResultSet r = cts.executeQuery();
+
+		while (r.next()) {
+			subMatriz = new ArrayList<>();
+			for (int columnaTemp = 0; columnaTemp < 3; columnaTemp++) {
+				subMatriz.add(r.getString(columnaTemp + 1));
+			}
+			matriz.add(subMatriz);
+		}
+		try {
+			matrizRetorno = new Object[matriz.size()][matriz.get(0).size()];
+
+			for (int fila = 0; fila < matriz.size(); fila++) {
+				for (int columna = 0; columna < matriz.get(0).size(); columna++) {
+					matrizRetorno[fila][columna] = matriz.get(fila).get(columna);
+				}
+			}
+		} catch (IndexOutOfBoundsException e) {
+			return new Object[0][0];
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return matrizRetorno;
+}
+
 public Object[][] getObservaciones(String idEmpleado) {
 	ArrayList<ArrayList> matriz = new ArrayList<>();
 	ArrayList<String> subMatriz = new ArrayList<>();
@@ -188,7 +253,7 @@ public boolean insertarRegistroNomina(String[] registro) {
 
 public boolean actualizarRegistro(String[] registro) {
 	try {
-		CallableStatement cts = dbConection.getConexion().prepareCall("update Nomina set pagoPorHora= ?,horasTrabajadas= ? where idEmpleado= ? and fecha= ?");
+		CallableStatement cts = dbConection.getConexion().prepareCall("update Nomina set pagoPorHora= ?,horasTrabajadas= ? where idEmpleado= ? and fechaPago= ?");
 		for (int contador = 0; contador < registro.length; contador++) {
 			cts.setString(contador + 1, registro[contador]);
 		}

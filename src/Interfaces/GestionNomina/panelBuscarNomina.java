@@ -1,17 +1,17 @@
 package Interfaces.GestionNomina;
 
-import Interfaces.GestionAsistencia.*;
 import Manejadores.GestionAsistencia.ManejadorGestionAsistencia;
+import Manejadores.GestionNomina.ManejadorGestionNomina;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class panelBuscarNomina extends javax.swing.JPanel {
 
-Manejadores.GestionAsistencia.ManejadorGestionAsistencia manejador;
+Manejadores.GestionNomina.ManejadorGestionNomina manejador;
 private DefaultTableModel modeloTabla;
 
 public panelBuscarNomina() {
-	manejador = new ManejadorGestionAsistencia();
+	manejador = new ManejadorGestionNomina();
 	initComponents();
 	modeloTabla = (DefaultTableModel) tablaFechas.getModel();
 	insertarFilasTabla(getFilasEmpleado(getIdEmpleado(boxEmpleados.getSelectedIndex()).toString()));
@@ -62,11 +62,11 @@ public panelBuscarNomina() {
 
       },
       new String [] {
-        "Fecha", "Hora entrada", "Hora salida", "Observacion", "Monto"
+        "Fecha", "Horas trabajadas", "Pago por hora"
       }
     ) {
       boolean[] canEdit = new boolean [] {
-        false, false, false, false, false
+        false, false, false
       };
 
       public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -121,17 +121,17 @@ private void insertarFilasTabla(Object[][] tabla) {
 		//Recorre las filas
 		for (int numFila = 0; numFila < tabla.length; numFila++) {
 			//Recorre las columnas
-			for (int numColumna = 0; numColumna < 5; numColumna++) {
+			for (int numColumna = 0; numColumna < 3; numColumna++) {
 				fila[numColumna] = tabla[numFila][numColumna];
 			}
 			modeloTabla.addRow(fila);
 		}
 	} else {
-		JOptionPane.showMessageDialog(null, "No se han podido consultar las fechas de asistencia, "
+		JOptionPane.showMessageDialog(null, "No se han podido consultar las fechas de Nomina, "
 						+ "puede que se deba a lo siguiente:" + "\n"
 						+ "• Se perdio conexion con la base de datos" + "\n"
-						+ "• Este empleado no tiene asistencias" + "\n"
-						+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al consultar las asistencias", JOptionPane.ERROR_MESSAGE);
+						+ "• Este empleado no tiene pagos de Nomina" + "\n"
+						+ "Intente verificar esto ultimo y vuelva a intentar.", "Error al consultar las nominas", JOptionPane.ERROR_MESSAGE);
 	}
 }
 
