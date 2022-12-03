@@ -220,10 +220,10 @@ public VentanaPrincipal() {
   }//GEN-LAST:event_btnAsistenciaActionPerformed
 
   private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-		/*limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionVenta());
-		actualizarContenido();*/
+		limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionVenta.Menu_Venta(contenedorPrincipal));
+        actualizarContenido();
   }//GEN-LAST:event_btnVentaActionPerformed
 
   private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
