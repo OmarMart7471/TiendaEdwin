@@ -9,34 +9,49 @@ import Clases.Empleado;
 import Manejadores.ManejadorGEmpleado.ManejadorGestionEmpleado;
 import Manejadores.Principal;
 import java.awt.Component;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ima
  */
 public class ContenedorModificarEmpleado extends javax.swing.JPanel {
- 
-    
+
     private ManejadorGestionEmpleado consultasEmpleado;
     private Principal conectorBDEmpleado = new Principal();
     private List<Empleado> resultados;
     private Empleado empleadoActual;
     private DefaultTableModel tablaEmpleado = new DefaultTableModel();
     private ResultSet conjuntoEmpleados;
-    
     private JPanel contenedor = null;
+    int filas;
+
     /**
      * Creates new form ContenedorModificarEmpleado
      */
     public ContenedorModificarEmpleado(JPanel contenedor) {
         initComponents();
-         this.contenedor = contenedor;
-            consultasEmpleado = new ManejadorGestionEmpleado();
+        this.contenedor = contenedor;
+        consultasEmpleado = new ManejadorGestionEmpleado();
+        filas = tablaEmpleado.getRowCount();
+        for (int i = filas - 1; i >= 0; i--) {
+            tablaEmpleado.removeRow(i);
+        }
+        tablaEmpleado.addColumn("Id");
+        tablaEmpleado.addColumn("Nombre");
+        tablaEmpleado.addColumn("Dirección");
+        tablaEmpleado.addColumn("Teléfono");
+        tablaEmpleado.addColumn("Puesto");
+        tablaEmpleado.addColumn("Sexo");
+        tablaEmpleado.addColumn("Pago por hora");
+        this.tablaEmpleados.setModel(tablaEmpleado);
+        cargarEmpleados();
     }
 
     /**
@@ -68,6 +83,8 @@ public class ContenedorModificarEmpleado extends javax.swing.JPanel {
         pagoEmpleado = new javax.swing.JTextField();
         idEmpleado = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaEmpleados = new javax.swing.JTable();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -189,18 +206,31 @@ public class ContenedorModificarEmpleado extends javax.swing.JPanel {
             }
         });
         add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
+
+        tablaEmpleados.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nombre", "Dirección", "Teléfono", "Puesto", "Sexo", "Pago por hora"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaEmpleados);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 960, 230));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        
-        if(idEmpleado.getText().isEmpty()||nombreEmpleado.getText().isEmpty()||direccionEmpleado.getText().isEmpty()|| numEmpleado.getText().isEmpty()|| pagoEmpleado.getText().isEmpty()){
+
+        if (idEmpleado.getText().isEmpty() || nombreEmpleado.getText().isEmpty() || direccionEmpleado.getText().isEmpty() || numEmpleado.getText().isEmpty() || pagoEmpleado.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
-        }else{
+        } else {
             int resultado = consultasEmpleado.modificarEmpleado(idEmpleado.getText(), nombreEmpleado.getText(),
-                direccionEmpleado.getText(),numEmpleado.getText(), puestoEmpleado.getSelectedItem().toString(),
-                sexoEmpleado.getSelectedItem().toString(), pagoEmpleado.getText());
-        if(resultado == 1){
-            JOptionPane.showMessageDialog(this, "Se actualizo correctamente");
+                    direccionEmpleado.getText(), numEmpleado.getText(), puestoEmpleado.getSelectedItem().toString(),
+                    sexoEmpleado.getSelectedItem().toString(), pagoEmpleado.getText());
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(this, "Se actualizo correctamente");
                 idBus.setText("");
                 idEmpleado.setText("");
                 nombreEmpleado.setText("");
@@ -209,11 +239,11 @@ public class ContenedorModificarEmpleado extends javax.swing.JPanel {
                 puestoEmpleado.setSelectedItem("");
                 sexoEmpleado.setSelectedItem("");
                 pagoEmpleado.setText("");
-        }else{
-            JOptionPane.showMessageDialog(this, "No se actualizo");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se actualizo");
+            }
         }
-        }       
-       
+
 
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -251,35 +281,57 @@ public class ContenedorModificarEmpleado extends javax.swing.JPanel {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         resultados = consultasEmpleado.buscarEmpleado(idBus.getText());
-        if(resultados.size()!=0){
+        if (resultados.size() != 0) {
             JOptionPane.showMessageDialog(this, "Se encontro Empleado");
             empleadoActual = resultados.get(0);
             idEmpleado.setText(empleadoActual.getIdEmpleado());
             nombreEmpleado.setText(empleadoActual.getNombreEmpleado());
             direccionEmpleado.setText(empleadoActual.getDireccionEmpleado());
             numEmpleado.setText(empleadoActual.getNumeroTelefono());
-            puestoEmpleado.setSelectedItem(""+empleadoActual.getPuesto());
-            sexoEmpleado.setSelectedItem(""+empleadoActual.getSexo());
-            pagoEmpleado.setText(""+empleadoActual.getPagoPorhora());
+            puestoEmpleado.setSelectedItem("" + empleadoActual.getPuesto());
+            sexoEmpleado.setSelectedItem("" + empleadoActual.getSexo());
+            pagoEmpleado.setText("" + empleadoActual.getPagoPorhora());
 
-        }else{
+            idBus.setText("");
+        } else {
             JOptionPane.showMessageDialog(this, "No se encontro la cancion");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-          
-public void limpiarContenido() {
-	Component componente = contenedor.getComponent(0);
-	contenedor.remove(componente);
-	actualizarContenido();
-}
+    public void limpiarContenido() {
+        Component componente = contenedor.getComponent(0);
+        contenedor.remove(componente);
+        actualizarContenido();
+    }
 
-public void actualizarContenido() {
-	contenedor.revalidate();
-	contenedor.repaint();
-}
+    public void actualizarContenido() {
+        contenedor.revalidate();
+        contenedor.repaint();
+    }
+ public void cargarEmpleados() {
+        try {
+            filas = tablaEmpleado.getRowCount();
+            System.out.println("numero de filas: " + filas);
+            for (int i = filas - 1; i >= 0; i--) {
+                tablaEmpleado.removeRow(i);
+            }
+            CallableStatement cts = consultasEmpleado.getDbConection().getConexion().prepareCall("SELECT * FROM Empleado");
+            System.out.println("consulta realizada");
+            ResultSet r = cts.executeQuery();
+            while (r.next()) {
+                Object dato[] = new Object[7];
+                for (int columnas = 0; columnas < 7; columnas++) {
+                    dato[columnas] = r.getString(columnas + 1);
+                }
+                tablaEmpleado.addRow(dato);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -297,10 +349,12 @@ public void actualizarContenido() {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nombreEmpleado;
     private javax.swing.JTextField numEmpleado;
     private javax.swing.JTextField pagoEmpleado;
     private javax.swing.JComboBox<String> puestoEmpleado;
     private javax.swing.JComboBox<String> sexoEmpleado;
+    private javax.swing.JTable tablaEmpleados;
     // End of variables declaration//GEN-END:variables
 }

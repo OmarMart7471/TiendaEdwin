@@ -9,34 +9,58 @@ import Clases.Empleado;
 import Manejadores.ManejadorGEmpleado.ManejadorGestionEmpleado;
 import Manejadores.Principal;
 import java.awt.Component;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ima
  */
 public class ContenedorBuscarEmpleado extends javax.swing.JPanel {
-    
-    
+
     private ManejadorGestionEmpleado consultasEmpleado;
     private Principal conectorBDEmpleado = new Principal();
     private List<Empleado> resultados;
     private Empleado empleadoActual;
     private DefaultTableModel tablaEmpleado = new DefaultTableModel();
     private ResultSet conjuntoEmpleados;
-    
+    int filas;
+
     private JPanel contenedor = null;
+
     /**
      * Creates new form ContenedorBuscarEmpleado
      */
     public ContenedorBuscarEmpleado(JPanel contenedor) {
         initComponents();
-       this.contenedor = contenedor;
-              consultasEmpleado = new ManejadorGestionEmpleado();
+        this.contenedor = contenedor;
+        consultasEmpleado = new ManejadorGestionEmpleado();
+        filas = tablaEmpleado.getRowCount();
+        for (int i = filas - 1; i >= 0; i--) {
+            tablaEmpleado.removeRow(i);
+        }
+        tablaEmpleado.addColumn("Id");
+        tablaEmpleado.addColumn("Nombre");
+        tablaEmpleado.addColumn("Dirección");
+        tablaEmpleado.addColumn("Teléfono");
+        tablaEmpleado.addColumn("Puesto");
+        tablaEmpleado.addColumn("Sexo");
+        tablaEmpleado.addColumn("Pago por hora");
+        this.tablaEmpleados.setModel(tablaEmpleado);
+        cargarEmpleados();
+
+        idEmpleado.setEnabled(false);
+        nombreEmpleado.setEnabled(false);
+        direccionEmpleado.setEnabled(false);
+        numEmpleado.setEnabled(false);
+        puestoEmpleado.setEnabled(false);
+        sexoEmpleado.setEnabled(false);
+        pagoEmpleado.setEnabled(false);
 
     }
 
@@ -68,6 +92,8 @@ public class ContenedorBuscarEmpleado extends javax.swing.JPanel {
         nombreEmpleado = new javax.swing.JTextField();
         pagoEmpleado = new javax.swing.JTextField();
         idEmpleado = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaEmpleados = new javax.swing.JTable();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -180,26 +206,41 @@ public class ContenedorBuscarEmpleado extends javax.swing.JPanel {
             }
         });
         add(idEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 226, -1));
+
+        tablaEmpleados.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nombre", "Dirección", "Teléfono", "Puesto", "Sexo", "Pago por hora"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaEmpleados);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 960, 230));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         resultados = consultasEmpleado.buscarEmpleado(idBus.getText());
-        if(resultados.size()!=0){
+
+        if (resultados.size() != 0) {
             JOptionPane.showMessageDialog(this, "Se encontro Empleado");
             empleadoActual = resultados.get(0);
             idEmpleado.setText(empleadoActual.getIdEmpleado());
             nombreEmpleado.setText(empleadoActual.getNombreEmpleado());
             direccionEmpleado.setText(empleadoActual.getDireccionEmpleado());
             numEmpleado.setText(empleadoActual.getNumeroTelefono());
-            puestoEmpleado.setSelectedItem(""+empleadoActual.getPuesto());
-            sexoEmpleado.setSelectedItem(""+empleadoActual.getSexo());
-            pagoEmpleado.setText(""+empleadoActual.getPagoPorhora());
-            
-        }else{
+            puestoEmpleado.setSelectedItem("" + empleadoActual.getPuesto());
+            sexoEmpleado.setSelectedItem("" + empleadoActual.getSexo());
+            pagoEmpleado.setText("" + empleadoActual.getPagoPorhora());
+
+            idBus.setText("");
+        } else {
             JOptionPane.showMessageDialog(this, "No se encontro el Empleado");
         }
-        
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -234,20 +275,39 @@ public class ContenedorBuscarEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_idEmpleadoActionPerformed
 
-      
-public void limpiarContenido() {
-	Component componente = contenedor.getComponent(0);
-	contenedor.remove(componente);
-	actualizarContenido();
-}
+    public void limpiarContenido() {
+        Component componente = contenedor.getComponent(0);
+        contenedor.remove(componente);
+        actualizarContenido();
+    }
 
-public void actualizarContenido() {
-	contenedor.revalidate();
-	contenedor.repaint();
-}
-    
-    
-    
+    public void actualizarContenido() {
+        contenedor.revalidate();
+        contenedor.repaint();
+    }
+
+    public void cargarEmpleados() {
+        try {
+            filas = tablaEmpleado.getRowCount();
+            System.out.println("numero de filas: " + filas);
+            for (int i = filas - 1; i >= 0; i--) {
+                tablaEmpleado.removeRow(i);
+            }
+            CallableStatement cts = consultasEmpleado.getDbConection().getConexion().prepareCall("SELECT * FROM Empleado");
+            System.out.println("consulta realizada");
+            ResultSet r = cts.executeQuery();
+            while (r.next()) {
+                Object dato[] = new Object[7];
+                for (int columnas = 0; columnas < 7; columnas++) {
+                    dato[columnas] = r.getString(columnas + 1);
+                }
+                tablaEmpleado.addRow(dato);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -264,10 +324,12 @@ public void actualizarContenido() {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nombreEmpleado;
     private javax.swing.JTextField numEmpleado;
     private javax.swing.JTextField pagoEmpleado;
     private javax.swing.JComboBox<String> puestoEmpleado;
     private javax.swing.JComboBox<String> sexoEmpleado;
+    private javax.swing.JTable tablaEmpleados;
     // End of variables declaration//GEN-END:variables
 }

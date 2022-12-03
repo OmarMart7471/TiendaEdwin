@@ -10,6 +10,7 @@ import Clases.Empleado;
 import Manejadores.ManejadorGEmpleado.ManejadorGestionEmpleado;
 import Manejadores.Principal;
 import java.awt.Component;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,13 +31,25 @@ public class ContenedorEliminarEmpleado extends javax.swing.JPanel {
     private Empleado empleadoActual;
     private DefaultTableModel tablaEmpleado = new DefaultTableModel();
     private ResultSet conjuntoEmpleados;
-    
+    int filas;
     
     public ContenedorEliminarEmpleado(JPanel contenedor) {
         initComponents();
        consultasEmpleado = new ManejadorGestionEmpleado();
-
         this.contenedor = contenedor;
+        filas = tablaEmpleado.getRowCount();
+        for (int i = filas - 1; i >= 0; i--) {
+            tablaEmpleado.removeRow(i);
+        }
+        tablaEmpleado.addColumn("Id");
+        tablaEmpleado.addColumn("Nombre");
+        tablaEmpleado.addColumn("Dirección");
+        tablaEmpleado.addColumn("Teléfono");
+        tablaEmpleado.addColumn("Puesto");
+        tablaEmpleado.addColumn("Sexo");
+        tablaEmpleado.addColumn("Pago por hora");
+        this.tablaEmpleados.setModel(tablaEmpleado);
+        cargarEmpleados();
     }
 
     /**
@@ -53,6 +66,8 @@ public class ContenedorEliminarEmpleado extends javax.swing.JPanel {
         jLabel39 = new javax.swing.JLabel();
         idEmpleado = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaEmpleados = new javax.swing.JTable();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -63,7 +78,7 @@ public class ContenedorEliminarEmpleado extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, -1, -1));
 
         btnSalir.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         btnSalir.setText("Regresar");
@@ -72,11 +87,11 @@ public class ContenedorEliminarEmpleado extends javax.swing.JPanel {
                 btnSalirActionPerformed(evt);
             }
         });
-        add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, -1));
 
         jLabel39.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel39.setText("ID");
-        add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 93, 44, 36));
+        add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 44, 36));
 
         idEmpleado.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         idEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -84,11 +99,24 @@ public class ContenedorEliminarEmpleado extends javax.swing.JPanel {
                 idEmpleadoActionPerformed(evt);
             }
         });
-        add(idEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 87, 226, -1));
+        add(idEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 226, -1));
 
         jLabel40.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel40.setText("ELIMINAR EMPLEADO");
-        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 10, -1, -1));
+        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
+
+        tablaEmpleados.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nombre", "Dirección", "Teléfono", "Puesto", "Sexo", "Pago por hora"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaEmpleados);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 960, 230));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -134,7 +162,28 @@ public void actualizarContenido() {
 	contenedor.repaint();
 }
     
-    
+    public void cargarEmpleados() {
+        try {
+            filas = tablaEmpleado.getRowCount();
+            System.out.println("numero de filas: " + filas);
+            for (int i = filas - 1; i >= 0; i--) {
+                tablaEmpleado.removeRow(i);
+            }
+            CallableStatement cts = consultasEmpleado.getDbConection().getConexion().prepareCall("SELECT * FROM Empleado");
+            System.out.println("consulta realizada");
+            ResultSet r = cts.executeQuery();
+            while (r.next()) {
+                Object dato[] = new Object[7];
+                for (int columnas = 0; columnas < 7; columnas++) {
+                    dato[columnas] = r.getString(columnas + 1);
+                }
+                tablaEmpleado.addRow(dato);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
     
     
     
@@ -149,5 +198,7 @@ public void actualizarContenido() {
     private javax.swing.JTextField idEmpleado;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaEmpleados;
     // End of variables declaration//GEN-END:variables
 }
