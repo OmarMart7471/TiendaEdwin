@@ -344,7 +344,7 @@ private String[] generarRegistro() {
 	if (txtHoraEntrada.getText().equals("")) {
 		registro[0] = null;
 	} else {
-		registro[0] = txtHoraSalida.getText();
+		registro[0] = txtHoraEntrada.getText();
 	}
 	if (txtHoraSalida.getText().equals("")) {
 		registro[1] = null;
