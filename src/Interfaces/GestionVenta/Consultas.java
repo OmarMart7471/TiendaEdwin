@@ -29,6 +29,10 @@ public class Consultas {
       public PreparedStatement consultaPrecioProducto = null;
       public PreparedStatement nuevoDetalleVenta = null;
       public PreparedStatement consultaLista = null;
+       public PreparedStatement consultaSumaTotal = null;
+       public PreparedStatement modificarPrecioVenta=null;
+      public PreparedStatement modificarStockProducto=null;
+        
      
      public Consultas() throws SQLException {
         
@@ -46,8 +50,9 @@ public class Consultas {
          consultaPrecioProducto=conexion.prepareCall("Select * From producto Where descripcion = ?");
          nuevoDetalleVenta=conexion.prepareCall("Insert Into DetalleVenta Values(?, ?, ?, ?, ?)");
          consultaLista=conexion.prepareCall(" Select descripcion,cantidad,total from DetalleVenta, producto Where id=idProducto AND idVenta= ?;");
-         
-        
+         consultaSumaTotal=conexion.prepareCall("Select SUM(total) from DetalleVenta where idVenta=?");
+        modificarPrecioVenta=conexion.prepareCall("Update Venta set precioTotal=? where id=?");
+        modificarStockProducto=conexion.prepareCall("Update producto set stock=stock-? where descripcion=?");
     }
      
      public void close()
@@ -154,8 +159,46 @@ try
             e.printStackTrace(); 
         }return conjuntoCancion;
  }
+       public ResultSet consultaSumaTotal(String idV){
+        ResultSet conjuntoCancion = null;
+        try{
+            consultaSumaTotal.setString(1, idV);
+            conjuntoCancion = consultaSumaTotal.executeQuery();
+        }catch(SQLException e){ 
+            e.printStackTrace(); 
+        }return conjuntoCancion;
+ }
      
      
+        public int modificarTotalVenta(String total, String id ){
+     int resultado=0;
+     try{
+     
+     modificarPrecioVenta.setString(1, total);
+     modificarPrecioVenta.setString(2, id);
+     
+     
+     resultado = modificarPrecioVenta.executeUpdate();
+     }catch(SQLException ex){
+         ex.printStackTrace();
+         close();
+     }return resultado;
+ }
+       
+    public int modificarStockProducto(String cantidad, String desc ){
+     int resultado=0;
+     try{
+     
+     modificarStockProducto.setString(1, cantidad);
+     modificarStockProducto.setString(2, desc);
+     
+     
+     resultado = modificarStockProducto.executeUpdate();
+     }catch(SQLException ex){
+         ex.printStackTrace();
+         close();
+     }return resultado;
+ }
 
     public Connection getConexion() {
         return conexion;

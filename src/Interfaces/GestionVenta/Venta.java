@@ -85,7 +85,7 @@ public class Venta extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTotalPagar = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Panton Rust Heavy Gr Sh", 0, 36)); // NOI18N
         jLabel1.setText("Registrar   Venta");
@@ -143,7 +143,7 @@ public class Venta extends javax.swing.JPanel {
 
         jLabel8.setText("Total a Pagar: ");
 
-        jTextField1.setEditable(false);
+        txtTotalPagar.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -190,7 +190,7 @@ public class Venta extends javax.swing.JPanel {
                         .addGap(351, 351, 351)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -235,15 +235,14 @@ public class Venta extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(242, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarListaActionPerformed
         
-        AgregarDetalleVenta();
-        AgregarLista();
+        modificarStock();
     }//GEN-LAST:event_btnAgregarListaActionPerformed
 
     private void btnBuscarPrecioProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPrecioProductoActionPerformed
@@ -367,13 +366,13 @@ public class Venta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIdVenta;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JComboBox<String> txtProducto;
     private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtTotalPagar;
     // End of variables declaration//GEN-END:variables
 
 public void AgregarVenta(){
@@ -441,6 +440,9 @@ public void AgregarDetalleVenta(){
 
     public void AgregarLista(){
     
+        float sum=(float) 0.0;
+        float total=(float) 0.0;
+        String var="";
         conjuntoInstalacion = CC.consultaLista(txtIdVenta.getText());
             filas = tabla2.getRowCount();
             for(int i=filas-1; i>=0;i--){
@@ -456,13 +458,62 @@ public void AgregarDetalleVenta(){
                     dato[2]=conjuntoInstalacion.getString("total");
                     
                    
-                    
-                }tabla2.addRow(dato);
+                var=String.valueOf(dato[2]);
+                sum=Float.parseFloat(var);
+                
+                }
+               total+=sum; 
+                tabla2.addRow(dato);
+                
+                
+                txtTotalPagar.setText(String.valueOf(total));
+                
+                
+               
+                
                
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
-    } 
+    }
+    
+    
+    public void modificarTotalVenta(){
+    
+        
+            int resultado = CC.modificarTotalVenta(txtTotalPagar.getText(), txtIdVenta.getText());
+            
+        if(resultado == 1){
+            JOptionPane.showMessageDialog(this, "Se modifico la Instalacion");
+           
+        }else
+            JOptionPane.showMessageDialog(this, "No se pudo modificar la Instalacion");
+        
+        
+    }
+    
+    
+    public void modificarStock(){
+    
+        
+            int resultado = CC.modificarStockProducto(txtCantidad.getText(), txtProducto.getSelectedItem().toString());
+            
+        if(resultado == 1){
+            JOptionPane.showMessageDialog(this, "Se modifico El Stock");
+             AgregarDetalleVenta();
+            AgregarLista();
+            modificarTotalVenta();
+           
+        }else
+            JOptionPane.showMessageDialog(this, "No se puede agregar el producto"
+                    +"\n Debido a que no cuenta con suficientes productos","Error",
+                    JOptionPane.ERROR_MESSAGE);
+        
+        
+        
+    }
+    
+    
 
 }
