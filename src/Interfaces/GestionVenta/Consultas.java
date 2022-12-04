@@ -25,13 +25,15 @@ public class Consultas {
      static final String CONTRASENIA = "27GJest2yc";
      Connection conexion = null;
      
-     public PreparedStatement nuevaVenta = null;
-      public PreparedStatement consultaPrecioProducto = null;
-      public PreparedStatement nuevoDetalleVenta = null;
-      public PreparedStatement consultaLista = null;
-       public PreparedStatement consultaSumaTotal = null;
-       public PreparedStatement modificarPrecioVenta=null;
-      public PreparedStatement modificarStockProducto=null;
+    public PreparedStatement nuevaVenta = null;
+    public PreparedStatement consultaPrecioProducto = null;
+    public PreparedStatement nuevoDetalleVenta = null;
+    public PreparedStatement consultaLista = null;
+    public PreparedStatement consultaSumaTotal = null;
+    public PreparedStatement modificarPrecioVenta = null;
+    public PreparedStatement modificarStockProducto = null;
+    public PreparedStatement eliminarVenta = null;
+    public PreparedStatement consultaVenta = null;
         
      
      public Consultas() throws SQLException {
@@ -46,13 +48,15 @@ public class Consultas {
         } // fin de catch
         
           
-         nuevaVenta = conexion.prepareStatement(" Insert Into Venta(id,fecha) Values (?,?)" );
-         consultaPrecioProducto=conexion.prepareCall("Select * From producto Where descripcion = ?");
-         nuevoDetalleVenta=conexion.prepareCall("Insert Into DetalleVenta Values(?, ?, ?, ?, ?)");
-         consultaLista=conexion.prepareCall(" Select descripcion,cantidad,total from DetalleVenta, producto Where id=idProducto AND idVenta= ?;");
-         consultaSumaTotal=conexion.prepareCall("Select SUM(total) from DetalleVenta where idVenta=?");
-        modificarPrecioVenta=conexion.prepareCall("Update Venta set precioTotal=? where id=?");
-        modificarStockProducto=conexion.prepareCall("Update producto set stock=stock-? where descripcion=?");
+         nuevaVenta = conexion.prepareStatement(" Insert Into Venta(id,fecha) Values (?,?)");
+         consultaPrecioProducto = conexion.prepareCall("Select * From producto Where descripcion = ?");
+         nuevoDetalleVenta = conexion.prepareCall("Insert Into DetalleVenta Values(?, ?, ?, ?, ?)");
+         consultaLista = conexion.prepareCall(" Select descripcion,cantidad,total from DetalleVenta, producto Where id=idProducto AND idVenta= ?;");
+         consultaSumaTotal = conexion.prepareCall("Select SUM(total) from DetalleVenta where idVenta=?");
+         modificarPrecioVenta = conexion.prepareCall("Update Venta set precioTotal=? where id=?");
+         modificarStockProducto = conexion.prepareCall("Update producto set stock=stock-? where descripcion=?");
+         eliminarVenta = conexion.prepareCall("Delete From Venta Where id=? ");
+         consultaVenta = conexion.prepareCall("Select*from Venta Where id=?");
     }
      
      public void close()
@@ -198,6 +202,27 @@ try
          ex.printStackTrace();
          close();
      }return resultado;
+ }
+    
+     public int borrarVenta(String Id){
+     int resultado = 0;
+     try{
+         eliminarVenta.setString(1, Id);
+         resultado = eliminarVenta.executeUpdate();
+     }catch(SQLException ex){
+         ex.printStackTrace();
+         close();
+     }return resultado;
+ }
+     
+     public ResultSet ConsultaVenta(String id){
+        ResultSet conjuntoCancion = null;
+        try{
+            consultaVenta.setString(1, id);
+            conjuntoCancion = consultaVenta.executeQuery();
+        }catch(SQLException e){ 
+            e.printStackTrace(); 
+        }return conjuntoCancion;
  }
 
     public Connection getConexion() {
