@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Label;
 import javax.swing.JPanel;
 import Manejadores.Principal;
+import Interfaces.GestionCorteCaja.menuCorteCaja;
 import Interfaces.GestionEmpleados.contenedorEmpleado;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -16,7 +17,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     
     contenedorEmpleado empleado = new contenedorEmpleado();
-    
 public VentanaPrincipal() {
 	initComponents();
         contenedorPrincipal.add(empleado);
@@ -248,10 +248,10 @@ public VentanaPrincipal() {
   }//GEN-LAST:event_btnEmpleadosActionPerformed
 
   private void btnCorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorteCajaActionPerformed
-		/*limpiarContenido();
+		limpiarContenido();
 		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionCorteCaja());
-		actualizarContenido();*/
+		contenedorPrincipal.add(new Interfaces.GestionCorteCaja.menuCorteCaja(contenedorPrincipal));
+		actualizarContenido();
   }//GEN-LAST:event_btnCorteCajaActionPerformed
 
 public void limpiarContenido() {
