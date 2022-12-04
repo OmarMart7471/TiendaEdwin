@@ -1,86 +1,63 @@
-
 package Interfaces.GestionPedidoCliente;
 
 import java.awt.event.KeyEvent;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class EstadoPedido extends javax.swing.JPanel {
 
-     PedidoDatos peD = new PedidoDatos();
-     private ManejadorPedidoCliente cc;
-     private List<Pedido> resultados;
-     Pedido pe = new Pedido();
-     private Pedido pedidoActual;
-     DefaultTableModel modelo = new DefaultTableModel();
-     int filas;
-    
-    
-    public EstadoPedido() {
-        initComponents();
-         cc = new ManejadorPedidoCliente();
-        filas = modelo.getRowCount();
-        for(int i=filas-1;i>=0;i--){
-        modelo.removeRow(i);}
-        modelo.addColumn("id");        
-        modelo.addColumn("fecha");        
-        modelo.addColumn("nombre");        
-        modelo.addColumn("telefono");        
-        modelo.addColumn("cantidad");        
-        modelo.addColumn("anticipo");        
-        modelo.addColumn("total");
-        modelo.addColumn("idVenta");
-        this.PedidosEncon.setModel(modelo);
-        cargarPedidos();
-    }
-    
-    public void ListarPedido() {
-        List<Pedido> Listape = peD.ListarPedido();
-        modelo = (DefaultTableModel) PedidosEncon.getModel();
-        Object[] ob = new Object[7];
-        for (int i = 0; i < Listape.size(); i++) {
-            ob[0] = Listape.get(i).getId();
-            ob[1] = Listape.get(i).getFecha();
-            ob[2] = Listape.get(i).getNombreCliente();
-            ob[3] = Listape.get(i).getTelefono();
-            ob[4] = Listape.get(i).getCantidad();
-            ob[5] = Listape.get(i).getAnticipo();
-            ob[6] = Listape.get(i).getTotal();
-            ob[7] = Listape.get(i).getIdVenta();
-            modelo.addRow(ob);
-        }
-        PedidosEncon.setModel(modelo);
+PedidoDatos peD = new PedidoDatos();
+private ManejadorPedidoCliente cc;
+private List<Pedido> resultados;
+Pedido pe = new Pedido();
+private Pedido pedidoActual;
+DefaultTableModel modelo = new DefaultTableModel();
+int filas;
 
-    }
-    
-     public void cargarPedidos(){
-        
-        try{
-            filas=modelo.getRowCount();
-            for(int i =filas-1;i>=0;i--){
-                modelo.removeRow(i);
-            }
-            CallableStatement cts = cc.con.prepareCall("SELECT * FROM Pedido");
-            ResultSet r = cts.executeQuery();
-            
-            while(r.next()){
-                Object dato[] = new Object[7];
-                for(int i=0; i < 7;i++){
-                    dato[i]=r.getString(i+1);
-                }
-                modelo.addRow(dato);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+public EstadoPedido() {
+	initComponents();
+	cc = new ManejadorPedidoCliente();
+	filas = modelo.getRowCount();
+	for (int i = filas - 1; i >= 0; i--) {
+		modelo.removeRow(i);
+	}
+	modelo.addColumn("id");
+	modelo.addColumn("fecha");
+	modelo.addColumn("nombre");
+	modelo.addColumn("telefono");
+	modelo.addColumn("cantidad");
+	modelo.addColumn("anticipo");
+	modelo.addColumn("total");
+	modelo.addColumn("idVenta");
+	this.PedidosEncon.setModel(modelo);
+	cargarPedidos();
+}
 
-    
-    @SuppressWarnings("unchecked")
+public Pedido buscarPedido(String id) {
+	return peD.BuscarPedido(id);
+}
+
+public void insertarPedido(Pedido pedido) {
+	modelo = (DefaultTableModel) PedidosEncon.getModel();
+	modelo.addRow(pedido.getRow());
+	PedidosEncon.setModel(modelo);
+}
+
+public void cargarPedidos() {
+
+	ArrayList<Pedido> Listape = peD.ListarPedido();
+	modelo = (DefaultTableModel) PedidosEncon.getModel();
+	for (Pedido pedido : Listape) {
+		modelo.addRow(pedido.getRow());
+	}
+	PedidosEncon.setModel(modelo);
+}
+
+@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -205,42 +182,52 @@ public class EstadoPedido extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboEstadoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoPActionPerformed
-        // TODO add your handling code here:
+			// TODO add your handling code here:
     }//GEN-LAST:event_comboEstadoPActionPerformed
 
     private void txtIdPedidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdPedidoKeyPressed
-        
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (!"".equals(txtIdPedido.getText())) {
-                String id = txtIdPedido.getText();
-                pe = peD.BuscarPedido(id);
-                if (pe.getFecha()!= null) {
-                    txtIdPedido.setText("" + pe.getId());
-                    txtFecha.setText("" + pe.getFecha());
-                } else {
-                   
-                    txtIdPedido.requestFocus();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese el codigo del pedido");
-                txtIdPedido.requestFocus();
-            }
-        }
+
+			if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (!"".equals(txtIdPedido.getText())) {
+					String id = txtIdPedido.getText();
+					pe = peD.BuscarPedido(id);
+					if (pe.getFecha() != null) {
+						txtIdPedido.setText("" + pe.getId());
+						txtFecha.setText("" + pe.getFecha());
+					} else {
+
+						txtIdPedido.requestFocus();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Ingrese el codigo del pedido");
+					txtIdPedido.requestFocus();
+				}
+			}
     }//GEN-LAST:event_txtIdPedidoKeyPressed
 
     private void btnBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidoActionPerformed
-        
-        resultados = cc.encontrarPedido(txtIdPedido.getText());
-        if(resultados.size()!=0){
-            JOptionPane.showMessageDialog(this, "Se encontró el pedido");
-            pedidoActual = resultados.get(0);
-            txtIdPedido.setText(""+pedidoActual.getId());
-            txtFecha.setText(pedidoActual.getFecha());
-        }else{
-            JOptionPane.showMessageDialog(this, "No se encontro la cancion");
-        }
-        
+			Pedido pedido = buscarPedido(txtIdPedido.getText());
+			limpiarTabla();
+			if (pedido.getNombreCliente() != null) {
+				insertarPedido(pedido);
+				JOptionPane.showMessageDialog(this, "Se encontró el pedido");
+				pedidoActual = resultados.get(0);
+				txtIdPedido.setText("" + pedidoActual.getId());
+				txtFecha.setText(pedidoActual.getFecha());
+			} else {
+				JOptionPane.showMessageDialog(this, "No se el pedido");
+			}
+
     }//GEN-LAST:event_btnBuscarPedidoActionPerformed
+
+private void limpiarTabla() {
+	modelo = (DefaultTableModel) PedidosEncon.getModel();
+	for (int iterador = 0; iterador < modelo.getRowCount(); iterador++) {
+		modelo.removeRow(iterador);
+	}
+	modelo.setRowCount(0);
+	PedidosEncon.setModel(modelo);
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

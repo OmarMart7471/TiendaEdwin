@@ -63,8 +63,8 @@ public class PedidoDatos {
         }
     }
       
-       public List ListarPedido(){
-        List<Pedido> Listape = new ArrayList();
+       public ArrayList ListarPedido(){
+        ArrayList<Pedido> Listape = new ArrayList();
         String sql = "SELECT * FROM Pedido";
         try {
             con = cn.getConnection();
@@ -74,7 +74,7 @@ public class PedidoDatos {
                 Pedido pe = new Pedido();
                 pe.setId(rs.getInt("id"));
                 pe.setFecha(rs.getString("fecha"));
-                pe.setNombreCliente(rs.getString("nombre"));
+                pe.setNombreCliente(rs.getString("nombreCLi"));
                 pe.setTelefono(rs.getString("telefono"));
                 pe.setCantidad(rs.getInt("cantidad"));
                 pe.setAnticipo(rs.getInt("anticipo"));
