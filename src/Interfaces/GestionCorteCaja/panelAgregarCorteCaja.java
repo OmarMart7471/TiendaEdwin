@@ -13,7 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import Manejadores.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
+import Manejadores.ManejadorGestionCorteCaja.ManejadorCorteCaja;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Omar Mtz
@@ -22,6 +23,7 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
 
     private DefaultTableModel dtmVentasHoy = new DefaultTableModel();
     private Principal db;
+    private ManejadorCorteCaja DB;
     private int filasV;
     public panelAgregarCorteCaja() {
         db =  new Principal();
@@ -98,6 +100,11 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
 
         btnRegistrar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btnRegistrar.setText("REGISTRAR CORTE DE CAJA");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,6 +179,39 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
         insertarHoraYFecha();
         
     }//GEN-LAST:event_cmbxEmpleadosItemStateChanged
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        String idE="";
+             try{
+            CallableStatement cts = db.getConexion().prepareCall("SELECT id FROM Empleado WHERE nombre = ?");
+            cts.setString(1, cmbxEmpleados.getSelectedItem().toString());
+            ResultSet r = cts.executeQuery();
+            System.out.println(""+r);
+            while(r.next()){
+                idE = r.getString(1);
+            }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        if (totalVentasHoy()<500) {
+            float diferencia = 500-(totalVentasHoy());
+            int res = DB.agregarDif("Hubo una diferencia de "+diferencia+" en el corte de caja", ""+diferencia, idE, txtFecha.getText());
+            if(res == 1){
+            JOptionPane.showMessageDialog(this, "Se agrego una observación en tu asistencia");
+            
+        }else{
+        JOptionPane.showMessageDialog(this, "No se pudo agregar la diferencia");}
+        }
+        int resultado = DB.nuevoCorteCaja(idE, txtFecha.getText(), labelTotalVentas.getText());
+        if (resultado==1) {
+            JOptionPane.showMessageDialog(this, "Se agrego el corte de caja");
+            cmbxEmpleados.setSelectedIndex(0);
+            txtFecha.setText("");
+            txtHora.setText("show table");
+        } else {
+        }
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -327,4 +367,6 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
 	txtFecha.setText(getFecha());
 	txtHora.setText(getHora());
     }
+    
+    
 }
