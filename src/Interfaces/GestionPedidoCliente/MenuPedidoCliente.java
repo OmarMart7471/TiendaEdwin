@@ -1,22 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Interfaces.GestionPedidoCliente;
 
-/**
- *
- * @author PC
- */
+import java.awt.Component;
+import javax.swing.JPanel;
+
+
 public class MenuPedidoCliente extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MenuPedidoCliente
-     */
-    public MenuPedidoCliente() {
+   
+    JPanel contenedorPrincipal = null;
+    
+    public MenuPedidoCliente(JPanel contenedorPrincipal) {
         initComponents();
+        this.contenedorPrincipal = contenedorPrincipal;
     }
+    
+    
+    public void limpiarContenido() {
+	Component componente = contenedorPrincipal.getComponent(0);
+	contenedorPrincipal.remove(componente);
+	actualizarContenido();
+       }
+
+    public void actualizarContenido() {
+	contenedorPrincipal.revalidate();
+	contenedorPrincipal.repaint();
+       }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,32 +42,27 @@ public class MenuPedidoCliente extends javax.swing.JPanel {
         btnEstadoP = new javax.swing.JButton();
         btnVolverMenu = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 204, 204));
-
-        backgrTitulo.setBackground(java.awt.SystemColor.inactiveCaption);
+        backgrTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         lblTitulo.setText("Gestión de pedido cliente ");
-
-        javax.swing.GroupLayout backgrTituloLayout = new javax.swing.GroupLayout(backgrTitulo);
-        backgrTitulo.setLayout(backgrTituloLayout);
-        backgrTituloLayout.setHorizontalGroup(
-            backgrTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgrTituloLayout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
-                .addGap(84, 84, 84))
-        );
-        backgrTituloLayout.setVerticalGroup(
-            backgrTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-        );
+        backgrTitulo.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 0, -1, 70));
 
         btnRegistrar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 11)); // NOI18N
         btnRegistrar.setText("Agregar ");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnEstadoP.setFont(new java.awt.Font("Perpetua Titling MT", 0, 11)); // NOI18N
         btnEstadoP.setText("Estado de pedido");
+        btnEstadoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstadoPActionPerformed(evt);
+            }
+        });
 
         btnVolverMenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
         btnVolverMenu.setText("Volver al menú");
@@ -67,7 +71,7 @@ public class MenuPedidoCliente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgrTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgrTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,6 +96,26 @@ public class MenuPedidoCliente extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionPedidoCliente.Regristrar());
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnEstadoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoPActionPerformed
+        
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionPedidoCliente.EstadoPedido());
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnEstadoPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

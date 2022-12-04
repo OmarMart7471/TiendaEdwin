@@ -1,10 +1,15 @@
 
 package Interfaces.GestionPedidoProveedor;
 
+import java.awt.Component;
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -12,12 +17,15 @@ import javax.swing.JLabel;
  */
 public class MenuGestionPedido extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MenuGestionPedido
-     */
-    public MenuGestionPedido() {
+    
+    JPanel contenedorPrincipal = null;
+    
+    public MenuGestionPedido(JPanel contenedorPrincipal){
         initComponents();
-        SetImageLabel(lblLogo ,"C:\\Users\\PC\\Downloads\\ProyectoMau\\TiendaEdwin\\src\\img\\logo gestionp.png");
+        this.contenedorPrincipal = contenedorPrincipal;
+        
+        
+       
     }
     
     //Creación del método para acomodar imagenes
@@ -29,6 +37,18 @@ public class MenuGestionPedido extends javax.swing.JPanel {
         labelName.setIcon(icon);
         this.repaint();
         }
+     
+     
+     public void limpiarContenido() {
+	Component componente = contenedorPrincipal.getComponent(0);
+	contenedorPrincipal.remove(componente);
+	actualizarContenido();
+       }
+
+     public void actualizarContenido() {
+	contenedorPrincipal.revalidate();
+	contenedorPrincipal.repaint();
+       }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,12 +71,8 @@ public class MenuGestionPedido extends javax.swing.JPanel {
         btnGenerar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnVolverMenu = new javax.swing.JButton();
 
-        background.setBackground(java.awt.SystemColor.activeCaption);
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        panelTitulo.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.inactiveTitleBackground"));
 
         lblTitulo.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         lblTitulo.setText("Gestión de pedido");
@@ -81,9 +97,13 @@ public class MenuGestionPedido extends javax.swing.JPanel {
 
         btnVisualizar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnVisualizar.setText("Visualizar");
+        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarActionPerformed(evt);
+            }
+        });
         background.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 220, 30));
 
-        background1.setBackground(java.awt.SystemColor.activeCaption);
         background1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelTitulo1.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.inactiveTitleBackground"));
@@ -111,21 +131,32 @@ public class MenuGestionPedido extends javax.swing.JPanel {
 
         btnGenerar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnGenerar.setText("Generar");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
         background1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 220, 30));
 
         background.add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnModificar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         background.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 220, 30));
 
         btnEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         background.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 220, 30));
-
-        btnVolverMenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
-        btnVolverMenu.setText("Volver al menú");
-        background.add(btnVolverMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,6 +170,51 @@ public class MenuGestionPedido extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        try {
+            contenedorPrincipal.add(new Interfaces.GestionPedidoProveedor.Generar());
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuGestionPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionPedidoProveedor.Modificar());
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        
+        
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionPedidoProveedor.Eliminar());
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
+        
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionPedidoProveedor.Visualizar());
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnVisualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
@@ -147,7 +223,6 @@ public class MenuGestionPedido extends javax.swing.JPanel {
     private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnVisualizar;
-    private javax.swing.JButton btnVolverMenu;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblLogo1;
     private javax.swing.JLabel lblTitulo;

@@ -40,9 +40,6 @@ public class Eliminar extends javax.swing.JPanel {
         scrollPedidoElim = new javax.swing.JScrollPane();
         PedidoEncon = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
-        btnVolverMenu = new javax.swing.JButton();
-
-        jPanel1.setBackground(java.awt.SystemColor.activeCaption);
 
         lblNomProvee.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lblNomProvee.setText("Nombre del proveedor: ");
@@ -50,6 +47,7 @@ public class Eliminar extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         jLabel1.setText("Fecha:");
 
+        btnBuscarProvee.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         btnBuscarProvee.setText("Buscar proveedor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -69,7 +67,7 @@ public class Eliminar extends javax.swing.JPanel {
                         .addComponent(txtNomProvee, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
                 .addComponent(btnBuscarProvee)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,11 +107,8 @@ public class Eliminar extends javax.swing.JPanel {
         ));
         scrollPedidoElim.setViewportView(PedidoEncon);
 
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         btnEliminar.setText("Eliminar pedido");
-
-        btnVolverMenu.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnVolverMenu.setText("Volver al menú");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,20 +118,15 @@ public class Eliminar extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblIdPedido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollProveeEncon, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-                            .addComponent(scrollPedidoElim))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVolverMenu)))
-                .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblIdPedido)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollProveeEncon, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                        .addComponent(scrollPedidoElim))
+                    .addComponent(btnEliminar))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,10 +141,8 @@ public class Eliminar extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(scrollPedidoElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnVolverMenu))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnEliminar)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,7 +152,6 @@ public class Eliminar extends javax.swing.JPanel {
     private javax.swing.JTable ProveedorEncon;
     private javax.swing.JButton btnBuscarProvee;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnVolverMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblIdPedido;

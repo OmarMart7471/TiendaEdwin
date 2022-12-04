@@ -19,12 +19,8 @@
           <Component id="backUsuario" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnImprimir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnVolverMenu" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnImprimir" min="-2" max="-2" attributes="0"/>
                   <Component id="scrollPedidoEncon" min="-2" pref="460" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -37,23 +33,15 @@
               <Component id="backUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="scrollPedidoEncon" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnVolverMenu" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <Component id="btnImprimir" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="backUsuario">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="d1" green="b4" id="Active Caption" palette="2" red="99" type="palette"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -74,7 +62,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="btnBuscarPedido" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -121,7 +109,7 @@
         <Component class="javax.swing.JButton" name="btnBuscarPedido">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="10" style="0"/>
+              <Font name="Arial" size="10" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar pedido"/>
           </Properties>
@@ -150,17 +138,9 @@
     <Component class="javax.swing.JButton" name="btnImprimir">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="10" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Imprimir pedido"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnVolverMenu">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="10" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Volver al men&#xfa;"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -31,7 +31,6 @@ public VentanaPrincipal() {
 @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         contenedorRedimencionable = new javax.swing.JScrollPane();
         panelPrincipal = new javax.swing.JPanel();
@@ -40,9 +39,9 @@ public VentanaPrincipal() {
         btnAsistencia = new javax.swing.JButton();
         btnVenta = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
-        btnProductos = new javax.swing.JButton();
         btnEmpleados = new javax.swing.JButton();
-        btnCorteCaja = new javax.swing.JButton();
+        btnPedido = new javax.swing.JButton();
+        btnPedidoCliente = new javax.swing.JButton();
         panelDeContenido = new javax.swing.JPanel();
         contenedorTitulo = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -60,18 +59,9 @@ public VentanaPrincipal() {
         contenedorMenu.setToolTipText("");
         contenedorMenu.setMaximumSize(new java.awt.Dimension(250, 2147483647));
         contenedorMenu.setPreferredSize(new java.awt.Dimension(220, 650));
-        contenedorMenu.setLayout(new java.awt.GridBagLayout());
 
         icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo oficial.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 52;
-        gridBagConstraints.ipady = 26;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        contenedorMenu.add(icono, gridBagConstraints);
 
         btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
         btnAsistencia.setText("Asistencia");
@@ -80,13 +70,6 @@ public VentanaPrincipal() {
                 btnAsistenciaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 105;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(41, 0, 0, 0);
-        contenedorMenu.add(btnAsistencia, gridBagConstraints);
 
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Nventa.png"))); // NOI18N
         btnVenta.setText("Venta");
@@ -95,14 +78,6 @@ public VentanaPrincipal() {
                 btnVentaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 106;
-        gridBagConstraints.ipady = -8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 0, 0, 0);
-        contenedorMenu.add(btnVenta, gridBagConstraints);
 
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
@@ -111,28 +86,6 @@ public VentanaPrincipal() {
                 btnProveedoresActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 91;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(46, 0, 0, 0);
-        contenedorMenu.add(btnProveedores, gridBagConstraints);
-
-        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
-        btnProductos.setText("Productos");
-        btnProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductosActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 102;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 0, 0, 0);
-        contenedorMenu.add(btnProductos, gridBagConstraints);
 
         btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
         btnEmpleados.setText("Empleados");
@@ -141,29 +94,57 @@ public VentanaPrincipal() {
                 btnEmpleadosActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(36, 0, 0, 0);
-        contenedorMenu.add(btnEmpleados, gridBagConstraints);
 
-        btnCorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
-        btnCorteCaja.setText("Corte de caja");
-        btnCorteCaja.addActionListener(new java.awt.event.ActionListener() {
+        btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Carrito-de-compras.png"))); // NOI18N
+        btnPedido.setText("Pedido");
+        btnPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCorteCajaActionPerformed(evt);
+                btnPedidoActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 93;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 92, 0);
-        contenedorMenu.add(btnCorteCaja, gridBagConstraints);
+
+        btnPedidoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/compras.png"))); // NOI18N
+        btnPedidoCliente.setText("Pedido Cliente");
+        btnPedidoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidoClienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout contenedorMenuLayout = new javax.swing.GroupLayout(contenedorMenu);
+        contenedorMenu.setLayout(contenedorMenuLayout);
+        contenedorMenuLayout.setHorizontalGroup(
+            contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenedorMenuLayout.createSequentialGroup()
+                .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnPedidoCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                        .addComponent(btnPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEmpleados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(13, 13, 13))
+        );
+        contenedorMenuLayout.setVerticalGroup(
+            contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenedorMenuLayout.createSequentialGroup()
+                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(btnAsistencia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(btnProveedores)
+                .addGap(18, 18, 18)
+                .addComponent(btnEmpleados)
+                .addGap(18, 18, 18)
+                .addComponent(btnPedido)
+                .addGap(18, 18, 18)
+                .addComponent(btnPedidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         panelPrincipal.add(contenedorMenu);
 
@@ -233,13 +214,6 @@ public VentanaPrincipal() {
 		actualizarContenido();*/
   }//GEN-LAST:event_btnProveedoresActionPerformed
 
-  private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-		/*limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionProductos());
-		actualizarContenido();*/
-  }//GEN-LAST:event_btnProductosActionPerformed
-
   private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
 		limpiarContenido();
 		contenedorPrincipal.removeAll();
@@ -247,12 +221,23 @@ public VentanaPrincipal() {
 		actualizarContenido();
   }//GEN-LAST:event_btnEmpleadosActionPerformed
 
-  private void btnCorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorteCajaActionPerformed
-		/*limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionCorteCaja());
-		actualizarContenido();*/
-  }//GEN-LAST:event_btnCorteCajaActionPerformed
+    private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionPedidoProveedor.MenuGestionPedido(contenedorPrincipal));
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnPedidoActionPerformed
+
+    private void btnPedidoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoClienteActionPerformed
+        
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionPedidoCliente.MenuPedidoCliente(contenedorPrincipal));
+        actualizarContenido();
+        
+    }//GEN-LAST:event_btnPedidoClienteActionPerformed
 
 public void limpiarContenido() {
 	Component componente = contenedorPrincipal.getComponent(0);
@@ -302,9 +287,9 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsistencia;
-    private javax.swing.JButton btnCorteCaja;
     private javax.swing.JButton btnEmpleados;
-    private javax.swing.JButton btnProductos;
+    private javax.swing.JButton btnPedido;
+    private javax.swing.JButton btnPedidoCliente;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnVenta;
     private javax.swing.JPanel contenedorMenu;

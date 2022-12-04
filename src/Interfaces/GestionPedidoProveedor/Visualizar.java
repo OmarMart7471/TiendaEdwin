@@ -36,9 +36,6 @@ public class Visualizar extends javax.swing.JPanel {
         scrollPedidoEncon = new javax.swing.JScrollPane();
         PedidoEncontrado = new javax.swing.JTable();
         btnImprimir = new javax.swing.JButton();
-        btnVolverMenu = new javax.swing.JButton();
-
-        backUsuario.setBackground(java.awt.SystemColor.activeCaption);
 
         lblNomProvee.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lblNomProvee.setText("Nombre del proveedor:");
@@ -46,7 +43,7 @@ public class Visualizar extends javax.swing.JPanel {
         lblFecha.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lblFecha.setText("Fecha:");
 
-        btnBuscarPedido.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnBuscarPedido.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         btnBuscarPedido.setText("Buscar pedido");
 
         javax.swing.GroupLayout backUsuarioLayout = new javax.swing.GroupLayout(backUsuario);
@@ -66,7 +63,7 @@ public class Visualizar extends javax.swing.JPanel {
                         .addComponent(txtNomProvee, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44)
                 .addComponent(btnBuscarPedido)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         backUsuarioLayout.setVerticalGroup(
             backUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,11 +90,8 @@ public class Visualizar extends javax.swing.JPanel {
         ));
         scrollPedidoEncon.setViewportView(PedidoEncontrado);
 
-        btnImprimir.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnImprimir.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         btnImprimir.setText("Imprimir pedido");
-
-        btnVolverMenu.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnVolverMenu.setText("Volver al menú");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,11 +100,8 @@ public class Visualizar extends javax.swing.JPanel {
             .addComponent(backUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnImprimir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVolverMenu))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnImprimir)
                     .addComponent(scrollPedidoEncon, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -120,11 +111,9 @@ public class Visualizar extends javax.swing.JPanel {
                 .addComponent(backUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(scrollPedidoEncon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImprimir)
-                    .addComponent(btnVolverMenu))
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(btnImprimir)
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,7 +123,6 @@ public class Visualizar extends javax.swing.JPanel {
     private javax.swing.JPanel backUsuario;
     private javax.swing.JButton btnBuscarPedido;
     private javax.swing.JButton btnImprimir;
-    private javax.swing.JButton btnVolverMenu;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblNomProvee;
     private javax.swing.JScrollPane scrollPedidoEncon;

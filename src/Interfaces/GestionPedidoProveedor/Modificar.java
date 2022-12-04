@@ -43,7 +43,6 @@ public class Modificar extends javax.swing.JPanel {
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
-        btnVolverMenu = new javax.swing.JButton();
         scrollProveedor = new javax.swing.JScrollPane();
         ProveeEncontra = new javax.swing.JTable();
         lblProveeEncon = new javax.swing.JLabel();
@@ -51,15 +50,13 @@ public class Modificar extends javax.swing.JPanel {
         pedidoModifi = new javax.swing.JTable();
         lbllPedidoModi = new javax.swing.JLabel();
 
-        panelUsuario.setBackground(java.awt.SystemColor.activeCaption);
-
         lblNomProvee.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lblNomProvee.setText("Nombre del proveedor:");
 
         lblIdProvee.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lblIdProvee.setText("Fecha:");
 
-        btnBuscarProveedor.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnBuscarProveedor.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         btnBuscarProveedor.setText("Buscar proveedor");
 
         lblNomProduc.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -74,11 +71,8 @@ public class Modificar extends javax.swing.JPanel {
         lblTotal.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lblTotal.setText("Total:");
 
-        btnModificar.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnModificar.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         btnModificar.setText("Modificar pedido");
-
-        btnVolverMenu.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnVolverMenu.setText("Volver al menú");
 
         javax.swing.GroupLayout panelUsuarioLayout = new javax.swing.GroupLayout(panelUsuario);
         panelUsuario.setLayout(panelUsuarioLayout);
@@ -86,39 +80,36 @@ public class Modificar extends javax.swing.JPanel {
             panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelUsuarioLayout.createSequentialGroup()
-                            .addComponent(lblNomProvee)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNomProvee, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelUsuarioLayout.createSequentialGroup()
-                            .addComponent(lblIdProvee)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtfechaProvee))
-                        .addComponent(btnBuscarProveedor)
-                        .addGroup(panelUsuarioLayout.createSequentialGroup()
-                            .addComponent(lblNomProduc)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNombreProduc))
-                        .addGroup(panelUsuarioLayout.createSequentialGroup()
-                            .addComponent(lblCantidad)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtCantidad))
-                        .addGroup(panelUsuarioLayout.createSequentialGroup()
-                            .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblAnticipo)
-                                .addComponent(lblTotal))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtAnticipo)
-                                .addComponent(txtTotal))))
-                    .addComponent(btnModificar))
+                .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addComponent(lblNomProvee)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomProvee, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addComponent(lblIdProvee)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtfechaProvee))
+                    .addComponent(btnBuscarProveedor)
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addComponent(lblNomProduc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNombreProduc))
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addComponent(lblCantidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCantidad))
+                    .addGroup(panelUsuarioLayout.createSequentialGroup()
+                        .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAnticipo)
+                            .addComponent(lblTotal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAnticipo)
+                            .addComponent(txtTotal)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUsuarioLayout.createSequentialGroup()
+                        .addComponent(btnModificar)
+                        .addGap(38, 38, 38)))
                 .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUsuarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVolverMenu)
-                .addContainerGap())
         );
         panelUsuarioLayout.setVerticalGroup(
             panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,9 +122,9 @@ public class Modificar extends javax.swing.JPanel {
                 .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIdProvee)
                     .addComponent(txtfechaProvee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(btnBuscarProveedor)
-                .addGap(57, 57, 57)
+                .addGap(41, 41, 41)
                 .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombreProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,10 +140,8 @@ public class Modificar extends javax.swing.JPanel {
                 .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(btnModificar)
-                .addGap(18, 18, 18)
-                .addComponent(btnVolverMenu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -209,7 +198,7 @@ public class Modificar extends javax.swing.JPanel {
                 .addComponent(lblProveeEncon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(lbllPedidoModi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollPedidoModi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +223,6 @@ public class Modificar extends javax.swing.JPanel {
     private javax.swing.JPanel background;
     private javax.swing.JButton btnBuscarProveedor;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnVolverMenu;
     private javax.swing.JLabel lblAnticipo;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblIdProvee;

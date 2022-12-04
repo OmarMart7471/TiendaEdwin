@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Downloads/ProyectoMau/TiendaEdwin/src/Interfaces/GestionPedidoCliente/Regristrar.java</file>
-            <file>file:/C:/Users/PC/Downloads/ProyectoMau/TiendaEdwin/src/Interfaces/GestionPedidoCliente/contenedorPedidoCliente.java</file>
-            <file>file:/C:/Users/PC/Downloads/ProyectoMau/TiendaEdwin/src/Interfaces/GestionPedidoCliente/MenuPedidoCliente.java</file>
+            <file>file:/C:/Users/PC/Downloads/ProyectoMauri/TiendaEdwin/src/Manejadores/Principal.java</file>
+            <file>file:/C:/Users/PC/Downloads/ProyectoMauri/TiendaEdwin/src/Interfaces/GestionPedidoProveedor/ProductosPedido.java</file>
+            <file>file:/C:/Users/PC/Downloads/ProyectoMauri/TiendaEdwin/src/Interfaces/GestionPedidoProveedor/Generar.java</file>
+            <file>file:/C:/Users/PC/Downloads/ProyectoMauri/TiendaEdwin/src/Interfaces/GestionPedidoProveedor/MenuGestionPedido.java</file>
+            <file>file:/C:/Users/PC/Downloads/ProyectoMauri/TiendaEdwin/src/Interfaces/GestionPedidoProveedor/ManejadorGestionPedido.java</file>
+            <file>file:/C:/Users/PC/Downloads/ProyectoMauri/TiendaEdwin/src/Interfaces/VentanaPrincipal.java</file>
         </group>
     </open-files>
 </project-private>
