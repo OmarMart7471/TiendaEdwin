@@ -17,7 +17,7 @@ public class PedidoDatos {
     ResultSet rs;
     
       public boolean RegistrarPedido(Pedido pr){
-        String sql = "INSERT INTO proveedor(id, fecha, nombreCli, telefono, cantidad, anticipo, total, idVenta) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Pedido (id, fecha, nombreCli, telefono, cantidad, anticipo, total, idVenta) VALUES (?,?,?,?,?,?,?,?)";
         try {
            con = cn.getConnection();
            ps = con.prepareStatement(sql);
@@ -28,8 +28,29 @@ public class PedidoDatos {
            ps.setInt(5,pr.getCantidad());
            ps.setInt(6, pr.getAnticipo());
            ps.setInt(7, pr.getTotal());
+           ps.setInt(8, pr.getIdVenta());
            ps.execute();
            return true;
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+      
+       public boolean EliminarPedido(int id){
+        String sql = "DELETE FROM Pedido WHERE id = ? ";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            return true;
         } catch (SQLException e) {
             System.out.println(e.toString());
             return false;
@@ -67,6 +88,31 @@ public class PedidoDatos {
         }
         return Listape;
     }
+        public Pedido BuscarPedido(String id){
+        Pedido pedido = new Pedido();
+        String sql = "SELECT * FROM Pedido WHERE id = ?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                pedido.setId(rs.getInt("id"));
+                pedido.setFecha(rs.getString("fecha"));
+                pedido.setNombreCliente(rs.getString("nombreCli"));
+                pedido.setTelefono(rs.getString("telefono"));
+                pedido.setCantidad(rs.getInt("cantidad"));
+                pedido.setAnticipo(rs.getInt("anticipo"));
+                pedido.setTotal(rs.getInt("total"));
+                pedido.setIdVenta(rs.getInt("idVenta"));
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return pedido;
+    }
+       
        
        public String numSerie(){
            String serie = "";
@@ -82,5 +128,7 @@ public class PedidoDatos {
            
            return serie;
        } 
+       
+     
     
 }

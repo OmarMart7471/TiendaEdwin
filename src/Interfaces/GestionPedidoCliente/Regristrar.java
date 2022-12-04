@@ -15,14 +15,14 @@ public class Regristrar extends javax.swing.JPanel {
     
     public Regristrar() {
         initComponents();
-        
+      
     }
     
     
-      public void ListarProveedor() {
+      public void ListarPedido() {
         List<Pedido> Listape = peD.ListarPedido();
         modelo = (DefaultTableModel) productosEncon.getModel();
-        Object[] ob = new Object[5];
+        Object[] ob = new Object[7];
         for (int i = 0; i < Listape.size(); i++) {
             ob[0] = Listape.get(i).getId();
             ob[1] = Listape.get(i).getFecha();
@@ -76,9 +76,10 @@ public class Regristrar extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFeha = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
+        btnBorrar = new javax.swing.JButton();
         scrollProductosP = new javax.swing.JScrollPane();
         productosEncon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -130,18 +131,26 @@ public class Regristrar extends javax.swing.JPanel {
 
         jLabel3.setText("Fecha:");
         backUsuario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 20, -1, 24));
-        backUsuario.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 20, 121, -1));
+        backUsuario.add(txtFeha, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 20, 121, -1));
 
         jLabel5.setText("idVenta:");
         backUsuario.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 20));
         backUsuario.add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 80, -1));
+
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        backUsuario.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
 
         productosEncon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Producto", "Cantidad", "Precio"
+                "Id", "Fecha", "Nombre", "Telefono", "Cantidad", "Anticipo", "Total", "IdVenta"
             }
         ));
         scrollProductosP.setViewportView(productosEncon);
@@ -191,32 +200,45 @@ public class Regristrar extends javax.swing.JPanel {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
-        /*if (!"".equals(txtRucProveedor.getText()) || !"".equals(txtNombreproveedor.getText()) || !"".equals(txtTelefonoProveedor.getText()) || !"".equals(txtDireccionProveedor.getText())) {
-            pr.setRuc(txtRucProveedor.getText());
-            pr.setNombre(txtNombreproveedor.getText());
-            pr.setTelefono(txtTelefonoProveedor.getText());
-            pr.setDireccion(txtDireccionProveedor.getText());
-            PrDao.RegistrarProveedor(pr);
-            JOptionPane.showMessageDialog(null, "Proveedor Registrado");
-            LimpiarTable();
-          
+        if (!"".equals(txtId.getText()) || !"".equals(txtFeha.getText()) ||!"".equals(txtNomCliente.getText()) || !"".equals(txtTelefonoCli.getText()) || !"".equals(txtCantidad.getText()) || !"".equals(txtImporte.getText()) || !"".equals(txtTotalPagar.getText()) || !"".equals(txtSerie.getText())){
+            pe.setId(Integer.parseInt(txtId.getText()));
+            pe.setFecha(txtFeha.getText());
+            pe.setNombreCliente(txtNomCliente.getText());
+            pe.setTelefono(txtTelefonoCli.getText());
+            pe.setCantidad(Integer.parseInt(txtCantidad.getText()));
+            pe.setAnticipo(Integer.parseInt(txtImporte.getText()));
+            pe.setTotal(Integer.parseInt(txtTotalPagar.getText()));
+            pe.setIdVenta(Integer.parseInt(txtSerie.getText()));
+            peD.RegistrarPedido(pe);
+            JOptionPane.showMessageDialog(null, "Pedido Registrado");
         } else {
             JOptionPane.showMessageDialog(null, "Los campos esta vacios");
         }
-*/
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+         if (!"".equals(txtId.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(txtId.getText());
+                peD.EliminarPedido(id);
+                 }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
+    }//GEN-LAST:event_btnBorrarActionPerformed
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backUsuario;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscarPro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblNomCli;
     private javax.swing.JLabel lblNomProducto;
@@ -225,6 +247,7 @@ public class Regristrar extends javax.swing.JPanel {
     private javax.swing.JTable productosEncon;
     private javax.swing.JScrollPane scrollProductosP;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtFeha;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtImporte;
     private javax.swing.JTextField txtNomCliente;
