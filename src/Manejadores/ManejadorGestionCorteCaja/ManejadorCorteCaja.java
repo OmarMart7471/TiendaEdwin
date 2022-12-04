@@ -59,13 +59,13 @@ public class ManejadorCorteCaja {
         
     }
      
-    public int agregarDif(String observacion,String monto,String id,String fecha){
+    public int agregarDif(String observacion,float monto,String id,String fecha){
         
         int resultado = 0;// establece los parámetros, después ejecuta insertarNuevaCancion
                 try
                  {
                     agregarDiferencia.setString(1, observacion);
-                    agregarDiferencia.setString(2, monto);
+                    agregarDiferencia.setFloat(2, monto);
                     agregarDiferencia.setString(3, id);
                     agregarDiferencia.setString(4, fecha);
                  // inserta la nueva entrada; devuelve # de filas actualizadas

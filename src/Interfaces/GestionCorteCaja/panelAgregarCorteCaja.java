@@ -27,6 +27,7 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
     private int filasV;
     public panelAgregarCorteCaja() {
         db =  new Principal();
+        DB = new ManejadorCorteCaja();
         initComponents();
         mostrarTabla(filasV, dtmVentasHoy, tablaVentasHoy, "Venta");
         cargarCombobox();
@@ -182,6 +183,7 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String idE="";
+        //int res =0;
              try{
             CallableStatement cts = db.getConexion().prepareCall("SELECT id FROM Empleado WHERE nombre = ?");
             cts.setString(1, cmbxEmpleados.getSelectedItem().toString());
@@ -195,20 +197,27 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
             }
         if (totalVentasHoy()<500) {
             float diferencia = 500-(totalVentasHoy());
-            int res = DB.agregarDif("Hubo una diferencia de "+diferencia+" en el corte de caja", ""+diferencia, idE, txtFecha.getText());
+            String observ = "Hubo una diferencia de "+diferencia+" en el corte de caja";
+            String fecha = txtFecha.getText();
+            System.out.println(observ);
+            System.out.println("diferencia de "+diferencia);
+            System.out.println("id empleado "+idE);
+            System.out.println("fecha "+txtFecha.getText());
+           int res = DB.agregarDif(observ, diferencia, idE, fecha);
+            System.out.println(""+res);
             if(res == 1){
             JOptionPane.showMessageDialog(this, "Se agrego una observación en tu asistencia");
-            
-        }else{
-        JOptionPane.showMessageDialog(this, "No se pudo agregar la diferencia");}
+            }else{
+            JOptionPane.showMessageDialog(this, "No se pudo agregar la diferencia");}
         }
         int resultado = DB.nuevoCorteCaja(idE, txtFecha.getText(), labelTotalVentas.getText());
         if (resultado==1) {
             JOptionPane.showMessageDialog(this, "Se agrego el corte de caja");
             cmbxEmpleados.setSelectedIndex(0);
             txtFecha.setText("");
-            txtHora.setText("show table");
+            txtHora.setText("");
         } else {
+            JOptionPane.showMessageDialog(this, "No se pudo agregar el corte de caja");
         }
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
