@@ -15,6 +15,9 @@ public class Main {
 
         VentanaPrincipal MainMenu = new VentanaPrincipal();
         MainMenu.setVisible(true);
+        
+        
+        
     }
     
 }
