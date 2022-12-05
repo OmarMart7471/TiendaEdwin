@@ -5,6 +5,11 @@
  */
 package Interfaces.GestionVenta;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -24,7 +34,7 @@ public class Venta extends javax.swing.JPanel {
     
     
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    
+    DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss");
     int numero;
             
             public Consultas CC;
@@ -38,11 +48,13 @@ public class Venta extends javax.swing.JPanel {
     public Venta() throws SQLException {
         initComponents();
         txtFecha.setText(dtf.format(LocalDateTime.now()));
+        txtHora.setText(dtf2.format(LocalDateTime.now()));
+        
         
         txtIdVenta.setText(String.valueOf(numero = (int)(Math.random()*1000+1)));
         CC=new Consultas();
         cargarCombobox ();
-        AgregarVenta();
+       AgregarVenta();
      
         
          filas = tabla2.getRowCount();
@@ -86,11 +98,19 @@ public class Venta extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         txtTotalPagar = new javax.swing.JTextField();
+        lblHora = new javax.swing.JLabel();
+        txtHora = new javax.swing.JTextField();
+        btnGenerarTicket = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Panton Rust Heavy Gr Sh", 0, 36)); // NOI18N
         jLabel1.setText("Registrar   Venta");
 
         txtFecha.setEditable(false);
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Fecha:");
@@ -145,6 +165,17 @@ public class Venta extends javax.swing.JPanel {
 
         txtTotalPagar.setEditable(false);
 
+        lblHora.setText("Hora:");
+
+        txtHora.setEditable(false);
+
+        btnGenerarTicket.setText("Generar Ticket");
+        btnGenerarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarTicketActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,19 +190,24 @@ public class Venta extends javax.swing.JPanel {
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(btnAgregarLista))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblHora)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(txtProducto, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -180,15 +216,17 @@ public class Venta extends javax.swing.JPanel {
                                                     .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                                     .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.LEADING))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnBuscarPrecioProducto)))
+                                                .addComponent(btnBuscarPrecioProducto))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                                .addComponent(txtHora, javax.swing.GroupLayout.Alignment.LEADING)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(btnAgregarLista))))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(351, 351, 351)
-                        .addComponent(jLabel8)
+                        .addGap(347, 347, 347)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnGenerarTicket)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -208,7 +246,11 @@ public class Venta extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(120, 120, 120)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblHora)
+                            .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -236,7 +278,9 @@ public class Venta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(btnGenerarTicket)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -288,6 +332,33 @@ public class Venta extends javax.swing.JPanel {
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioActionPerformed
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
+
+    private void btnGenerarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarTicketActionPerformed
+        
+        File archivo= new File(System.getProperty("user.home") + "/Desktop/"+"Venta "+txtIdVenta.getText()+".pdf");
+        System.out.println(System.getProperty("user.home"));
+        
+        
+             generarPDF(archivo,getTabla());
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+           
+            
+  try {
+    Desktop.getDesktop().browse(new URI("file:/" + "/" + "/" + archivo.getAbsolutePath().replace("\\", "/")));
+  } catch (URISyntaxException ex) {
+    
+  } catch (IOException ex) {
+   
+  }
+}
+        
+        
+        
+    }//GEN-LAST:event_btnGenerarTicketActionPerformed
 
     
      private ArrayList <Producto_Venta> cargarProducto(){
@@ -356,6 +427,7 @@ public class Venta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarLista;
     private javax.swing.JButton btnBuscarPrecioProducto;
+    private javax.swing.JButton btnGenerarTicket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -366,8 +438,10 @@ public class Venta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblHora;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtIdVenta;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JComboBox<String> txtProducto;
@@ -383,7 +457,7 @@ public void AgregarVenta(){
             int resultado = CC.agregarVenta(Integer.parseInt(txtIdVenta.getText()), txtFecha.getText());
         if(resultado == 1){
             
-            JOptionPane.showMessageDialog(this, "Se agrego una Venta");
+           
          
         }else
             JOptionPane.showMessageDialog(this, "No se pudo agregar la Venta");
@@ -422,7 +496,7 @@ public void AgregarDetalleVenta(){
                     txtPrecio.getText(),txtTotal.getText());
         if(resultado == 1){
             
-            JOptionPane.showMessageDialog(this, "Se agrego un Detalle Venta");
+            JOptionPane.showMessageDialog(this, "Se agrego con Éxito");
          
         }else
             JOptionPane.showMessageDialog(this, "No se pudo agregar el Detalle Venta");
@@ -485,7 +559,7 @@ public void AgregarDetalleVenta(){
             int resultado = CC.modificarTotalVenta(txtTotalPagar.getText(), txtIdVenta.getText());
             
         if(resultado == 1){
-            JOptionPane.showMessageDialog(this, "Se modifico la Instalacion");
+            
            
         }else
             JOptionPane.showMessageDialog(this, "No se pudo modificar la Instalacion");
@@ -500,7 +574,7 @@ public void AgregarDetalleVenta(){
             int resultado = CC.modificarStockProducto(txtCantidad.getText(), txtProducto.getSelectedItem().toString());
             
         if(resultado == 1){
-            JOptionPane.showMessageDialog(this, "Se modifico El Stock");
+            
              AgregarDetalleVenta();
             AgregarLista();
             modificarTotalVenta();
@@ -515,5 +589,100 @@ public void AgregarDetalleVenta(){
     }
     
     
+    
+    
+   
+    
+    
+    private void generarPDF(File archivo, String informacion) {
+//Tamaño del ancho del papel A7 
+//Ancho:  74mm == 209.76 pt
+//Largo: 104mm == 294.80 pt
+	try {
+		PDDocument documento = new PDDocument();
+		PDPage pagina = new PDPage(new PDRectangle(209.76f, 294.80f));
 
+		documento.addPage(pagina);
+
+		PDPageContentStream contenido = new PDPageContentStream(documento, pagina);
+
+		contenido.beginText();
+		contenido.setFont(PDType1Font.HELVETICA, 7);
+		contenido.newLineAtOffset(10, pagina.getMediaBox().getHeight() - 10);
+		contenido.setLeading(10.0f);
+
+		contenido.showText("                      ---[ Tienda de Abarrotes Edwin ]---");
+		contenido.newLine();
+		contenido.showText("Fecha: " + txtFecha.getText() + "                                  Hora: " + txtHora.getText());
+		contenido.newLine();
+		contenido.showText("                                   Ticket de Venta");
+		contenido.newLine();
+
+		//Aqui se recorre todo el contenido del
+		//documento en busca de saltos de linea
+		//para insertar las nuevas lineas cada
+		//que se encuentren.
+		String contenidoInsertar = "";
+		for (char caracter : informacion.toCharArray()) {
+			if (caracter == '\n') {
+				//Se inserta el contenido cada que se encuentra un salto de linea
+				contenido.showText(contenidoInsertar);
+				contenido.newLine();
+				contenidoInsertar = "";
+			} else {
+				contenidoInsertar += caracter;
+			}
+		}
+
+		//Si al final sale del ciclo pero no hay un salto de linea
+		//(caracter que sirve para insertar los datos) se debería 
+		//de ejecutar esto, verifica si todavía hay contenido sin insertar.
+		if (contenidoInsertar != "") {
+			contenido.showText(contenidoInsertar);
+			contenido.newLine();
+			contenidoInsertar = "";
+		}
+		contenido.showText("                                                                          Total: $" + txtTotalPagar.getText());
+
+		contenido.newLine();
+		
+		contenido.newLine();
+		contenido.newLine();
+		
+		contenido.endText();
+		contenido.close();
+
+		documento.save(archivo);
+
+	} catch (Exception error) {
+		JOptionPane.showMessageDialog(this, "Error al generar el PDF", "Error", ERROR);
+                
+                
+                           
+	}
+}
+
+    
+    
+    public String getTabla(){
+    String contenido="Producto Cantidad  Total $\n";
+        //Recorre Filas
+        for(int i=0;i<tabla2.getRowCount();i++){
+        
+            
+            //Recorre Columnas
+            for(int j=0;j<tabla2.getColumnCount();j++){
+                
+                contenido+=tabla2.getValueAt(i, j);
+            contenido+="       ";
+            
+            }
+            contenido+="\n";
+        }
+        
+    return contenido;   
+    }
+    
+
+    
 }

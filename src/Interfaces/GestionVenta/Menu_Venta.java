@@ -33,7 +33,6 @@ public class Menu_Venta extends javax.swing.JPanel {
         btnRegistrar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel2.setText("Menú Ventas");
@@ -59,13 +58,6 @@ public class Menu_Venta extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("Buscar Venta");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,7 +73,6 @@ public class Menu_Venta extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(105, 105, 105))
@@ -97,9 +88,7 @@ public class Menu_Venta extends javax.swing.JPanel {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,7 +103,13 @@ public class Menu_Venta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       limpiarContenido();
+        try {
+            contenedor.add(new ModificarVenta());
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu_Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        actualizarContenido();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -129,18 +124,6 @@ public class Menu_Venta extends javax.swing.JPanel {
         actualizarContenido();
         
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-         limpiarContenido();
-        try {
-            contenedor.add(new Buscar_Venta());
-        } catch (SQLException ex) {
-            Logger.getLogger(Menu_Venta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        actualizarContenido();
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
 
    public void limpiarContenido() {
     Component componente = contenedor.getComponent(0);
@@ -159,7 +142,6 @@ public void actualizarContenido() {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
