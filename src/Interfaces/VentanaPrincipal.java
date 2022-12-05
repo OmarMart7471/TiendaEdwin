@@ -5,7 +5,7 @@ import java.awt.Component;
 import java.awt.Label;
 import javax.swing.JPanel;
 import Manejadores.Principal;
-import Interfaces.GestionEmpleados.contenedorEmpleado;
+
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -15,11 +15,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     */
 
     
-    contenedorEmpleado empleado = new contenedorEmpleado();
     
 public VentanaPrincipal() {
 	initComponents();
-        contenedorPrincipal.add(empleado);
+        contenedorPrincipal.add(new Interfaces.GestionVenta.Menu_Venta(contenedorPrincipal));
 
 //Agrega la vista inicial del punto de venta
 	//contenedorPrincipal.add(contenedorVenta);
@@ -42,6 +41,10 @@ public VentanaPrincipal() {
         btnEmpleados = new javax.swing.JButton();
         btnPedido = new javax.swing.JButton();
         btnPedidoCliente = new javax.swing.JButton();
+        btnCorteCaja = new javax.swing.JButton();
+        btnProductos = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
+        btnNomina = new javax.swing.JButton();
         panelDeContenido = new javax.swing.JPanel();
         contenedorTitulo = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -111,39 +114,88 @@ public VentanaPrincipal() {
             }
         });
 
+        btnCorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
+        btnCorteCaja.setText("Corte de caja");
+        btnCorteCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCorteCajaActionPerformed(evt);
+            }
+        });
+
+        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/producto.png"))); // NOI18N
+        btnProductos.setText("Productos");
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
+
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
+        btnUsuarios.setText("Usuarios");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
+
+        btnNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
+        btnNomina.setText("Nomina");
+        btnNomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNominaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenedorMenuLayout = new javax.swing.GroupLayout(contenedorMenu);
         contenedorMenu.setLayout(contenedorMenuLayout);
         contenedorMenuLayout.setHorizontalGroup(
             contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorMenuLayout.createSequentialGroup()
                 .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnPedidoCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                        .addComponent(btnPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEmpleados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(13, 13, 13))
+                    .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnCorteCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPedidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(contenedorMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contenedorMenuLayout.setVerticalGroup(
             contenedorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorMenuLayout.createSequentialGroup()
-                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnAsistencia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
+                .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnProveedores)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEmpleados)
-                .addGap(18, 18, 18)
-                .addComponent(btnPedido)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPedidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCorteCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUsuarios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(contenedorMenu);
@@ -191,53 +243,77 @@ public VentanaPrincipal() {
     }// </editor-fold>//GEN-END:initComponents
 
   private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
-		
-      /*
                 limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionAsistencia());
-		actualizarContenido();*/
-                
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionAsistencia.panelMenuGestionAsistencia(contenedorPrincipal));
+                actualizarContenido();
   }//GEN-LAST:event_btnAsistenciaActionPerformed
 
   private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-		/*limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionVenta());
-		actualizarContenido();*/
+		limpiarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionVenta.Menu_Venta(contenedorPrincipal));
+                actualizarContenido();
   }//GEN-LAST:event_btnVentaActionPerformed
 
   private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-		/*limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(ManejadorPrincipal.getGestionProveedor());
-		actualizarContenido();*/
+		limpiarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionProveedores.PanelMenuProveedores(contenedorPrincipal));
+                actualizarContenido();
   }//GEN-LAST:event_btnProveedoresActionPerformed
 
   private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
 		limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(empleado);
-		actualizarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionEmpleados.MenuGestionEmpleados(contenedorPrincipal));
+                actualizarContenido();
   }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
-        
-        limpiarContenido();
-        contenedorPrincipal.removeAll();
-        contenedorPrincipal.add(new Interfaces.GestionPedidoProveedor.MenuGestionPedido(contenedorPrincipal));
-        actualizarContenido();
-        
+                limpiarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionPedidoProveedor.MenuGestionPedido(contenedorPrincipal));
+                actualizarContenido();
     }//GEN-LAST:event_btnPedidoActionPerformed
 
     private void btnPedidoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoClienteActionPerformed
         
-        limpiarContenido();
-        contenedorPrincipal.removeAll();
-        contenedorPrincipal.add(new Interfaces.GestionPedidoCliente.MenuPedidoCliente(contenedorPrincipal));
-        actualizarContenido();
+                limpiarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionPedidoCliente.MenuPedidoCliente(contenedorPrincipal));
+                actualizarContenido();
         
     }//GEN-LAST:event_btnPedidoClienteActionPerformed
+
+    private void btnCorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorteCajaActionPerformed
+                limpiarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionCorteCaja.menuCorteCaja(contenedorPrincipal));
+                actualizarContenido();
+    }//GEN-LAST:event_btnCorteCajaActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+
+                limpiarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionProducto.PanelMenuGestionProducto(contenedorPrincipal));
+                actualizarContenido();
+    }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+                limpiarContenido();
+                contenedorPrincipal.removeAll();
+                contenedorPrincipal.add(new Interfaces.GestionUsuarios.MenuGestionUsuario(contenedorPrincipal));
+                actualizarContenido();
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNominaActionPerformed
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionNomina.panelMenuGestionNomina(contenedorPrincipal));
+        actualizarContenido();
+    }//GEN-LAST:event_btnNominaActionPerformed
 
 public void limpiarContenido() {
 	Component componente = contenedorPrincipal.getComponent(0);
@@ -276,6 +352,14 @@ public static void main(String args[]) {
 	//</editor-fold>
 	//</editor-fold>
 	//</editor-fold>
+	//</editor-fold>
+	//</editor-fold>
+	//</editor-fold>
+	//</editor-fold>
+	//</editor-fold>
+	//</editor-fold>
+	//</editor-fold>
+	//</editor-fold>
 
 	java.awt.EventQueue.invokeLater(new Runnable() {
 	public void run() {
@@ -287,10 +371,14 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsistencia;
+    private javax.swing.JButton btnCorteCaja;
     private javax.swing.JButton btnEmpleados;
+    private javax.swing.JButton btnNomina;
     private javax.swing.JButton btnPedido;
     private javax.swing.JButton btnPedidoCliente;
+    private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVenta;
     private javax.swing.JPanel contenedorMenu;
     private javax.swing.JPanel contenedorPrincipal;

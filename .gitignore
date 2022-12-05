@@ -1,1 +1,6 @@
+<<<<<<< OURS
 /build/
+=======
+/build/
+>>>>>>> THEIRS
+/nbproject/private/
