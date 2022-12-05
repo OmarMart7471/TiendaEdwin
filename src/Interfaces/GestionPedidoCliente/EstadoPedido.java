@@ -20,6 +20,7 @@ int filas;
 
 public EstadoPedido() {
 	initComponents();
+        peD.consultaEstadoPedido(comboEstadoP);
 	cc = new ManejadorPedidoCliente();
 	filas = modelo.getRowCount();
 	for (int i = filas - 1; i >= 0; i--) {
@@ -142,7 +143,6 @@ public void cargarPedidos() {
         scrollPedidosEncon.setViewportView(PedidosEncon);
 
         comboEstadoP.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        comboEstadoP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado de pedido", " " }));
         comboEstadoP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEstadoPActionPerformed(evt);
@@ -151,6 +151,11 @@ public void cargarPedidos() {
 
         btnGuardar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -206,7 +211,8 @@ public void cargarPedidos() {
     }//GEN-LAST:event_txtIdPedidoKeyPressed
 
     private void btnBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidoActionPerformed
-			Pedido pedido = buscarPedido(txtIdPedido.getText());
+			
+        Pedido pedido = buscarPedido(txtIdPedido.getText());
 			limpiarTabla();
 			if (pedido.getNombreCliente() != null) {
 				insertarPedido(pedido);
@@ -219,6 +225,17 @@ public void cargarPedidos() {
 			}
 
     }//GEN-LAST:event_btnBuscarPedidoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+  
+    Pedido pedido = new Pedido();
+    if(pedido.getAnticipo()>pedido.getTotal()){
+    JOptionPane.showMessageDialog(null, "Entregado");
+    }else{
+    JOptionPane.showMessageDialog(null, "No Entregado");
+     }
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 private void limpiarTabla() {
 	modelo = (DefaultTableModel) PedidosEncon.getModel();

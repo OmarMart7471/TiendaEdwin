@@ -16,13 +16,23 @@ public class ManejadorPedidoCliente {
     Connection con;
     private static PreparedStatement consultaProducto = null;
     private static PreparedStatement buscarPedido = null;
+    private static PreparedStatement mostrarPedidos = null;
+    private static PreparedStatement estadoPedido = null;
 
     public Connection getConnection() {
         try {
+            
             String myBD = "jdbc:mysql://sql9.freesqldatabase.com:3306/sql9556799";
             con = DriverManager.getConnection(myBD, "sql9556799", "27GJest2yc");
             buscarPedido = con.prepareStatement( "SELECT * FROM Pedido WHERE id = ?" );
-            
+            mostrarPedidos = con.prepareStatement( "SELECT * FROM Pedido");
+            estadoPedido = con.prepareStatement("SELECT id,\n" +
+            "CASE (anticipo<total)\n" +
+            "WHEN 0 THEN \"Entregado\"\n" +
+            "WHEN 1 THEN \"No entregado\"\n" +
+            "END AS Estado\n" +
+            "FROM Pedido;");
+
             //consultaProducto = con.prepareStatement("SELECT * FROM producto WHERE descripcion = ?");
             //consultaProveedor = con.prepareStatement("SELECT * FROM proveedor WHERE nombre = ?");
             
@@ -62,6 +72,8 @@ public class ManejadorPedidoCliente {
      }
      }return pedidos;
  }
+    
+    
     
  public void close()
  {

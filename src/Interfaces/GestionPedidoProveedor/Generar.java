@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -21,6 +23,8 @@ public class Generar extends javax.swing.JPanel {
     private List <Proveedor> proveedores;
     private ProductosPedido productoActual;
     private Proveedor proveedorActual;
+    PedidoDatos peD = new PedidoDatos();
+    Pedido pe = new Pedido();
     
     JPanel contenedorPrincipal = null;
     int filas;
@@ -32,45 +36,72 @@ public class Generar extends javax.swing.JPanel {
     
     public Generar() throws SQLException {
         initComponents();
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            txtFecha.setText(dtf.format(LocalDateTime.now()));
         cc = new ManejadorGestionPedido();
         filas = tabla.getRowCount();
         proP.consultaProductos(comboxProducto);
         proP.consultaProveedor(comboProvee);
-        mostrarProducto();
-        cargarProductos();
-        
-    }
-    
-    public void mostrarProducto(){
         for(int i = filas-1; i>= 0; i--){
         tabla.removeRow(i);}
-        tabla.addColumn("Id");        
-        tabla.addColumn("Descripción");        
-        tabla.addColumn("Precio");        
-        tabla.addColumn("Stock");        
-        tabla.addColumn("idProveedor");                
+        tabla.addColumn("idPedido");        
+        tabla.addColumn("fecha");        
+        tabla.addColumn("cantidad");        
+        tabla.addColumn("anticipo");        
+        tabla.addColumn("total");
+        tabla.addColumn("idProducto");
+        tabla.addColumn("idProveedor");
         this.ProEncontrados.setModel(tabla);
     }
     
-     public void cargarProductos(){
+    public void mostrarProducto(){
+        
+    }
+    
+     public void cargarPedido(){
         
         try{
             filas=tabla.getRowCount();
             for(int i = filas-1; i>= 0; i--){
                 tabla.removeRow(i);
             }
-            CallableStatement cts = cc.con.prepareCall("SELECT * FROM producto");
+            CallableStatement cts = cc.con.prepareCall("SELECT * FROM PedidoProveedor");
             ResultSet r = cts.executeQuery();
             
             while(r.next()){
-                Object dato[] = new Object[5];
-                for(int i = 0; i < 5; i++){
+                Object dato[] = new Object[6];
+                for(int i = 0; i < 6; i++){
                     dato[i] = r.getString(i+1);
                 }
                 tabla.addRow(dato);
             }
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+     
+     public void ListarPedidos() {
+        List<Pedido> ListarPro = peD.ListarPedidos();
+        tabla = (DefaultTableModel) ProEncontrados.getModel();
+        Object[] ob = new Object[6];
+        for (int i = 0; i < ListarPro.size(); i++) {
+            ob[0] = ListarPro.get(i).getIdPedido();
+            ob[1] = ListarPro.get(i).getFecha();
+            ob[2] = ListarPro.get(i).getCantidad();
+            ob[3] = ListarPro.get(i).getAnticipo();
+            ob[4] = ListarPro.get(i).getTotal();
+            ob[5] = ListarPro.get(i).getIdProducto();
+            ob[6] = ListarPro.get(i).getIdProveedor();
+            tabla.addRow(ob);
+        }
+        ProEncontrados.setModel(tabla);
+
+    }
+      public void LimpiarTable() {
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+            i = i - 1;
         }
     }
      
@@ -108,7 +139,7 @@ public class Generar extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         comboProvee = new javax.swing.JComboBox<>();
         scrollProEncon = new javax.swing.JScrollPane();
         ProEncontrados = new javax.swing.JTable();
@@ -154,6 +185,11 @@ public class Generar extends javax.swing.JPanel {
 
         btnGenerarPedido.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         btnGenerarPedido.setText("Generar pedido");
+        btnGenerarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarPedidoActionPerformed(evt);
+            }
+        });
 
         btnImprimir.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         btnImprimir.setText("Imprimir pedido");
@@ -174,7 +210,7 @@ public class Generar extends javax.swing.JPanel {
                     .addGroup(panelUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -221,7 +257,7 @@ public class Generar extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(panelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,6 +329,28 @@ public class Generar extends javax.swing.JPanel {
         
     }//GEN-LAST:event_comboxProductoActionPerformed
 
+    private void btnGenerarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPedidoActionPerformed
+        
+        if (!"".equals(txtId.getText()) || !"".equals(txtFecha.getText()) || !"".equals(comboxProducto.getSelectedItem()) || !"".equals(comboProvee.getSelectedItem()) 
+        || !"".equals(txtCantidad.getText()) || !"".equals(txtAnticipo.getText()) || !"".equals(txtTotal.getText())) {
+            pe.setIdPedido(Integer.parseInt(txtId.getText()));
+            pe.setFecha(txtFecha.getText());
+            Combo itemP = (Combo) comboxProducto.getSelectedItem();
+            pe.setIdProducto(itemP.getId());
+            Combo itemPro = (Combo) comboxProducto.getSelectedItem();
+            pe.setIdProveedor(itemPro.getIdPro());
+            pe.setCantidad(Integer.parseInt(txtCantidad.getText()));
+            pe.setAnticipo(Integer.parseInt(txtAnticipo.getText()));
+            pe.setTotal(Integer.parseInt(txtTotal.getText()));
+            peD.RegistrarPedidos(pe);
+            JOptionPane.showMessageDialog(null, "Productos Registrado");
+            ListarPedidos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios");
+        }
+        
+    }//GEN-LAST:event_btnGenerarPedidoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ProEncontrados;
@@ -307,7 +365,6 @@ public class Generar extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAnticipo;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblNombrePro;
@@ -318,6 +375,7 @@ public class Generar extends javax.swing.JPanel {
     private javax.swing.JTextField txtAnticipo;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

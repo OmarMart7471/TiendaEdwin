@@ -1,28 +1,71 @@
 
 package Interfaces.GestionPedidoCliente;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Regristrar extends javax.swing.JPanel {
-
+    
+    
+    private ManejadorPedidoCliente cc;
      PedidoDatos peD = new PedidoDatos();
      Pedido pe = new Pedido();
      DefaultTableModel modelo = new DefaultTableModel();
+     int filas;
      
     
     public Regristrar() {
         initComponents();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            txtFeha.setText(dtf.format(LocalDateTime.now()));
+        cc = new ManejadorPedidoCliente();
+	filas = modelo.getRowCount();
+	for (int i = filas - 1; i >= 0; i--) {
+		modelo.removeRow(i);
+	}
+	modelo.addColumn("id");
+	modelo.addColumn("fecha");
+	modelo.addColumn("nombre");
+	modelo.addColumn("telefono");
+	modelo.addColumn("cantidad");
+	modelo.addColumn("anticipo");
+	modelo.addColumn("total");
+	modelo.addColumn("idVenta");
+	this.productosEncon.setModel(modelo);
+         
       
     }
     
+    public void insertarPedido(Pedido pedido) {
+	modelo = (DefaultTableModel) productosEncon.getModel();
+	modelo.addRow(pedido.getRow());
+	productosEncon.setModel(modelo);
+}
+    
+    public void cargarPedidos() {
+
+	ArrayList<Pedido> Listape = peD.ListarPedido();
+	modelo = (DefaultTableModel) productosEncon.getModel();
+	for (Pedido pedido : Listape) {
+		modelo.addRow(pedido.getRow());
+	}
+	productosEncon.setModel(modelo);
+}
+    public Pedido buscarPedido(String id) {
+	return peD.BuscarPedido(id);
+}
+
+    
     
       public void ListarPedido() {
-        List<Pedido> Listape = peD.ListarPedido();
-        modelo = (DefaultTableModel) productosEncon.getModel();
-        Object[] ob = new Object[7];
+      List<Pedido> Listape = peD.ListarPedido();
+      modelo = (DefaultTableModel) productosEncon.getModel();
+      Object[] ob = new Object[7];
         for (int i = 0; i < Listape.size(); i++) {
             ob[0] = Listape.get(i).getId();
             ob[1] = Listape.get(i).getFecha();
@@ -37,12 +80,7 @@ public class Regristrar extends javax.swing.JPanel {
         productosEncon.setModel(modelo);
 
     }
-      public void LimpiarTable() {
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            modelo.removeRow(i);
-            i = i - 1;
-        }
-    }
+      
       
           public void generarSerie(){
           String serie = peD.numSerie();
@@ -66,10 +104,8 @@ public class Regristrar extends javax.swing.JPanel {
         lblTelefonoCli = new javax.swing.JLabel();
         txtTelefonoCli = new javax.swing.JTextField();
         lblNomProducto = new javax.swing.JLabel();
-        txtNomProducto = new javax.swing.JTextField();
         lblCantidad = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
-        btnBuscarPro = new javax.swing.JButton();
         lbllImporte = new javax.swing.JLabel();
         txtImporte = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
@@ -80,6 +116,7 @@ public class Regristrar extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
         btnBorrar = new javax.swing.JButton();
+        comboProduc = new javax.swing.JComboBox<>();
         scrollProductosP = new javax.swing.JScrollPane();
         productosEncon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -97,8 +134,7 @@ public class Regristrar extends javax.swing.JPanel {
         backUsuario.add(txtTelefonoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 109, 241, -1));
 
         lblNomProducto.setText("Nombre de producto: ");
-        backUsuario.add(lblNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 145, -1, 24));
-        backUsuario.add(txtNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 145, 241, -1));
+        backUsuario.add(lblNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 24));
 
         lblCantidad.setText("Cantidad:");
         backUsuario.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 232, -1, 22));
@@ -109,9 +145,6 @@ public class Regristrar extends javax.swing.JPanel {
             }
         });
         backUsuario.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 231, 300, -1));
-
-        btnBuscarPro.setText("Buscar producto");
-        backUsuario.add(btnBuscarPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 181, -1, -1));
 
         lbllImporte.setText("Importe:");
         backUsuario.add(lbllImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 262, -1, 22));
@@ -144,6 +177,8 @@ public class Regristrar extends javax.swing.JPanel {
             }
         });
         backUsuario.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
+
+        backUsuario.add(comboProduc, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 170, 241, -1));
 
         productosEncon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,7 +225,7 @@ public class Regristrar extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(backUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+            .addComponent(backUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,7 +234,7 @@ public class Regristrar extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+
         if (!"".equals(txtId.getText()) || !"".equals(txtFeha.getText()) ||!"".equals(txtNomCliente.getText()) || !"".equals(txtTelefonoCli.getText()) || !"".equals(txtCantidad.getText()) || !"".equals(txtImporte.getText()) || !"".equals(txtTotalPagar.getText()) || !"".equals(txtSerie.getText())){
             pe.setId(Integer.parseInt(txtId.getText()));
             pe.setFecha(txtFeha.getText());
@@ -218,7 +253,8 @@ public class Regristrar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-         if (!"".equals(txtId.getText())) {
+         
+        if (!"".equals(txtId.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
             if (pregunta == 0) {
                 int id = Integer.parseInt(txtId.getText());
@@ -233,7 +269,7 @@ public class Regristrar extends javax.swing.JPanel {
     private javax.swing.JPanel backUsuario;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnBuscarPro;
+    private javax.swing.JComboBox<String> comboProduc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -251,7 +287,6 @@ public class Regristrar extends javax.swing.JPanel {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtImporte;
     private javax.swing.JTextField txtNomCliente;
-    private javax.swing.JTextField txtNomProducto;
     private javax.swing.JTextField txtSerie;
     private javax.swing.JTextField txtTelefonoCli;
     private javax.swing.JTextField txtTotalPagar;

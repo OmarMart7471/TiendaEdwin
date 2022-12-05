@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 
 public class PedidoDatos {
@@ -17,7 +18,7 @@ public class PedidoDatos {
     ResultSet rs;
     
       public boolean RegistrarPedido(Pedido pr){
-        String sql = "INSERT INTO Pedido (id, fecha, nombreCli, telefono, cantidad, anticipo, total, idVenta) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Pedido (id, fecha, nomCliente, telefonoCli, cantidad, anticipo, total, idVenta) VALUES (?,?,?,?,?,?,?,?)";
         try {
            con = cn.getConnection();
            ps = con.prepareStatement(sql);
@@ -74,8 +75,8 @@ public class PedidoDatos {
                 Pedido pe = new Pedido();
                 pe.setId(rs.getInt("id"));
                 pe.setFecha(rs.getString("fecha"));
-                pe.setNombreCliente(rs.getString("nombreCLi"));
-                pe.setTelefono(rs.getString("telefono"));
+                pe.setNombreCliente(rs.getString("nomCliente"));
+                pe.setTelefono(rs.getString("telefonoCli"));
                 pe.setCantidad(rs.getInt("cantidad"));
                 pe.setAnticipo(rs.getInt("anticipo"));
                 pe.setTotal(rs.getInt("total"));
@@ -99,8 +100,8 @@ public class PedidoDatos {
             if (rs.next()) {
                 pedido.setId(rs.getInt("id"));
                 pedido.setFecha(rs.getString("fecha"));
-                pedido.setNombreCliente(rs.getString("nombreCli"));
-                pedido.setTelefono(rs.getString("telefono"));
+                pedido.setNombreCliente(rs.getString("nomCliente"));
+                pedido.setTelefono(rs.getString("telefonoCli"));
                 pedido.setCantidad(rs.getInt("cantidad"));
                 pedido.setAnticipo(rs.getInt("anticipo"));
                 pedido.setTotal(rs.getInt("total"));
@@ -113,6 +114,27 @@ public class PedidoDatos {
         return pedido;
     }
        
+         public void consultaEstadoPedido(JComboBox id){
+         String sql = "SELECT id,\n" +
+            "CASE (anticipo<total)\n" +
+            "WHEN 0 THEN \"Entregado\"\n" +
+            "WHEN 1 THEN \"No entregado\"\n" +
+            "END AS Estado\n" +
+            "FROM Pedido;";
+          try{
+           con = cn.getConnection();
+           ps = con.prepareStatement(sql);
+           rs = ps.executeQuery();
+           while (rs.next()){
+               id.addItem(rs.getString("id"));
+           }
+           
+        }catch (SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+        
+        
        
        public String numSerie(){
            String serie = "";
