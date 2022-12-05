@@ -231,6 +231,7 @@ public class ContenedorModificarEmpleado extends javax.swing.JPanel {
                     sexoEmpleado.getSelectedItem().toString(), pagoEmpleado.getText());
             if (resultado == 1) {
                 JOptionPane.showMessageDialog(this, "Se actualizo correctamente");
+                cargarEmpleados();
                 idBus.setText("");
                 idEmpleado.setText("");
                 nombreEmpleado.setText("");

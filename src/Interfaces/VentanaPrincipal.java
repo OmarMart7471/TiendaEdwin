@@ -12,23 +12,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /*Se declara al manejador principal que se encargará 
     de hacer la conexion con la base de datos y posteriormente
     a las interfaces correspondientes de los casos de uso
-    */
-
-    
+     */
     contenedorEmpleado empleado = new contenedorEmpleado();
-    
-public VentanaPrincipal() {
-	initComponents();
+
+    public VentanaPrincipal() {
+        initComponents();
         contenedorPrincipal.add(empleado);
 
 //Agrega la vista inicial del punto de venta
-	//contenedorPrincipal.add(contenedorVenta);
-
+        //contenedorPrincipal.add(contenedorVenta);
 //Maximiza la pantalla
-	setExtendedState(this.MAXIMIZED_BOTH);
-}
+        setExtendedState(this.MAXIMIZED_BOTH);
+    }
 
-@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -41,8 +38,9 @@ public VentanaPrincipal() {
         btnVenta = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
         btnProductos = new javax.swing.JButton();
-        btnEmpleados = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
         btnCorteCaja = new javax.swing.JButton();
+        btnEmpleados1 = new javax.swing.JButton();
         panelDeContenido = new javax.swing.JPanel();
         contenedorTitulo = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -134,20 +132,14 @@ public VentanaPrincipal() {
         gridBagConstraints.insets = new java.awt.Insets(35, 0, 0, 0);
         contenedorMenu.add(btnProductos, gridBagConstraints);
 
-        btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
-        btnEmpleados.setText("Empleados");
-        btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
+        btnUsuarios.setText("USUARIOS");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpleadosActionPerformed(evt);
+                btnUsuariosActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(36, 0, 0, 0);
-        contenedorMenu.add(btnEmpleados, gridBagConstraints);
+        contenedorMenu.add(btnUsuarios, new java.awt.GridBagConstraints());
 
         btnCorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money.png"))); // NOI18N
         btnCorteCaja.setText("Corte de caja");
@@ -164,6 +156,21 @@ public VentanaPrincipal() {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 92, 0);
         contenedorMenu.add(btnCorteCaja, gridBagConstraints);
+
+        btnEmpleados1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Clientes.png"))); // NOI18N
+        btnEmpleados1.setText("Empleados");
+        btnEmpleados1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpleados1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(36, 0, 0, 0);
+        contenedorMenu.add(btnEmpleados1, gridBagConstraints);
 
         panelPrincipal.add(contenedorMenu);
 
@@ -210,102 +217,109 @@ public VentanaPrincipal() {
     }// </editor-fold>//GEN-END:initComponents
 
   private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
-		
+
       /*
                 limpiarContenido();
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionAsistencia());
 		actualizarContenido();*/
-                
+
   }//GEN-LAST:event_btnAsistenciaActionPerformed
 
   private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-		/*limpiarContenido();
+      /*limpiarContenido();
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionVenta());
 		actualizarContenido();*/
   }//GEN-LAST:event_btnVentaActionPerformed
 
   private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-		/*limpiarContenido();
+      /*limpiarContenido();
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionProveedor());
 		actualizarContenido();*/
   }//GEN-LAST:event_btnProveedoresActionPerformed
 
   private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-		/*limpiarContenido();
+      /*limpiarContenido();
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionProductos());
 		actualizarContenido();*/
   }//GEN-LAST:event_btnProductosActionPerformed
 
-  private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-		limpiarContenido();
-		contenedorPrincipal.removeAll();
-		contenedorPrincipal.add(new Interfaces.GestionEmpleados.MenuGestionEmpleados(contenedorPrincipal));
-		actualizarContenido();
-  }//GEN-LAST:event_btnEmpleadosActionPerformed
+  private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+      limpiarContenido();
+      contenedorPrincipal.removeAll();
+      contenedorPrincipal.add(new Interfaces.GestionUsuarios.MenuGestionUsuario(contenedorPrincipal));
+      actualizarContenido();
+  }//GEN-LAST:event_btnUsuariosActionPerformed
 
   private void btnCorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorteCajaActionPerformed
-		/*limpiarContenido();
+      /*limpiarContenido();
 		contenedorPrincipal.removeAll();
 		contenedorPrincipal.add(ManejadorPrincipal.getGestionCorteCaja());
 		actualizarContenido();*/
   }//GEN-LAST:event_btnCorteCajaActionPerformed
 
-public void limpiarContenido() {
-	Component componente = contenedorPrincipal.getComponent(0);
-	contenedorPrincipal.remove(componente);
-	actualizarContenido();
-}
+    private void btnEmpleados1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleados1ActionPerformed
+        limpiarContenido();
+        contenedorPrincipal.removeAll();
+        contenedorPrincipal.add(new Interfaces.GestionEmpleados.MenuGestionEmpleados(contenedorPrincipal));
+        actualizarContenido();    }//GEN-LAST:event_btnEmpleados1ActionPerformed
 
-public void actualizarContenido() {
-	contenedorPrincipal.revalidate();
-	contenedorPrincipal.repaint();
-}
+    public void limpiarContenido() {
+        Component componente = contenedorPrincipal.getComponent(0);
+        contenedorPrincipal.remove(componente);
+        actualizarContenido();
+    }
 
-public static void main(String args[]) {
+    public void actualizarContenido() {
+        contenedorPrincipal.revalidate();
+        contenedorPrincipal.repaint();
+    }
 
-	try {
-		for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-			if ("Nimbus".equals(info.getName())) {
-				javax.swing.UIManager.setLookAndFeel(info.getClassName());
-				break;
-			}
-		}
-	} catch (ClassNotFoundException ex) {
-		java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (InstantiationException ex) {
-		java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (IllegalAccessException ex) {
-		java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-		java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	}
-	//</editor-fold>
-	//</editor-fold>
-	//</editor-fold>
-	//</editor-fold>
-	//</editor-fold>
-	//</editor-fold>
-	//</editor-fold>
-	//</editor-fold>
+    public static void main(String args[]) {
 
-	java.awt.EventQueue.invokeLater(new Runnable() {
-	public void run() {
-		new VentanaPrincipal().setVisible(true);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-	}
-	});
-}
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaPrincipal().setVisible(true);
+
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsistencia;
     private javax.swing.JButton btnCorteCaja;
-    private javax.swing.JButton btnEmpleados;
+    private javax.swing.JButton btnEmpleados1;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVenta;
     private javax.swing.JPanel contenedorMenu;
     private javax.swing.JPanel contenedorPrincipal;

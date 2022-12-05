@@ -125,7 +125,7 @@ public class ContenedorEliminarEmpleado extends javax.swing.JPanel {
         if(resultado==1){
             JOptionPane.showMessageDialog(this, "Se elimino exitosamente");
             idEmpleado.setText("");
-           
+           cargarEmpleados();
         }else{
             JOptionPane.showMessageDialog(this, "Empleado no encontrado");
         }
