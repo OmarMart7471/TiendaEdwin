@@ -1,11 +1,13 @@
 
 package Principal;
 
+import Interfaces.InicioSesion;
 import Interfaces.VentanaPrincipal;
+import java.sql.SQLException;
 
 public class Main {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         /*
         Por ahora se manda a traer a la interfaz de VentanaPrincipal
@@ -13,7 +15,7 @@ public class Main {
         deberia ir la interfaz de Inicio de sesión primero
         */
 
-        VentanaPrincipal MainMenu = new VentanaPrincipal();
+        InicioSesion MainMenu = new InicioSesion();
         MainMenu.setVisible(true);
         
         
