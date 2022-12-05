@@ -168,7 +168,7 @@ public class menuCorteCaja extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarhoverSalida
 
     private void btnVisualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisualizarMouseClicked
-
+         cambiarInterfaz("visualizar");
     }//GEN-LAST:event_btnVisualizarMouseClicked
 
     private void btnVisualizarhoverEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisualizarhoverEntrada
@@ -196,7 +196,7 @@ public void cambiarInterfaz(String interfaz) {
 			break;
 		
 		case "visualizar":
-			
+			interfazMostrar =  new Interfaces.GestionCorteCaja.panelVisualizar();
 			break;
 	}
 	setInterfaz(interfazMostrar);

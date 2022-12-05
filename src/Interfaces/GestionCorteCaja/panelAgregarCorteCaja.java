@@ -199,12 +199,7 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
             float diferencia = 500-(totalVentasHoy());
             String observ = "Hubo una diferencia de "+diferencia+" en el corte de caja";
             String fecha = txtFecha.getText();
-            System.out.println(observ);
-            System.out.println("diferencia de "+diferencia);
-            System.out.println("id empleado "+idE);
-            System.out.println("fecha "+txtFecha.getText());
            int res = DB.agregarDif(observ, diferencia, idE, fecha);
-            System.out.println(""+res);
             if(res == 1){
             JOptionPane.showMessageDialog(this, "Se agrego una observación en tu asistencia");
             }else{
@@ -340,7 +335,7 @@ public class panelAgregarCorteCaja extends javax.swing.JPanel {
         ArrayList <String> lista =  new ArrayList<>();
         String nombre ;
         try{
-            CallableStatement cts = db.getConexion().prepareCall("SELECT nombre FROM Empleado");
+            CallableStatement cts = db.getConexion().prepareCall("SELECT nombre FROM Empleado WHERE puesto = 'Cajer@'");
             ResultSet r = cts.executeQuery();
             while(r.next()){
                 nombre = r.getString(1);
