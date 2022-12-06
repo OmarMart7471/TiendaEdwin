@@ -10,11 +10,12 @@ private int cantidad;
 private int anticipo;
 private int total;
 private int idVenta;
+private String producto;
 
 public Pedido() {
 }
 
-public Pedido(int id, String fecha, String nombreCliente, String telefono, int cantidad, int anticipo, int total, int idVenta) {
+public Pedido(int id, String fecha, String nombreCliente, String telefono, int cantidad, int anticipo, int total, int idVenta, String producto) {
 	this.id = id;
 	this.fecha = fecha;
 	this.nombreCliente = nombreCliente;
@@ -23,6 +24,7 @@ public Pedido(int id, String fecha, String nombreCliente, String telefono, int c
 	this.anticipo = anticipo;
 	this.total = total;
 	this.idVenta = idVenta;
+        this.producto = producto;
 }
 
 public int getId() {
@@ -89,8 +91,16 @@ public void setIdVenta(int idVenta) {
 	this.idVenta = idVenta;
 }
 
+    public String getProducto() {
+        return producto;
+    }
+
+    public void setProducto(String producto) {
+        this.producto = producto;
+    }
+
 public Object[] getRow() {
-	Object[] pedido = new Object[8];
+	Object[] pedido = new Object[9];
 	pedido[0] = id;
 	pedido[1] = fecha;
 	pedido[2] = nombreCliente;
@@ -99,6 +109,7 @@ public Object[] getRow() {
 	pedido[5] = anticipo;
 	pedido[6] = total;
 	pedido[7] = idVenta;
+        pedido[8] = producto;
 	return pedido;
 }
 

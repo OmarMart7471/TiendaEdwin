@@ -43,9 +43,6 @@ public class Modificar extends javax.swing.JPanel {
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
-        scrollProveedor = new javax.swing.JScrollPane();
-        ProveeEncontra = new javax.swing.JTable();
-        lblProveeEncon = new javax.swing.JLabel();
         scrollPedidoModi = new javax.swing.JScrollPane();
         pedidoModifi = new javax.swing.JTable();
         lbllPedidoModi = new javax.swing.JLabel();
@@ -145,19 +142,6 @@ public class Modificar extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ProveeEncontra.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Id", "Nombre", "Telefono", "Empresa"
-            }
-        ));
-        scrollProveedor.setViewportView(ProveeEncontra);
-
-        lblProveeEncon.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        lblProveeEncon.setText("Proveedor encontrado");
-
         pedidoModifi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -177,32 +161,24 @@ public class Modificar extends javax.swing.JPanel {
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbllPedidoModi)
-                            .addComponent(lblProveeEncon))
-                        .addGap(0, 333, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollPedidoModi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(scrollProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(lbllPedidoModi)
+                        .addGap(0, 351, Short.MAX_VALUE))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(scrollPedidoModi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 399, Short.MAX_VALUE)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(lblProveeEncon)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addComponent(lbllPedidoModi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollPedidoModi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -219,7 +195,6 @@ public class Modificar extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ProveeEncontra;
     private javax.swing.JPanel background;
     private javax.swing.JButton btnBuscarProveedor;
     private javax.swing.JButton btnModificar;
@@ -228,13 +203,11 @@ public class Modificar extends javax.swing.JPanel {
     private javax.swing.JLabel lblIdProvee;
     private javax.swing.JLabel lblNomProduc;
     private javax.swing.JLabel lblNomProvee;
-    private javax.swing.JLabel lblProveeEncon;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lbllPedidoModi;
     private javax.swing.JPanel panelUsuario;
     private javax.swing.JTable pedidoModifi;
     private javax.swing.JScrollPane scrollPedidoModi;
-    private javax.swing.JScrollPane scrollProveedor;
     private javax.swing.JTextField txtAnticipo;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtNomProvee;

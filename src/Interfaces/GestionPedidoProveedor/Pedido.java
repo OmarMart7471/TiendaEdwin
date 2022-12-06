@@ -26,6 +26,8 @@ public class Pedido {
         this.idProducto = idProducto;
         this.idProveedor = idProveedor;
     }
+    
+    
 
     public int getIdPedido() {
         return idPedido;
@@ -83,7 +85,17 @@ public class Pedido {
         this.idProveedor = idProveedor;
     }
     
-    
+    public Object[] getRow() {
+	Object[] pedido = new Object[7];
+	pedido[0] = idPedido;
+	pedido[1] = fecha;
+	pedido[2] = cantidad;
+	pedido[3] = anticipo;
+	pedido[4] = total;
+	pedido[5] = idProducto;
+        pedido[6] = idProveedor;
+	return pedido;
+}
     
     
 

@@ -4,12 +4,10 @@ package Interfaces.GestionPedidoProveedor;
 public class Combo {
     
     private int id;
-    private String idPro;
     private String nombre;
 
-    public Combo(int id, String idPro, String nombre) {
+    public Combo(int id, String nombre) {
         this.id = id;
-        this.idPro = idPro;
         this.nombre = nombre;
     }
 
@@ -21,14 +19,6 @@ public class Combo {
         this.id = id;
     }
 
-    public String getIdPro() {
-        return idPro;
-    }
-
-    public void setIdPro(String idPro) {
-        this.idPro = idPro;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -36,7 +26,12 @@ public class Combo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
+
     
     
     

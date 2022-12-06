@@ -29,14 +29,12 @@ public class Regristrar extends javax.swing.JPanel {
 		modelo.removeRow(i);
 	}
 	modelo.addColumn("id");
-	modelo.addColumn("fecha");
-	modelo.addColumn("nombre");
-	modelo.addColumn("telefono");
-	modelo.addColumn("cantidad");
-	modelo.addColumn("anticipo");
-	modelo.addColumn("total");
-	modelo.addColumn("idVenta");
+	modelo.addColumn("descripcion");
+	modelo.addColumn("precio");
+	modelo.addColumn("stock");
+	modelo.addColumn("idProveedor");
 	this.productosEncon.setModel(modelo);
+        ListarProducto();
          
       
     }
@@ -62,19 +60,18 @@ public class Regristrar extends javax.swing.JPanel {
 
     
     
-      public void ListarPedido() {
-      List<Pedido> Listape = peD.ListarPedido();
+      public void ListarProducto() {
+      List<Productos> Listape = peD.ListarProducto();
       modelo = (DefaultTableModel) productosEncon.getModel();
-      Object[] ob = new Object[7];
+      Object[] ob = new Object[5];
         for (int i = 0; i < Listape.size(); i++) {
             ob[0] = Listape.get(i).getId();
-            ob[1] = Listape.get(i).getFecha();
-            ob[2] = Listape.get(i).getNombreCliente();
-            ob[3] = Listape.get(i).getTelefono();
-            ob[4] = Listape.get(i).getCantidad();
-            ob[5] = Listape.get(i).getAnticipo();
-            ob[6] = Listape.get(i).getTotal();
-            ob[7] = Listape.get(i).getIdVenta();
+            ob[1] = Listape.get(i).getDescripcion();
+            ob[2] = Listape.get(i).getPrecio();
+            ob[3] = Listape.get(i).getStock();
+            ob[4] = Listape.get(i).getIdProveedor();
+            
+            
             modelo.addRow(ob);
         }
         productosEncon.setModel(modelo);
@@ -116,7 +113,7 @@ public class Regristrar extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
         btnBorrar = new javax.swing.JButton();
-        comboProduc = new javax.swing.JComboBox<>();
+        txtProducto = new javax.swing.JTextField();
         scrollProductosP = new javax.swing.JScrollPane();
         productosEncon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -126,59 +123,61 @@ public class Regristrar extends javax.swing.JPanel {
         backUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNomCli.setText("Nombre del cliente: ");
-        backUsuario.add(lblNomCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 74, -1, 22));
-        backUsuario.add(txtNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 73, 239, -1));
+        backUsuario.add(lblNomCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, -1, 22));
+        backUsuario.add(txtNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 79, 190, -1));
 
         lblTelefonoCli.setText("Numero de teléfono:");
-        backUsuario.add(lblTelefonoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, 122, 24));
-        backUsuario.add(txtTelefonoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 109, 241, -1));
+        backUsuario.add(lblTelefonoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 115, 122, 24));
+        backUsuario.add(txtTelefonoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 115, 190, -1));
 
         lblNomProducto.setText("Nombre de producto: ");
-        backUsuario.add(lblNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 24));
+        backUsuario.add(lblNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 157, -1, 24));
 
         lblCantidad.setText("Cantidad:");
-        backUsuario.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 232, -1, 22));
+        backUsuario.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 238, -1, 22));
 
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantidadActionPerformed(evt);
             }
         });
-        backUsuario.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 231, 300, -1));
+        backUsuario.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 237, 253, -1));
 
         lbllImporte.setText("Importe:");
-        backUsuario.add(lbllImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 262, -1, 22));
-        backUsuario.add(txtImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 261, 300, -1));
+        backUsuario.add(lbllImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 268, -1, 22));
+        backUsuario.add(txtImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 267, 253, -1));
 
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar (1).png"))); // NOI18N
         btnAgregar.setText("Agregar ");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
-        backUsuario.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, -1));
+        backUsuario.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 297, -1, -1));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bolsa-de-la-compra (1).png"))); // NOI18N
         jLabel2.setText("Id: ");
-        backUsuario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 32, 24));
-        backUsuario.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 20, 50, -1));
+        backUsuario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, -1, -1));
+        backUsuario.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 23, 68, -1));
 
         jLabel3.setText("Fecha:");
-        backUsuario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 20, -1, 24));
-        backUsuario.add(txtFeha, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 20, 121, -1));
+        backUsuario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 20, -1, 24));
+        backUsuario.add(txtFeha, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 20, 80, -1));
 
         jLabel5.setText("idVenta:");
-        backUsuario.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 20));
-        backUsuario.add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 80, -1));
+        backUsuario.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 310, -1, 20));
+        backUsuario.add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 308, 80, -1));
 
-        btnBorrar.setText("Borrar");
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista-de-verificacion (1).png"))); // NOI18N
+        btnBorrar.setText("Imprimir");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
             }
         });
-        backUsuario.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
-
-        backUsuario.add(comboProduc, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 170, 241, -1));
+        backUsuario.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 297, -1, -1));
+        backUsuario.add(txtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 157, 190, -1));
 
         productosEncon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,8 +189,10 @@ public class Regristrar extends javax.swing.JPanel {
         ));
         scrollProductosP.setViewportView(productosEncon);
 
-        jLabel1.setText("Productos en el pedido");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito-de-supermercado (1).png"))); // NOI18N
+        jLabel1.setText("Productos ");
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/monedas (2).png"))); // NOI18N
         jLabel4.setText("Total a pagar:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -200,9 +201,9 @@ public class Regristrar extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(backUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollProductosP, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                    .addComponent(scrollProductosP, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -240,6 +241,7 @@ public class Regristrar extends javax.swing.JPanel {
             pe.setFecha(txtFeha.getText());
             pe.setNombreCliente(txtNomCliente.getText());
             pe.setTelefono(txtTelefonoCli.getText());
+            pe.setProducto(txtProducto.getText());
             pe.setCantidad(Integer.parseInt(txtCantidad.getText()));
             pe.setAnticipo(Integer.parseInt(txtImporte.getText()));
             pe.setTotal(Integer.parseInt(txtTotalPagar.getText()));
@@ -269,7 +271,6 @@ public class Regristrar extends javax.swing.JPanel {
     private javax.swing.JPanel backUsuario;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JComboBox<String> comboProduc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -287,6 +288,7 @@ public class Regristrar extends javax.swing.JPanel {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtImporte;
     private javax.swing.JTextField txtNomCliente;
+    private javax.swing.JTextField txtProducto;
     private javax.swing.JTextField txtSerie;
     private javax.swing.JTextField txtTelefonoCli;
     private javax.swing.JTextField txtTotalPagar;

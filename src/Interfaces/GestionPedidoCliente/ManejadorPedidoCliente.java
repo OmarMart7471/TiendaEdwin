@@ -60,7 +60,8 @@ public class ManejadorPedidoCliente {
             conjuntoCancion.getInt("cantidad"), 
             conjuntoCancion.getInt("anticipo"),
             conjuntoCancion.getInt("total"),
-            conjuntoCancion.getInt("idVenta")));
+            conjuntoCancion.getInt("idVenta"),
+            conjuntoCancion.getString("Producto")));
          }
      }catch(SQLException exs){
          exs.printStackTrace();

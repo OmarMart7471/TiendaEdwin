@@ -34,9 +34,32 @@ public EstadoPedido() {
 	modelo.addColumn("anticipo");
 	modelo.addColumn("total");
 	modelo.addColumn("idVenta");
+        modelo.addColumn("producto");
 	this.PedidosEncon.setModel(modelo);
-	cargarPedidos();
+        ListarPedido();
+	
 }
+
+ 
+      public void ListarPedido() {
+      List<Pedido> Listape = peD.ListarPedido();
+      modelo = (DefaultTableModel) PedidosEncon.getModel();
+      Object[] ob = new Object[9];
+        for (int i = 0; i < Listape.size(); i++) {
+            ob[0] = Listape.get(i).getId();
+            ob[1] = Listape.get(i).getFecha();
+            ob[2] = Listape.get(i).getNombreCliente();
+            ob[3] = Listape.get(i).getTelefono();
+            ob[4] = Listape.get(i).getCantidad();
+            ob[5] = Listape.get(i).getAnticipo();
+            ob[6] = Listape.get(i).getTotal();
+            ob[7] = Listape.get(i).getIdVenta();
+            ob[8] = Listape.get(i).getProducto();
+            modelo.addRow(ob);
+        }
+        PedidosEncon.setModel(modelo);
+
+    }
 
 public Pedido buscarPedido(String id) {
 	return peD.BuscarPedido(id);
@@ -46,9 +69,9 @@ public void insertarPedido(Pedido pedido) {
 	modelo = (DefaultTableModel) PedidosEncon.getModel();
 	modelo.addRow(pedido.getRow());
 	PedidosEncon.setModel(modelo);
-}
+} 
 
-public void cargarPedidos() {
+/*public void cargarPedidos() {
 
 	ArrayList<Pedido> Listape = peD.ListarPedido();
 	modelo = (DefaultTableModel) PedidosEncon.getModel();
@@ -56,7 +79,7 @@ public void cargarPedidos() {
 		modelo.addRow(pedido.getRow());
 	}
 	PedidosEncon.setModel(modelo);
-}
+} */
 
 @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,6 +97,7 @@ public void cargarPedidos() {
         btnGuardar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hacer-un-pedido (2).png"))); // NOI18N
         jLabel1.setText("Id pedido: ");
 
         txtIdPedido.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -83,9 +107,11 @@ public void cargarPedidos() {
         });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fecha-tope (1).png"))); // NOI18N
         jLabel2.setText("Fecha de pedido:");
 
         btnBuscarPedido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnBuscarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa (1).png"))); // NOI18N
         btnBuscarPedido.setText("Buscar");
         btnBuscarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,16 +124,16 @@ public void cargarPedidos() {
         panelUusarioLayout.setHorizontalGroup(
             panelUusarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUusarioLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(122, 122, 122)
                 .addGroup(panelUusarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelUusarioLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIdPedido))
+                        .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
                     .addGroup(panelUusarioLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFecha)))
+                        .addComponent(txtIdPedido)))
                 .addGap(44, 44, 44)
                 .addComponent(btnBuscarPedido)
                 .addGap(103, 103, 103))
@@ -119,7 +145,7 @@ public void cargarPedidos() {
                     .addGroup(panelUusarioLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(panelUusarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
                             .addComponent(txtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelUusarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +176,8 @@ public void cargarPedidos() {
         });
 
         btnGuardar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/esperar (1).png"))); // NOI18N
+        btnGuardar.setText("Estado Pedido");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -182,7 +209,7 @@ public void cargarPedidos() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboEstadoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,14 +264,14 @@ public void cargarPedidos() {
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-private void limpiarTabla() {
+    private void limpiarTabla() {
 	modelo = (DefaultTableModel) PedidosEncon.getModel();
 	for (int iterador = 0; iterador < modelo.getRowCount(); iterador++) {
 		modelo.removeRow(iterador);
 	}
 	modelo.setRowCount(0);
 	PedidosEncon.setModel(modelo);
-}
+} 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

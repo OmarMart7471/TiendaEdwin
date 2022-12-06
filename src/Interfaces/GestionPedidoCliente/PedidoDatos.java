@@ -1,6 +1,7 @@
 
 package Interfaces.GestionPedidoCliente;
 
+import Clases.Producto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ public class PedidoDatos {
     ResultSet rs;
     
       public boolean RegistrarPedido(Pedido pr){
-        String sql = "INSERT INTO Pedido (id, fecha, nomCliente, telefonoCli, cantidad, anticipo, total, idVenta) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Pedido (id, fecha, nomCliente, telefonoCli, cantidad, anticipo, total, idVenta, producto) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
            con = cn.getConnection();
            ps = con.prepareStatement(sql);
@@ -30,6 +31,8 @@ public class PedidoDatos {
            ps.setInt(6, pr.getAnticipo());
            ps.setInt(7, pr.getTotal());
            ps.setInt(8, pr.getIdVenta());
+           ps.setString(9, pr.getProducto());
+           
            ps.execute();
            return true;
         } catch (SQLException e) {
@@ -81,6 +84,7 @@ public class PedidoDatos {
                 pe.setAnticipo(rs.getInt("anticipo"));
                 pe.setTotal(rs.getInt("total"));
                 pe.setIdVenta(rs.getInt("idVenta"));
+                pe.setProducto(rs.getString("producto"));
                 Listape.add(pe);
             }
             
@@ -89,6 +93,32 @@ public class PedidoDatos {
         }
         return Listape;
     }
+       
+       public ArrayList ListarProducto(){
+        ArrayList<Productos> Listape = new ArrayList();
+        String sql = "SELECT * FROM producto";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                Productos pe = new Productos();
+                pe.setId(rs.getInt("id"));
+                pe.setDescripcion(rs.getString("descripcion"));
+                pe.setPrecio(rs.getFloat("precio"));
+                pe.setStock(rs.getInt("stock"));
+                pe.setIdProveedor(rs.getString("idProveedor"));
+                
+                Listape.add(pe);
+            }
+            
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return Listape;
+    }
+       
+       
         public Pedido BuscarPedido(String id){
         Pedido pedido = new Pedido();
         String sql = "SELECT * FROM Pedido WHERE id = ?";
@@ -106,6 +136,7 @@ public class PedidoDatos {
                 pedido.setAnticipo(rs.getInt("anticipo"));
                 pedido.setTotal(rs.getInt("total"));
                 pedido.setIdVenta(rs.getInt("idVenta"));
+                pedido.setProducto(rs.getString("producto"));
                 
             }
         } catch (SQLException e) {

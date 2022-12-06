@@ -1,5 +1,5 @@
 
-package Interfaces.GestionPedidoProveedor;
+package Interfaces.GestionPedidoCliente;
 
 
 public class Productos {
@@ -9,11 +9,6 @@ public class Productos {
    private float precio;
    private int stock;
    private String idProveedor;
-   
-   
-   public Productos(){
-       
-   }
 
     public Productos(int id, String descripcion, float precio, int stock, String idProveedor) {
         this.id = id;
@@ -22,7 +17,12 @@ public class Productos {
         this.stock = stock;
         this.idProveedor = idProveedor;
     }
+
+    public Productos() {
+    }
     
+    
+
     public int getId() {
         return id;
     }
@@ -62,6 +62,7 @@ public class Productos {
     public void setIdProveedor(String idProveedor) {
         this.idProveedor = idProveedor;
     }
+   
    
    
     
