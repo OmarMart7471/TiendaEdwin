@@ -81,6 +81,32 @@ public class PedidoDatos {
         return producto;
     }
         
+        public boolean ModificarPedido(Pedido pr){
+        String sql = "UPDATE PedidoProveedor SET fecha=? ,cantidad=?, anticipo=?, total=?, idProducto=?, idProveedor=? WHERE idPedido=?";
+        try {
+            con = cn.getConexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pr.getIdPedido());
+            ps.setString(2, pr.getFecha());
+            ps.setInt(3, pr.getCantidad());
+            ps.setInt(4, pr.getAnticipo());
+            ps.setInt(5, pr.getTotal());
+            ps.setInt(6, pr.getIdProducto());
+            ps.setString(7, pr.getIdProveedor());
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+        
         
         /*public boolean ModificarProductos(Productos pro){
        String sql = "UPDATE PedidoProveedor SET  nombre=?, proveedor=?, stock=?, precio=? WHERE id=?";
@@ -163,7 +189,7 @@ public class PedidoDatos {
             rs = ps.executeQuery();
             while (rs.next()) {                
                 Pedido pe = new Pedido();
-                pe.setIdPedido(rs.getInt("id"));
+                pe.setIdPedido(rs.getInt("idPedido"));
                 pe.setFecha(rs.getString("fecha"));
                 pe.setCantidad(rs.getInt("cantidad"));
                 pe.setAnticipo(rs.getInt("anticipo"));
