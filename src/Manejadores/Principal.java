@@ -9,9 +9,9 @@ public class Principal {
     
     
   //Parte del manejador que hace la conexion a la base de datos
-     static final String URL = "jdbc:mysql://sql9.freesqldatabase.com:3306/sql9556799";
-     static final String NOMBREUSUARIO = "sql9556799";
-     static final String CONTRASENIA = "27GJest2yc";
+     static final String URL = "jdbc:mysql://127.0.0.1:3306/tienda";
+     static final String NOMBREUSUARIO = "root";
+     static final String CONTRASENIA = "12345";
      Connection conexion = null;
      
      public Principal() {
